@@ -5,12 +5,18 @@ const fs = require('fs')
 
 // Routes
 router.get('/badly-designed-register/:register', function(req, res) {
-    
     var register = getRegister(req.params.register)
     if (req.query.filter) {
         register = filterRegister(register, req.query.filter)
-        register.filter = req.query.filter
     }
+
+    if (req.query.sortColumn) {
+        register = sortRegister(register, req.query.sortColumn, req.query.sortDescending)
+    }
+
+    register.filter = req.query.filter
+    register.sortColumn = req.query.sortColumn
+    register.sortDescending = req.query.sortDescending || 'false'
 
     res.render('badly-designed-register', register)
 })
@@ -22,6 +28,16 @@ function filterRegister(register, filterTerm) {
         return geographicalIndication.some(function(dataItem) {
             return dataItem.includes(filterTerm)
         })
+    })
+    return register
+}
+
+function sortRegister(register, sortColumn, sortDescending) {
+    sortDescending = sortDescending === 'true'
+    register.data = register.data.sort(function(a, b) {
+        var result = a[sortColumn] > b[sortColumn]
+        result = sortDescending ? !result : result
+        return result ? 1 : -1
     })
     return register
 }

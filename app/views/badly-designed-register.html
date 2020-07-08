@@ -33,7 +33,7 @@ Geographical indications register
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             {% for header in headers %}
-            <th scope="col" class="govuk-table__header">{{ header }}</th>
+            <th scope="col" class="govuk-table__header"><a href="/badly-designed-register/{{ registerName }}?filter={{ filter }}&sortColumn={{ loop.index0 }}&sortDescending={{ sortColumn == loop.index0 and sortDescending == 'false' }}">{{ header }}</a></th>
             {% endfor %}
           </tr>
         </thead>
