@@ -15,7 +15,7 @@ Geographical indications register
 
       <h1 class="govuk-heading-xl">{{ title }}</h1>
 
-      {% if data.length == 0 %}
+      {% if headers.length == 0 %}
       No {{ title }} appear on the register
       {% else %}
       <form class="form" action="/badly-designed-register/{{ registerName }}" method="get">
