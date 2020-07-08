@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Geographical indications register
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Which register do you want to see?</h1>
+      
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="badly-designed-register/aromatised-wines">Aromatised wines</a>
+        </li>
+        <li>
+          <a href="badly-designed-register/food-and-agri-pdo-pgi">Food and Agri UK PDO PGI</a>
+        </li>
+        <li>
+          <a href="badly-designed-register/food-and-agri-tsg">Food and Agri UK TSG</a>
+        </li>
+        <li>
+          <a href="badly-designed-register/spirits">Spirits</a>
+        </li>
+        <li>
+          <a href="badly-designed-register/traditional-terms">Traditional Terms (Wines)</a>
+        </li>
+        <li>
+          <a href="badly-designed-register/wines">Wines</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}
