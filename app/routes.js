@@ -26,7 +26,7 @@ function filterRegister(register, filterTerm) {
     // Only keep geographical indications where at least one of the columns contains the filter term
     register.data = register.data.filter(function(geographicalIndication) { 
         return geographicalIndication.some(function(dataItem) {
-            return dataItem.includes(filterTerm)
+            return dataItem.toLowerCase().includes(filterTerm.toLowerCase())
         })
     })
     return register
