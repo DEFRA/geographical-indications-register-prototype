@@ -51,7 +51,7 @@ function getRegister(registerName) {
 
     return {
         title: title,
-        headers: Object.keys(data[0]),
+        headers: data.length > 0 ? Object.keys(data[0]) : [],
         data: data.map(function(dataItem) {
             return Object.values(dataItem)
         })
