@@ -5,21 +5,25 @@ const fs = require('fs')
 
 // Routes
 router.get('/badly-designed-register/:register', function(req, res) {
-    res.render('badly-designed-register', getRegister(req.params.register))
-})
+    
+    var register = getRegister(req.params.register)
+    if (req.query.filter) {
+        register = filterRegister(register, req.query.filter)
+        register.filter = req.query.filter
+    }
 
-router.get('/badly-designed-register/:register/filter/:filterTerm', function(req, res) {
-    res.render('badly-designed-register', filterRegister(getRegister(req.params.register)))
+    res.render('badly-designed-register', register)
 })
 
 // Functions
 function filterRegister(register, filterTerm) {
     // Only keep geographical indications where at least one of the columns contains the filter term
-    register.data = register.data.reduce(function(geographicalIndication) {
+    register.data = register.data.filter(function(geographicalIndication) { 
         return geographicalIndication.some(function(dataItem) {
             return dataItem.includes(filterTerm)
         })
     })
+    return register
 }
 
 function getRegister(registerName) {
@@ -51,6 +55,7 @@ function getRegister(registerName) {
 
     return {
         title: title,
+        registerName: registerName,
         headers: data.length > 0 ? Object.keys(data[0]) : [],
         data: data.map(function(dataItem) {
             return Object.values(dataItem)

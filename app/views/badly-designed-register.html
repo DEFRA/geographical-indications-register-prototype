@@ -18,6 +18,17 @@ Geographical indications register
       {% if data.length == 0 %}
       No {{ title }} appear on the register
       {% else %}
+      <form class="form" action="/badly-designed-register/{{ registerName }}" method="get">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="filter">
+              Filter
+          </label>
+          <input class="govuk-input" id="filter" name="filter" type="text" value="{{ filter }}">
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Filter</button>
+      </form>
+
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
