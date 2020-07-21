@@ -1,24 +1,35 @@
 const express = require('express')
 const { get } = require('browser-sync')
 const router = express.Router()
-const fs = require('fs')
+const airtable = require('airtable');
+const config = require('./config.js')
+
+
+var dbApiKey = process.env.DB_API_KEY
+var dbBaseKey = process.env.DB_BASE_KEY
+
+airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: dbApiKey
+});
 
 // Routes
 router.get('/badly-designed-register/:register', function(req, res) {
-    var register = getRegister(req.params.register)
-    if (req.query.filter) {
-        register = filterRegister(register, req.query.filter)
-    }
+    getRegister(req.params.register).then(function(register) {
+        if (req.query.filter) {
+            register = filterRegister(register, req.query.filter)
+        }
 
-    if (req.query.sortColumn) {
-        register = sortRegister(register, req.query.sortColumn, req.query.sortDescending)
-    }
+        if (req.query.sortColumn) {
+            register = sortRegister(register, req.query.sortColumn, req.query.sortDescending)
+        }
 
-    register.filter = req.query.filter
-    register.sortColumn = req.query.sortColumn
-    register.sortDescending = req.query.sortDescending || 'false'
+        register.filter = req.query.filter
+        register.sortColumn = req.query.sortColumn
+        register.sortDescending = req.query.sortDescending || 'false'
 
-    res.render('badly-designed-register', register)
+        res.render('badly-designed-register', register)
+    })
 })
 
 // Functions
@@ -42,7 +53,7 @@ function sortRegister(register, sortColumn, sortDescending) {
     return register
 }
 
-function getRegister(registerName) {
+async function getRegister(registerName) {
     let title = ''
     switch(registerName) {
         case 'aromatised-wines':
@@ -67,7 +78,7 @@ function getRegister(registerName) {
             title = 'Error'
     }
 
-    let data = getRegisterData(registerName)
+    let data = await getRegisterData(registerName)
 
     return {
         title: title,
@@ -79,14 +90,12 @@ function getRegister(registerName) {
     }
 }
 
-function getRegisterData(registerName) {
-    try {
-        const jsonString = fs.readFileSync(`app/data/registers/${registerName}.json`)
-        return JSON.parse(jsonString)
-    } catch(err) {
-        console.log(err)
-        return
-    }
+async function getRegisterData(registerName) {
+    base = airtable.base(dbBaseKey);
+    var records = await base(registerName).select({
+        view: "Grid view"
+    }).all()
+    return records.map(record => record.fields)
 }
 
 module.exports = router

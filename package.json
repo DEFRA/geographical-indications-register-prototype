@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "acorn": "^7.1.1",
+    "airtable": "^0.8.1",
     "ansi-colors": "^4.1.1",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
