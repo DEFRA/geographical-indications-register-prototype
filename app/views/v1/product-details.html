@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set productname = "Cornish Pasty" %}
+{% set productname = EA_Name %}
 
 {% block pageTitle %}
   {{ productname }} protected product details and specification
@@ -81,7 +81,7 @@
               text: "Product class"
             },
             value: {
-              text: "Class 2.3. Bread, pastry, cakes, confectionery, biscuits and other baker's wares"
+              text: {{ EA_ProductCategory }}
             }
           },
           {
