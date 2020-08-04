@@ -1,0 +1,1 @@
+This data is not the data that will appear on the final geographical indications register when it launches but is purely used for prototyping purposes. It should not be taken as and indication of what may appear on the final register.
