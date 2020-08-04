@@ -18,6 +18,92 @@
       <h1 class="govuk-heading-xl">{{ productname }}</h1>
 
 
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Specification"
+            },
+            value: {
+              html: '<a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">' + productname+ " specification (pdf)</a>"
+            }
+          },
+          {
+            key: {
+              text: "Type"
+            },
+            value: {
+              text: "Protected Geographical Indication (PGI)"
+            }
+          },
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              text: "Registered"
+            }
+          },
+          {
+            key: {
+              text: "Country"
+            },
+            value: {
+              text: "United Kingdom"
+            }
+          },
+          {
+            key: {
+              text: "Registration date"
+            },
+            value: {
+              text: "1 January 2021"
+            }
+          },
+          {
+            key: {
+              text: "Original EU registration date"
+            },
+            value: {
+              text: "23 July 2011"
+            }
+          },
+          {
+            key: {
+              text: "GB register"
+            },
+            value: {
+              text: "Food PDO and PDI register"
+            }
+          },
+          {
+            key: {
+              text: "Product class"
+            },
+            value: {
+              text: "Class 2.3. Bread, pastry, cakes, confectionery, biscuits and other baker's wares"
+            }
+          },
+          {
+            key: {
+              text: "Product type"
+            },
+            value: {
+              text: "Food"
+            }
+          },
+          {
+            key: {
+              text: "File number"
+            },
+            value: {
+              text: "PGI-GB-0727"
+            }
+          }
+        ]
+      }) }}
+
+
 
     </div>
   </div>
