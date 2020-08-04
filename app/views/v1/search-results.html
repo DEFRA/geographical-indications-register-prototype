@@ -1,3 +1,41 @@
-{% for result in results %}
-    {{ result.EA_Name }}
-{% endfor %}
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+{{ headers }}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <h1 class="govuk-heading-xl">Search results</h1>
+
+      <!-- RESULTS? ###################################### -->
+
+      <p class="govuk-body"><span class="govuk-!-font-weight-bold">{{ results | length }}</span> products found</p>
+
+      {% for result in results %}
+          <p class="govuk-body">
+            <a href="details/{{ result.EA_Name }}">{{ result.EA_Name }}</a>
+          </p>
+      {% endfor %}
+
+
+<!--
+      {"DEF_OriginalOrder":2903,"DEF_Register":"Food and Agri UK PDO","EA_ProductType":"Food","EA_Name":"White Stilton cheese / Blue Stilton cheese","DEF_SearchName":"white stilton cheese blue stilton cheese","DEF_SearchNameAndCategory":"white stilton cheese blue stilton cheese cheeses","DEF_SearchTextAll":"white stilton cheese blue stilton cheese cheeses food and agri uk pdo protected designation of origin pdo","DEF_SearchCategory":"cheeses","EA_ProductCategory":"Class 1.3. Cheeses","EA_FileNumber":"PDO-GB-0277","EA_Type":"Protected Designation of Origin (PDO)","EA_Country":"United Kingdom","EA_Status":"Registered","EA_LegalInstrument":"Official Journal L 148, 21.06.1996","EA_ApplicationDate":"","EA_DateRegistration":"21/06/1996","EA_DatePublication":""}
+-->
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

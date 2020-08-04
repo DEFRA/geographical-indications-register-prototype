@@ -19,6 +19,7 @@ router.get('/details/:giName', function(req, res) {
     res.render(folder + '/product-details', findGi(req.params.giName))
 })
 
+
 // Functions
 function findGi(giName) {
     return getRegisterData('register').find(element => element.EA_Name === giName)
@@ -29,7 +30,6 @@ function filterRegister(name, types, statuses, country, category) {
     if (name) {
         registerData = registerData.filter(element => element.EA_Name.includes(name))
     }
-
 
     if (types !== '_unchecked') {
         registerData = registerData.filter(element => types.includes(element.EA_ProductType))
@@ -52,7 +52,7 @@ function filterRegister(name, types, statuses, country, category) {
 
 function getRegisterData(registerName) {
     try {
-        const jsonString = fs.readFileSync('app/views/' + folder + 'data/registers/${registerName}.json')
+        const jsonString = fs.readFileSync('app/views/v1/data/registers/register.json')
         return JSON.parse(jsonString)
     } catch(err) {
         console.log(err)
