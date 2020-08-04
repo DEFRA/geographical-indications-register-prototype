@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/index">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if headers.length == 0 %}
+      <h1 class="govuk-heading-xl">No {{ title | lower }} appear on the register</h1>
+      {% else %}
+      <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+      <form class="form" action="/search-results" method="get">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="search">
+              You can search by food name or food type
+          </label>
+          <input class="govuk-input" id="search" name="name" type="text">
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Search</button>
+
+        <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Product type
+                </h1>
+              </legend>
+              <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="product-type-1" name="product-type" type="checkbox" value="food">
+                  <label class="govuk-label govuk-checkboxes__label" for="product-type-1">
+                    Food
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="product-type-2" name="product-type" type="checkbox" value="wine">
+                  <label class="govuk-label govuk-checkboxes__label" for="product-type-2">
+                    Wine
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="product-type-3" name="product-type" type="checkbox" value="spirits">
+                  <label class="govuk-label govuk-checkboxes__label" for="product-type-3">
+                    Spirits
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="product-type-4" name="product-type" type="checkbox" value="aromatised-wines">
+                  <label class="govuk-label govuk-checkboxes__label" for="product-type-4">
+                    Aromatised wines
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Status
+                </h1>
+              </legend>
+              <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="applied">
+                  <label class="govuk-label govuk-checkboxes__label" for="status-1">
+                    Applied
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="published">
+                  <label class="govuk-label govuk-checkboxes__label" for="status-2">
+                    Published
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="registered">
+                  <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                    Registered
+                  </label>
+                </div>
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="rejected">
+                  <label class="govuk-label govuk-checkboxes__label" for="status-4">
+                    Rejected
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+      </form>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            {% for header in headers %}
+            <th scope="col" class="govuk-table__header"><a href="/badly-designed-register/{{ registerName }}?filter={{ filter }}&sortColumn={{ loop.index0 }}&sortDescending={{ sortColumn == loop.index0 and sortDescending == 'false' }}">{{ header }}</a></th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          {% for geographicalIndication in data %}
+          <tr class="govuk-table__row">
+            {% for dataValue in geographicalIndication %}
+            <td class="govuk-table__cell">{{ dataValue }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
