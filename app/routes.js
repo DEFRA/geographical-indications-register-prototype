@@ -4,44 +4,53 @@ const router = express.Router()
 const fs = require('fs')
 
 // Routes
-router.get('/badly-designed-register/:register', function(req, res) {
-    var register = getRegister(req.params.register)
-    if (req.query.filter) {
-        register = filterRegister(register, req.query.filter)
-    }
+router.get('search', function(req, res) {
+    // Display the page where you enter your search details
+})
 
-    if (req.query.sortColumn) {
-        register = sortRegister(register, req.query.sortColumn, req.query.sortDescending)
-    }
+router.get('search-results', function(req, res) {
+    // Display search results
+})
 
-    register.filter = req.query.filter
-    register.sortColumn = req.query.sortColumn
-    register.sortDescending = req.query.sortDescending || 'false'
-
-    res.render('badly-designed-register', register)
+router.get('/details/:giName', function(req, res) {
+    // Display the details of a specific GI
+    res.render('details', { gi: findGi(req.params.giName) })
 })
 
 // Functions
-function filterRegister(register, filterTerm) {
-    // Only keep geographical indications where at least one of the columns contains the filter term
-    register.data = register.data.filter(function(geographicalIndication) { 
-        return geographicalIndication.some(function(dataItem) {
-            return dataItem.toLowerCase().includes(filterTerm.toLowerCase())
-        })
-    })
-    return register
+function findGi(giName) {
+    const registers = ['aromatised-wines', 'food-and-agri-pdo-pgi', 'food-and-agri-tsg', 'spirits', 'traditional-terms', 'wines']
+
+    for (const registerName of registers) {
+        let register = findGiInRegister(giName, registerName)
+        if (register) {
+            return register
+        }
+    }
+
+    return {}
 }
 
-function sortRegister(register, sortColumn, sortDescending) {
-    sortDescending = sortDescending === 'true'
-    register.data = register.data.sort(function(a, b) {
-        var result = a[sortColumn] > b[sortColumn]
-        result = sortDescending ? !result : result
-        return result ? 1 : -1
-    })
-    return register
+function findGiInRegister(giName, registerName) {
+    let nameField = 'Registered Product Name'
+    if(registerName === 'traditional-terms') {
+        nameField = 'Traditional Term Name'
+    }
+
+    return getRegisterData(registerName).find(element => element[nameField] === giName)
 }
 
+function getRegisterData(registerName) {
+    try {
+        const jsonString = fs.readFileSync(`app/data/registers/${registerName}.json`)
+        return JSON.parse(jsonString)
+    } catch(err) {
+        console.log(err)
+        return
+    }
+}
+
+// This function is not currently used but some version of it will be for the legal registers so leaving in
 function getRegister(registerName) {
     let title = ''
     switch(registerName) {
@@ -76,16 +85,6 @@ function getRegister(registerName) {
         data: data.map(function(dataItem) {
             return Object.values(dataItem)
         })
-    }
-}
-
-function getRegisterData(registerName) {
-    try {
-        const jsonString = fs.readFileSync(`app/data/registers/${registerName}.json`)
-        return JSON.parse(jsonString)
-    } catch(err) {
-        console.log(err)
-        return
     }
 }
 
