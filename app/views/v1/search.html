@@ -5,13 +5,13 @@ Geographical indications register
 {% endblock %}
 
 {% block beforeContent %}
-  <a class="govuk-back-link" href="/index">Back</a>
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
       {% if headers.length == 0 %}
       <h1 class="govuk-heading-xl">No {{ title | lower }} appear on the register</h1>
       {% else %}
@@ -27,6 +27,9 @@ Geographical indications register
 
         <button class="govuk-button" data-module="govuk-button">Search</button>
 
+
+
+<!-- FILTERS ###################################### -->
         <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -98,7 +101,13 @@ Geographical indications register
               </div>
             </fieldset>
           </div>
+
+          <!-- FILTERS END #################################### -->
+
       </form>
+
+
+      <!-- RESULTS? ###################################### -->
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -118,6 +127,8 @@ Geographical indications register
           {% endfor %}
         </tbody>
       </table>
+
+
       {% endif %}
 
     </div>
