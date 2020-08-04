@@ -52,7 +52,7 @@ function filterRegister(name, types, statuses, country, category) {
 
 function getRegisterData(registerName) {
     try {
-        const jsonString = fs.readFileSync(`app/data/registers/${registerName}.json`)
+        const jsonString = fs.readFileSync('app/views/' + folder + 'data/registers/${registerName}.json')
         return JSON.parse(jsonString)
     } catch(err) {
         console.log(err)
