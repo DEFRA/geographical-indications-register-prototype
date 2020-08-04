@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% set productname = "Cornish Pasty" %}
+
+{% block pageTitle %}
+  {{ productname }} protected product details and specification
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="/TO-SEARCH">Back to search</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ productname }}</h1>
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
