@@ -11,8 +11,6 @@ Geographical indications register
 
 {% block content %}
 
-{{ headers }}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
@@ -21,7 +19,17 @@ Geographical indications register
 
       <!-- RESULTS? ###################################### -->
 
-      <p class="govuk-body"><span class="govuk-!-font-weight-bold">{{ results | length }}</span> products found</p>
+      <p class="govuk-body"><span class="govuk-!-font-weight-bold">
+        {{ results | length }}</span> products found
+      </p>
+
+      <p>Filters</p>
+      {% if data.name | length != 0 %}<p>Search text: {{ data.name }}</p>{% endif %}
+      {% if data.category | length != 0 %}<p>Category: {{ data.category }}</p>{% endif %}
+      {% if data.country | length != 0 %}<p>Country: {{ data.country }}</p>{% endif %}
+      {% if data.types | length != 0 %}<p>Type: {{ data.types | join(", ") }}</p>{% endif %}
+      {% if data.statuses | length != 0 %}<p>Status: {{ data.statuses | join(", ") }}</p>{% endif %}
+
 
       {% for result in results %}
           <p class="govuk-body">
