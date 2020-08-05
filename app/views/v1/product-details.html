@@ -17,7 +17,6 @@
 
       <h1 class="govuk-heading-xl">{{ productname }}</h1>
 
-
       {{ govukSummaryList({
         rows: [
           {
@@ -25,7 +24,7 @@
               text: "Specification"
             },
             value: {
-              html: '<a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">' + productname+ " specification (pdf)</a>"
+              html: '<a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">' + productname + " specification (pdf)</a>"
             }
           },
           {
@@ -33,7 +32,7 @@
               text: "Type"
             },
             value: {
-              text: "Protected Geographical Indication (PGI)"
+              text: EA_ProductType
             }
           },
           {
@@ -41,7 +40,7 @@
               text: "Status"
             },
             value: {
-              text: "Registered"
+              text: EA_Status
             }
           },
           {
@@ -49,7 +48,7 @@
               text: "Country"
             },
             value: {
-              text: "United Kingdom"
+              text: EA_Country
             }
           },
           {
@@ -65,7 +64,7 @@
               text: "Original EU registration date"
             },
             value: {
-              text: "23 July 2011"
+              text: EA_DateRegistration
             }
           },
           {
@@ -73,7 +72,7 @@
               text: "GB register"
             },
             value: {
-              text: "Food PDO and PDI register"
+              text: DEF_Register
             }
           },
           {
@@ -89,7 +88,7 @@
               text: "Product type"
             },
             value: {
-              text: "Food"
+              text: EA_ProductType
             }
           },
           {
@@ -97,7 +96,7 @@
               text: "File number"
             },
             value: {
-              text: "PGI-GB-0727"
+              text: EA_FileNumber
             }
           }
         ]
