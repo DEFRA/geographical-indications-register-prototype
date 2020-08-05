@@ -1,19 +1,19 @@
 {% set producttypes =
   [
     {
-      value: "food",
+      value: "Food",
       text: "Food"
     },
     {
-      value: "wine",
+      value: "Wine",
       text: "Wine"
     },
     {
-      value: "spirits",
+      value: "Spirits",
       text: "Spirits"
     },
     {
-      value: "aromatised-wines",
+      value: "Aromatised-wines",
       text: "Aromatised wines"
     }
   ]

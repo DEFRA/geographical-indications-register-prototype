@@ -5,16 +5,16 @@
       text: "Select country"
     },
     {
-      value: "great britain",
-      text: "Great Britain"
+      value: "United Kingdom",
+      text: "United Kingdom"
     },
     {
-      value: "france",
+      value: "France",
       text: "France"
     },
 
     {
-      value: "spain",
+      value: "Spain",
       text: "Spain"
     }
    ]

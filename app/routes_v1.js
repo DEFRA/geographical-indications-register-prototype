@@ -11,8 +11,7 @@ router.get('/search', function(req, res) {
 })
 
 router.get('/search-results', function(req, res) {
-    console.log(req.query)
-    res.render(folder + '/search-results', { results: filterRegister(req.query.name, req.query['product-type'], req.query.status, req.query.country, req.query.category) })
+    res.render(folder + '/search-results', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
 })
 
 router.get('/details/:giNumber', function(req, res) {
@@ -25,17 +24,17 @@ function findGi(giNumber) {
     return getRegisterData('register').find(element => element.EA_FileNumber === giNumber)
 }
 
-function filterRegister(name, product_type, statuses, country, category) {
+function filterRegister(name, types, statuses, country, category) {
     let registerData = getRegisterData('register')
     if (name) {
         registerData = registerData.filter(element => element.EA_Name.includes(name))
     }
 
-    if (product_type) {
-        registerData = registerData.filter(element => product_type.includes(element.EA_ProductType))
+    if (types != '_unchecked') {
+        registerData = registerData.filter(element => types.includes(element.EA_ProductType))
     }
 
-    if (statuses) {
+    if (statuses != '_unchecked') {
         registerData = registerData.filter(element => statuses.includes(element.EA_Status))
     }
 
