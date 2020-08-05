@@ -15,14 +15,14 @@ router.get('/search-results', function(req, res) {
     res.render(folder + '/search-results', { results: filterRegister(req.query.name, req.query['product-type'], req.query.status, req.query.country, req.query.category) })
 })
 
-router.get('/details/:giName', function(req, res) {
-    res.render(folder + '/product-details', findGi(req.params.giName))
+router.get('/details/:giNumber', function(req, res) {
+    res.render(folder + '/product-details', findGi(req.params.giNumber))
 })
 
 
 // Functions
-function findGi(giName) {
-    return getRegisterData('register').find(element => element.EA_Name === giName)
+function findGi(giNumber) {
+    return getRegisterData('register').find(element => element.EA_FileNumber === giNumber)
 }
 
 function filterRegister(name, types, statuses, country, category) {
