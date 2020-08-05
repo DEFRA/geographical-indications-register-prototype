@@ -25,17 +25,17 @@ function findGi(giNumber) {
     return getRegisterData('register').find(element => element.EA_FileNumber === giNumber)
 }
 
-function filterRegister(name, types, statuses, country, category) {
+function filterRegister(name, product_type, statuses, country, category) {
     let registerData = getRegisterData('register')
     if (name) {
         registerData = registerData.filter(element => element.EA_Name.includes(name))
     }
 
-    if (types !== '_unchecked') {
-        registerData = registerData.filter(element => types.includes(element.EA_ProductType))
+    if (product_type) {
+        registerData = registerData.filter(element => product_type.includes(element.EA_ProductType))
     }
 
-    if (statuses !== '_unchecked') {
+    if (statuses) {
         registerData = registerData.filter(element => statuses.includes(element.EA_Status))
     }
 

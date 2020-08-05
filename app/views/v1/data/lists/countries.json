@@ -6,8 +6,7 @@
     },
     {
       value: "great britain",
-      text: "Great Britain",
-      selected: true
+      text: "Great Britain"
     },
     {
       value: "france",
