@@ -9,12 +9,12 @@
       text: "Wine"
     },
     {
-      value: "Spirits",
-      text: "Spirits"
+      value: "Spirit drink",
+      text: "Spirit drink"
     },
     {
-      value: "Aromatised-wines",
-      text: "Aromatised wines"
+      value: "Aromatised wine",
+      text: "Aromatised wine"
     }
   ]
 %}
