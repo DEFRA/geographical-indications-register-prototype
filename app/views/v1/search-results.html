@@ -18,24 +18,42 @@ Geographical indications register
       <h1 class="govuk-heading-xl">Search results</h1>
 
       <!-- RESULTS? ###################################### -->
+      {% set numToDisplay = 20 %}
+      {% set numResults = results | length %}
+
+      <!-- Check if filters have been applied -->
+      {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length %}
 
       <p class="govuk-body"><span class="govuk-!-font-weight-bold">
-        {{ results | length }}</span> products found
+        {{ results | length }}</span> products found {{ " for:" if filterLength>0 }}
       </p>
 
-      <p>Filters</p>
-      {% if data.name | length != 0 %}<p>Search text: {{ data.name }}</p>{% endif %}
-      {% if data.category | length != 0 %}<p>Category: {{ data.category }}</p>{% endif %}
-      {% if data.country | length != 0 %}<p>Country: {{ data.country }}</p>{% endif %}
-      {% if data.types | length != 0 %}<p>Type: {{ data.types | join(", ") }}</p>{% endif %}
-      {% if data.statuses | length != 0 %}<p>Status: {{ data.statuses | join(", ") }}</p>{% endif %}
+      {{ '<ul class="govuk-list govuk-list--bullet">' | safe if filterLength>0 }}
+        {% if data.name | length != 0 %}<li>Search text: {{ data.name }}</li>{% endif %}
+        {% if data.category | length != 0 %}<li>Category: {{ data.category }}</li>{% endif %}
+        {% if data.country | length != 0 %}<li>Country: {{ data.country }}</li>{% endif %}
+        {% if data.types | length != 0 %}<li>Type: {{ data.types | join(", ") }}</li>{% endif %}
+        {% if data.statuses | length != 0 %}<li>Status: {{ data.statuses | join(", ") }}</li>{% endif %}
+      {{ "</ul>" | safe if filterLength>0 }}
 
-
-      {% for result in results %}
+      {% set print = true %}
+      {% for result in results | sort(attribute="EA_Name") %}
+        {% if print %}
           <p class="govuk-body">
             <a href="details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
           </p>
+          {% if loop.index==numToDisplay %}
+            {% set print = false %}
+          {% endif %}
+        {% endif %}
       {% endfor %}
+
+      <p>
+        <span class="govuk-!-font-weight-bold">1</span> to
+        <span class="govuk-!-font-weight-bold">{{ numToDisplay }}</span> of
+        <span class="govuk-!-font-weight-bold">{{ numResults }}</span> products
+        <a href="#">Next page</a>
+      </p>
 
 
 <!--
