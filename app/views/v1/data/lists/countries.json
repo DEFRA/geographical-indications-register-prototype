@@ -1,0 +1,22 @@
+{% set countries =
+   [
+    {
+      value: "",
+      text: "Select country"
+    },
+    {
+      value: "great britain",
+      text: "Great Britain",
+      selected: true
+    },
+    {
+      value: "france",
+      text: "France"
+    },
+
+    {
+      value: "spain",
+      text: "Spain"
+    }
+   ]
+%}

@@ -1,0 +1,20 @@
+{% set categories =
+  [
+   {
+     value: "",
+     text: "Select category"
+   },
+   {
+     value: "Class 1.4. Other products of animal origin (eggs, honey, various dairy products except butter, etc.)",
+     text: "Class 1.4. Other products of animal origin (eggs, honey, various dairy products except butter, etc.)"
+   },
+   {
+     value: "Class 1.5. Oils and fats (butter, margarine, oil, etc.)",
+     text: "Class 1.5. Oils and fats (butter, margarine, oil, etc.)"
+   },
+   {
+     value: "Class 2.3. Bread, pastry, cakes, confectionery, biscuits and other baker's wares",
+     text: "Class 2.3. Bread, pastry, cakes, confectionery, biscuits and other baker's wares"
+   }
+  ]
+%}

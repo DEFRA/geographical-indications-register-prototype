@@ -9,18 +9,12 @@ Geographical indications register
 
 {% block content %}
 
-{{ headers }}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
       {% if headers | length == 0 %}
-      <h1 class="govuk-heading-xl">No {{ title | lower }} appear on the register</h1>
-      {% else %}
-      <h1 class="govuk-heading-xl">Search</h1>
       {% endif %}
-
-      <h1 class="govuk-heading-xl">{{ title }}</h1>
+      <h1 class="govuk-heading-xl">Search for a protected product</h1>
 
       <form class="form" action="search-results" method="get">
         <div class="govuk-form-group">
@@ -35,79 +29,94 @@ Geographical indications register
 
 
 <!-- FILTERS ###################################### -->
-        <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h1 class="govuk-fieldset__heading">
-                  Product type
-                </h1>
-              </legend>
-              <div class="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="product-type-1" name="product-type" type="checkbox" value="food">
-                  <label class="govuk-label govuk-checkboxes__label" for="product-type-1">
-                    Food
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="product-type-2" name="product-type" type="checkbox" value="wine">
-                  <label class="govuk-label govuk-checkboxes__label" for="product-type-2">
-                    Wine
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="product-type-3" name="product-type" type="checkbox" value="spirits">
-                  <label class="govuk-label govuk-checkboxes__label" for="product-type-3">
-                    Spirits
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="product-type-4" name="product-type" type="checkbox" value="aromatised-wines">
-                  <label class="govuk-label govuk-checkboxes__label" for="product-type-4">
-                    Aromatised wines
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-          </div>
 
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h1 class="govuk-fieldset__heading">
-                  Status
-                </h1>
-              </legend>
-              <div class="govuk-checkboxes">
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="applied">
-                  <label class="govuk-label govuk-checkboxes__label" for="status-1">
-                    Applied
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="published">
-                  <label class="govuk-label govuk-checkboxes__label" for="status-2">
-                    Published
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="registered">
-                  <label class="govuk-label govuk-checkboxes__label" for="status-3">
-                    Registered
-                  </label>
-                </div>
-                <div class="govuk-checkboxes__item">
-                  <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="rejected">
-                  <label class="govuk-label govuk-checkboxes__label" for="status-4">
-                    Rejected
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-          </div>
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Filter by type, category, country or status
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+<!-- Columns -->
+    <div class="govuk-grid-row">
+      <!-- Column 1 of 3 -->
+      <div class="govuk-grid-column-one-third">
+
+        <!-- Product type -->
+        {% from "./data/lists/product-types.json" import producttypes %}
+
+              {{ govukCheckboxes({
+                idPrefix: "product_type",
+                name: "product_type",
+                classes: "govuk-checkboxes--small",
+                fieldset: {
+                  legend: {
+                    text: "Product type",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: producttypes
+              }) }}
+
+      </div><!-- END column -->
+
+      <!-- Column 2 of 3 -->
+      <div class="govuk-grid-column-one-third">
+
+        <!-- Status -->
+        {% from "./data/lists/statuses.json" import statuses %}
+            {{ govukCheckboxes({
+              idPrefix: "status",
+              name: "status",
+              classes: "govuk-checkboxes--small",
+              fieldset: {
+                legend: {
+                  text: "Status",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: statuses
+            }) }}
+
+      </div><!-- END column -->
+
+      <!-- Column 3 of 3 -->
+      <div class="govuk-grid-column-one-third">
+
+        <!-- Categories -->
+        {% from "./data/lists/categories.json" import categories %}
+              {{ govukSelect({
+                id: "category",
+                name: "category",
+                label: {
+                  text: "Category"
+                },
+                items: categories
+              }) }}
+
+        <!-- Countries -->
+        {% from "./data/lists/countries.json" import countries %}
+              {{ govukSelect({
+                id: "country",
+                name: "country",
+                label: {
+                  text: "Country"
+                },
+                items: countries
+              }) }}
+
+      </div><!-- END column -->
+
+    </div><!-- END all columns -->
+
 
           <!-- FILTERS END #################################### -->
+
+        </div>
+      </details>
 
       </form>
 
