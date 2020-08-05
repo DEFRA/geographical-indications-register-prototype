@@ -18,6 +18,10 @@ router.get('/details/:giNumber', function(req, res) {
     res.render(folder + '/product-details', findGi(req.params.giNumber))
 })
 
+router.get('/show-register/:registerName', function(req, res) {
+    res.render(folder + '/show-register', { results: showRegister(req.query.registerName), registerName: req.query.registerName })
+})
+
 
 // Functions
 function findGi(giNumber) {
@@ -44,6 +48,15 @@ function filterRegister(name, types, statuses, country, category) {
 
     if (category) {
         registerData = registerData.filter(element => element.EA_ProductCategory === category)
+    }
+
+    return registerData
+}
+
+function showRegister(registerName) {
+    let registerData = getRegisterData('register')
+    if (registerName) {
+        registerData = registerData.filter(element => element.DEF_Register === registerName)
     }
 
     return registerData
