@@ -19,7 +19,17 @@ Geographical indications register
 
       <h1 class="govuk-heading-xl">Search results</h1>
 
-      {% include "./includes/search_a.html" %}
+      <form class="form" action="{{formAction}}" method="get">
+
+          {% include "./includes/search_b_input.html" %}
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              {% include "./includes/search_b_filters.html" %}
+            </div>
+            <div class="govuk-grid-column-two-thirds">
+
+
 
       <!-- Check if filters have been applied -->
       {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length %}
@@ -99,6 +109,10 @@ Geographical indications register
 
       {% include "../includes/pagination_counter.html" %}
 
+    </div><!-- end col 2/3rds for results -->
+  </div><!-- end grid row -->
+
+</form>
 
     </div>
   </div>

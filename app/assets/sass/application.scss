@@ -58,3 +58,18 @@ dd.govuk-body {
   color: govuk-colour("dark-blue");
   background-color: govuk-colour("yellow");
 }
+
+.gir_filterbox {
+  .govuk-details__summary-text {
+    text-decoration: none;
+  }
+  .govuk-details {
+    margin-bottom: 10px;
+    border-bottom: 1px solid $govuk-border-colour;
+  }
+  .govuk-details__text {
+    padding-left: 0px;
+    border-left: none;
+  }
+
+}

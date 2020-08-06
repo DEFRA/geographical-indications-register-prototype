@@ -15,6 +15,7 @@ var searchColumn = 'DEF_SearchTextAll'
 // Routes
 
 // Search
+// Variant A
 router.get('/search_a_list', function(req, res) {
     res.render(folder + '/search_a', { formAction: "search-results_a/list" })
 })
@@ -27,13 +28,29 @@ router.get('/search_a_table', function(req, res) {
     res.render(folder + '/search_a', { formAction: "search-results_a/table" })
 })
 
+// Variant B
+router.get('/search_b_list_detail', function(req, res) {
+    res.render(folder + '/search_b', { formAction: "search-results_b/list-detail" })
+})
+
+router.get('/search_b_table', function(req, res) {
+    res.render(folder + '/search_b', { formAction: "search-results_b/table" })
+})
+
 // Results
+// Variant A
 router.get('/search-results_a/:resultsType', function(req, res) {
     res.render(folder + '/search-results_a', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType })
 })
 
+// Variant B
+router.get('/search-results_b/:resultsType', function(req, res) {
+    res.render(folder + '/search-results_b', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType })
+})
+
+
 // Others
-router.get('/details/:giNumber', function(req, res) {
+router.get('/product-details/:giNumber', function(req, res) {
     res.render(folder + '/product-details', findGi(req.params.giNumber))
 })
 
