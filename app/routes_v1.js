@@ -4,6 +4,11 @@ const router = express.Router()
 const fs = require('fs')
 
 var folder = "v1"
+router.use(function (req, res, next) {
+  // set a folder and store in locals this can then be used in pages as {{folder}}
+  res.locals.folder=folder
+  next()
+});
 
 // Routes
 router.get('/search', function(req, res) {
@@ -19,7 +24,7 @@ router.get('/details/:giNumber', function(req, res) {
 })
 
 router.get('/show-register/:registerName', function(req, res) {
-    res.render(folder + '/show-register', { results: showRegister(req.query.registerName), registerName: req.query.registerName })
+    res.render(folder + '/show-register', { results: showRegister(req.params.registerName), registerName: req.params.registerName })
 })
 
 
@@ -58,6 +63,8 @@ function showRegister(registerName) {
     if (registerName) {
         registerData = registerData.filter(element => element.DEF_Register === registerName)
     }
+    // Only show status = registered
+    registerData = registerData.filter(element => element.EA_Status === "Registered")
 
     return registerData
 }
