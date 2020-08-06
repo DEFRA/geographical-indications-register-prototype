@@ -49,14 +49,7 @@ Geographical indications register
         {% endif %}
       {% endfor %}
 
-      <p>
-        <span class="govuk-!-font-weight-bold">1</span> to
-        <span class="govuk-!-font-weight-bold">{{ numToDisplay }}</span> of
-        <span class="govuk-!-font-weight-bold">{{ numResults }}</span> products
-        {% if numResults > numToDisplay %}
-          <a href="#">Next page</a>
-        {% endif %}
-      </p>
+      {% include "../includes/pagination_counter.html" %}
 
 
 <!--
