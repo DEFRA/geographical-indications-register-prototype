@@ -25,6 +25,10 @@ router.get('/details/:giNumber', function(req, res) {
     res.render(folder + '/product-details', findGi(req.params.giNumber))
 })
 
+router.get('/legal-registers', function(req, res) {
+    res.render(folder + '/legal-registers')
+})
+
 router.get('/show-register/:registerName', function(req, res) {
     res.render(folder + '/show-register', { results: showRegister(req.params.registerName), registerName: req.params.registerName })
 })
