@@ -8,7 +8,7 @@ Geographical indications register
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
       <!-- RESULTS? ###################################### -->
       {% set numToDisplay = 20 %}
@@ -18,7 +18,7 @@ Geographical indications register
       {% endif %}
 
       <h1 class="govuk-heading-xl">Search results</h1>
-      
+
       {% include "./includes/search_a.html" %}
 
       <!-- Check if filters have been applied -->
@@ -57,12 +57,12 @@ Geographical indications register
         {% if print %}
           {% if resultsType == "list" %}
               <p class="govuk-body">
-                <a href="details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
+                <a href="/{{folder}}/details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
               </p>
 
           {% elseif resultsType == "list-detail" %}
               <dt class="govuk-body">
-                <a href="details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
+                <a href="/{{folder}}/details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
               </dt>
               <dd class="govuk-body">
                 {{ result.EA_ProductType }} register.
@@ -79,7 +79,7 @@ Geographical indications register
                 <td class="govuk-table__cell">{{ result.EA_Type | registerBadge | safe }}</td>
                 <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td>
                 <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
-                <td class="govuk-table__cell"><a href="details/{{ result.EA_FileNumber }}">Details <span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+                <td class="govuk-table__cell"><a href="/{{folder}}/details/{{ result.EA_FileNumber }}">Details <span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
               </tr>
 
           {% endif %}
