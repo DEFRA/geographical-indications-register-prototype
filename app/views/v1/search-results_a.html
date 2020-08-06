@@ -20,7 +20,7 @@ Geographical indications register
       <h1 class="govuk-heading-xl">Search results</h1>
 
       <!-- Check if filters have been applied -->
-      {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length %}
+      {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length + data.name | length %}
 
       <p class="govuk-body"><span class="govuk-!-font-weight-bold">
         {{ results | length }}</span> products found {{ " for:" if filterLength>0 }}
@@ -34,11 +34,9 @@ Geographical indications register
         {% if data.statuses | length != 0 %}<li>Status: {{ data.statuses | join(", ") }}</li>{% endif %}
       {{ "</ul>" | safe if filterLength>0 }}
 
-
-
       {{ "<dl>" | safe if resultType == "list-detail" }}
 
-      {% if resultType == "table" %}
+      {% if resultsType == "table" %}
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -56,13 +54,12 @@ Geographical indications register
       {% set print = true %}
       {% for result in results | sort(attribute="EA_Name") %}
         {% if print %}
-
-          {% if resultType == "list" %}
+          {% if resultsType == "list" %}
               <p class="govuk-body">
                 <a href="details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
               </p>
 
-          {% elseif resultType == "list-detail" %}
+          {% elseif resultsType == "list-detail" %}
               <dt class="govuk-body">
                 <a href="details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
               </dt>
@@ -74,7 +71,7 @@ Geographical indications register
                 by {{ result.EA_Country }}.
               </dd>
 
-          {% elseif resultType == "table" %}
+          {% elseif resultsType == "table" %}
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__header">{{ result.EA_Name }}</th>
                 <td class="govuk-table__cell">{{ result.DEF_Register }}</td>
@@ -86,18 +83,18 @@ Geographical indications register
 
           {% endif %}
 
-          {{ "</dl>" | safe if resultType == "list-detail" }}
-
-          {% if resultType == "table" %}
-            </tbody>
-          </table>
-          {% endif %}
+          {{ "</dl>" | safe if resultsType == "list-detail" }}
 
           {% if loop.index==numToDisplay %}
             {% set print = false %}
           {% endif %}
         {% endif %}
       {% endfor %}
+
+      {% if resultsType == "table" %}
+            </tbody>
+          </table>
+      {% endif %}
 
       {% include "../includes/pagination_counter.html" %}
 
