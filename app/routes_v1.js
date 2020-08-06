@@ -10,6 +10,8 @@ router.use(function (req, res, next) {
   next()
 });
 
+var searchColumn = 'DEF_SearchTextAll'
+
 // Routes
 router.get('/search', function(req, res) {
     res.render(folder + '/search')
@@ -34,9 +36,11 @@ function findGi(giNumber) {
 }
 
 function filterRegister(name, types, statuses, country, category) {
+    name = name.toLowerCase()
+
     let registerData = getRegisterData('register')
     if (name) {
-        registerData = registerData.filter(element => element.EA_Name.includes(name))
+        registerData = registerData.filter(element => element[searchColumn].includes(name))
     }
 
     if (types != '_unchecked') {
