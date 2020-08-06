@@ -1,0 +1,98 @@
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="{{formAction}}" method="get">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="search">
+            You can search by food name or food type
+          </label>
+          <input class="govuk-input" id="search" name="name" type="text" value="{{ data.name }}">
+        </div>
+
+        <button class="govuk-button" data-module="govuk-button">Search</button>
+
+        <!-- FILTERS ###################################### -->
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Filter by type, category, country or status
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+
+            <!-- Columns -->
+            <div class="govuk-grid-row">
+              <!-- Column 1 of 3 -->
+              <div class="govuk-grid-column-one-third">
+                <!-- Product type -->
+                {% from "../data/lists/product-types.json" import producttypes %}
+
+                {{ govukCheckboxes({
+                          idPrefix: "types",
+                          name: "types",
+                          classes: "govuk-checkboxes--small",
+                          fieldset: {
+                            legend: {
+                              text: "Product type",
+                              isPageHeading: false,
+                              classes: "govuk-fieldset__legend--s"
+                            }
+                          },
+                          items: producttypes
+                        }) }}
+              </div><!-- END column -->
+
+              <!-- Column 2 of 3 -->
+              <div class="govuk-grid-column-one-third">
+                <!-- Status -->
+                {% from "../data/lists/statuses.json" import statuses %}
+                {{ govukCheckboxes({
+                        idPrefix: "statuses",
+                        name: "statuses",
+                        classes: "govuk-checkboxes--small",
+                        fieldset: {
+                          legend: {
+                            text: "Status",
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--s"
+                          }
+                        },
+                        items: statuses
+                      }) }}
+              </div><!-- END column -->
+
+              <!-- Column 3 of 3 -->
+              <div class="govuk-grid-column-one-third">
+                <!-- Categories -->
+                {% from "../data/lists/categories.json" import categories %}
+                {{ govukSelect({
+                          id: "category",
+                          name: "category",
+                          label: {
+                            text: "Category"
+                          },
+                          items: categories
+                        }) }}
+
+                <!-- Countries -->
+                {% from "../data/lists/countries.json" import countries %}
+                {{ govukSelect({
+                          id: "country",
+                          name: "country",
+                          label: {
+                            text: "Country"
+                          },
+                          items: countries
+                        }) }}
+              </div><!-- END column -->
+            </div><!-- END all columns -->
+
+
+            <!-- FILTERS END #################################### -->
+
+          </div>
+        </details>
+
+      </form>
+    </div>
+  </div>

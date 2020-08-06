@@ -18,16 +18,17 @@ Geographical indications register
       {% endif %}
 
       <h1 class="govuk-heading-xl">Search results</h1>
+      
+      {% include "./includes/search_a.html" %}
 
       <!-- Check if filters have been applied -->
-      {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length + data.name | length %}
+      {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length %}
 
       <p class="govuk-body"><span class="govuk-!-font-weight-bold">
         {{ results | length }}</span> products found {{ " for:" if filterLength>0 }}
       </p>
 
       {{ '<ul class="govuk-list govuk-list--bullet">' | safe if filterLength>0 }}
-        {% if data.name | length != 0 %}<li>Search term: {{ data.name }}</li>{% endif %}
         {% if data.category | length != 0 %}<li>Category: {{ data.category }}</li>{% endif %}
         {% if data.country | length != 0 %}<li>Country: {{ data.country }}</li>{% endif %}
         {% if data.types | length != 0 %}<li>Type: {{ data.types | join(", ") }}</li>{% endif %}

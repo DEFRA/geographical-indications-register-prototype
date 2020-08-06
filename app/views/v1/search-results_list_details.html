@@ -17,7 +17,9 @@ Geographical indications register
         {% set numToDisplay = numResults %}
       {% endif %}
 
-      <h1 class="govuk-heading-xl">Search results {{ " for '" + data.name + "'" if data.name | length != 0 }}</h1>
+      <h1 class="govuk-heading-xl">Search results</h1>
+
+      {% include "./includes/search_a.html" %}
 
       <!-- Check if filters have been applied -->
       {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length %}
