@@ -17,8 +17,16 @@ router.get('/search', function(req, res) {
     res.render(folder + '/search')
 })
 
-router.get('/search-results', function(req, res) {
-    res.render(folder + '/search-results', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
+router.get('/search-results_list', function(req, res) {
+    res.render(folder + '/search-results_list', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
+})
+
+router.get('/search-results_list_details', function(req, res) {
+    res.render(folder + '/search-results_list_details', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
+})
+
+router.get('/search-results_table', function(req, res) {
+    res.render(folder + '/search-results_table', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
 })
 
 router.get('/details/:giNumber', function(req, res) {

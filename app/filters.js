@@ -92,6 +92,14 @@ module.exports = function (env) {
       return dateStr
   }
 
+  filters.registerBadge = function(str) {
+      str = str.replace("Protected Designation of Origin (PDO)", '<span class="pdo"><abbr title="Protected Designation of Origin">PDO</abbr></span>')
+      str = str.replace("Protected Geographical Indication (PGI)", '<span class="pgi"><abbr title="Protected Geographical Indication">PGI</abbr></span>')
+      str = str.replace("Geographical indication (GI)", '<span class="gi"><abbr title="Geographical indication">GI</abbr></span>')
+      str = str.replace("Traditional Specialities Guaranteed (TSG)", '<span class="tsg"><abbr title="Traditional Specialities Guaranteed">TSG</abbr></span>')
+      return str
+  }
+
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
