@@ -6,10 +6,6 @@
   {{ productname }} protected product details and specification
 {% endblock %}
 
-{% block beforeContent %}
-  <a href="javascript:history.back();" class="govuk-back-link">Back to search</a>
-{% endblock %}
-
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -64,7 +60,7 @@
               text: "Original EU registration date"
             },
             value: {
-              text: EA_DateRegistration
+              text: EA_DateRegistration | formatLongDate
             }
           },
           {

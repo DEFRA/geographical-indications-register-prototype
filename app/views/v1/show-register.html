@@ -8,7 +8,7 @@ Geographical indications register
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
       <!-- RESULTS? ###################################### -->
       {% set numToDisplay = 20 %}
@@ -62,7 +62,7 @@ Geographical indications register
                 <td class="govuk-table__cell">1 Jan 2021</td>
                 <td class="govuk-table__cell">{{ result.EA_Type }}</td>
                 <td class="govuk-table__cell">{{ result.EA_Country }}</td>
-                <td class="govuk-table__cell">{{ result.EA_DateRegistration }}</td>
+                <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td>
                 <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
               </tr>
 
