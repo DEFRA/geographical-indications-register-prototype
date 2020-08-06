@@ -14,7 +14,7 @@ Geographical indications register
     <div class="govuk-grid-column-two-thirds">
 
       <!-- RESULTS? ###################################### -->
-      {% set numToDisplay = 20 %}
+      {% set numToDisplay = 2000 %}
       {% set numResults = results | length %}
       {% if numResults < numToDisplay %}
         {% set numToDisplay = numResults %}
@@ -35,7 +35,7 @@ Geographical indications register
 
         <div class="govuk-grid-column-one-half">
           <p class="govuk-body">
-            <a href="#">Download as a spreadsheet</a>
+            <a target="_blank" href="/public/images/protected-names-spirits-uk-regisiter-20210123.csv">Download as a spreadsheet</a>
           </p>
         </div>
 
