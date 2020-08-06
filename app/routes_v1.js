@@ -13,22 +13,26 @@ router.use(function (req, res, next) {
 var searchColumn = 'DEF_SearchTextAll'
 
 // Routes
-router.get('/search', function(req, res) {
-    res.render(folder + '/search')
+
+// Search
+router.get('/search_a_list', function(req, res) {
+    res.render(folder + '/search_a', { formAction: "search-results_a/list" })
 })
 
-router.get('/search-results_list', function(req, res) {
-    res.render(folder + '/search-results_list', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
+router.get('/search_a_list_detail', function(req, res) {
+    res.render(folder + '/search_a', { formAction: "search-results_a/list-detail" })
 })
 
-router.get('/search-results_list_details', function(req, res) {
-    res.render(folder + '/search-results_list_details', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
+router.get('/search_a_table', function(req, res) {
+    res.render(folder + '/search_a', { formAction: "search-results_a/table" })
 })
 
-router.get('/search-results_table', function(req, res) {
-    res.render(folder + '/search-results_table', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category) })
+// Results
+router.get('/search-results_a/:resultsType', function(req, res) {
+    res.render(folder + '/search-results_a', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType })
 })
 
+// Others
 router.get('/details/:giNumber', function(req, res) {
     res.render(folder + '/product-details', findGi(req.params.giNumber))
 })

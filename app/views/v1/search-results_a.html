@@ -1,0 +1,108 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!-- RESULTS? ###################################### -->
+      {% set numToDisplay = 20 %}
+      {% set numResults = results | length %}
+      {% if numResults < numToDisplay %}
+        {% set numToDisplay = numResults %}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl">Search results</h1>
+
+      <!-- Check if filters have been applied -->
+      {% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length %}
+
+      <p class="govuk-body"><span class="govuk-!-font-weight-bold">
+        {{ results | length }}</span> products found {{ " for:" if filterLength>0 }}
+      </p>
+
+      {{ '<ul class="govuk-list govuk-list--bullet">' | safe if filterLength>0 }}
+        {% if data.name | length != 0 %}<li>Search term: {{ data.name }}</li>{% endif %}
+        {% if data.category | length != 0 %}<li>Category: {{ data.category }}</li>{% endif %}
+        {% if data.country | length != 0 %}<li>Country: {{ data.country }}</li>{% endif %}
+        {% if data.types | length != 0 %}<li>Type: {{ data.types | join(", ") }}</li>{% endif %}
+        {% if data.statuses | length != 0 %}<li>Status: {{ data.statuses | join(", ") }}</li>{% endif %}
+      {{ "</ul>" | safe if filterLength>0 }}
+
+
+
+      {{ "<dl>" | safe if resultType == "list-detail" }}
+
+      {% if resultType == "table" %}
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Name</th>
+              <th scope="col" class="govuk-table__header">Register</th>
+              <th scope="col" class="govuk-table__header">Type</th>
+              <th scope="col" class="govuk-table__header">EU registered date</th>
+              <th scope="col" class="govuk-table__header">Specification</th>
+              <th scope="col" class="govuk-table__header">Details</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+      {% endif %}
+
+      {% set print = true %}
+      {% for result in results | sort(attribute="EA_Name") %}
+        {% if print %}
+
+          {% if resultType == "list" %}
+              <p class="govuk-body">
+                <a href="details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
+              </p>
+
+          {% elseif resultType == "list-detail" %}
+              <dt class="govuk-body">
+                <a href="details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
+              </dt>
+              <dd class="govuk-body">
+                {{ result.EA_ProductType }} register.
+                {% if result.EA_DateRegistration | length != 0 %}
+                  Registered {{ result.EA_DateRegistration | formatLongDate }}
+                {% endif %}
+                by {{ result.EA_Country }}.
+              </dd>
+
+          {% elseif resultType == "table" %}
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">{{ result.EA_Name }}</th>
+                <td class="govuk-table__cell">{{ result.DEF_Register }}</td>
+                <td class="govuk-table__cell">{{ result.EA_Type | registerBadge | safe }}</td>
+                <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td>
+                <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+                <td class="govuk-table__cell"><a href="details/{{ result.EA_FileNumber }}">Details <span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+              </tr>
+
+          {% endif %}
+
+          {{ "</dl>" | safe if resultType == "list-detail" }}
+
+          {% if resultType == "table" %}
+            </tbody>
+          </table>
+          {% endif %}
+
+          {% if loop.index==numToDisplay %}
+            {% set print = false %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% include "../includes/pagination_counter.html" %}
+
+
+    </div>
+  </div>
+
+{% endblock %}
