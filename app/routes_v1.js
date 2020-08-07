@@ -12,7 +12,7 @@ router.use(function (req, res, next) {
 
 var searchColumn = 'DEF_SearchTextAll'
 
-var registerData = 
+var registerData =
 
 // Routes
 
@@ -23,11 +23,11 @@ router.get('/search_a_list', function(req, res) {
 })
 
 router.get('/search_a_list_detail', function(req, res) {
-    res.render(folder + '/search_a', { formAction: "search-results_a/list-detail" })
+    res.render(folder + '/search_a', { formAction: "search-results_a/list-detail"  })
 })
 
 router.get('/search_a_table', function(req, res) {
-    res.render(folder + '/search_a', { formAction: "search-results_a/table" })
+    res.render(folder + '/search_a', { formAction: "search-results_a/table"  })
 })
 
 // Variant B
@@ -42,12 +42,13 @@ router.get('/search_b_table', function(req, res) {
 // Results
 // Variant A
 router.get('/search-results_a/:resultsType', function(req, res) {
-    res.render(folder + '/search-results_a', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType })
+  var query = require('url').parse(req.url,true).query;
+    res.render(folder + '/search-results_a', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType, url: req.url })
 })
 
 // Variant B
 router.get('/search-results_b/:resultsType', function(req, res) {
-    res.render(folder + '/search-results_b', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType })
+    res.render(folder + '/search-results_b', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType, url: req.url  })
 })
 
 

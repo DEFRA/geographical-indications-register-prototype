@@ -100,6 +100,11 @@ module.exports = function (env) {
       return str
   }
 
+  filters.splitQuery = function(str) {
+      items = str.split("?")
+      return items[1]
+  }
+
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
