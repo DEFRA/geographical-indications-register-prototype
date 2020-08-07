@@ -12,6 +12,8 @@ router.use(function (req, res, next) {
 
 var searchColumn = 'DEF_SearchTextAll'
 
+var registerData = 
+
 // Routes
 
 // Search
@@ -107,13 +109,7 @@ function showRegister(registerName) {
 }
 
 function getRegisterData(registerName) {
-    try {
-        const jsonString = fs.readFileSync('app/views/v1/data/registers/register.json')
-        return JSON.parse(jsonString)
-    } catch(err) {
-        console.log(err)
-        return
-    }
+    return require('./views/v1/data/registers/register.json')
 }
 
 module.exports = router
