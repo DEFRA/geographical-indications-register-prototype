@@ -42,7 +42,6 @@ router.get('/search_b_table', function(req, res) {
 // Results
 // Variant A
 router.get('/search-results_a/:resultsType', function(req, res) {
-  var query = require('url').parse(req.url,true).query;
     res.render(folder + '/search-results_a', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType, url: req.url })
 })
 

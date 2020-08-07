@@ -18,7 +18,7 @@ Geographical indications register
       {% endif %}
 
       <h1 class="govuk-heading-xl">
-        <span class="govuk-caption-xl">British geographical indications</span>
+        <span class="govuk-caption-xl">British protected food name register</span>
         {{ registerName }} register
       </h1>
 
@@ -46,7 +46,7 @@ Geographical indications register
             <th scope="col" class="govuk-table__header">Date of decision</th>
             <th scope="col" class="govuk-table__header">Protection type</th>
             <th scope="col" class="govuk-table__header">Country of origin</th>
-            <th scope="col" class="govuk-table__header">Date of original registration</th>
+            <!-- <th scope="col" class="govuk-table__header">Date of original registration</th> -->
             <th scope="col" class="govuk-table__header">Product specification</th>
           </tr>
         </thead>
@@ -62,7 +62,7 @@ Geographical indications register
                 <td class="govuk-table__cell">1 Jan 2021</td>
                 <td class="govuk-table__cell">{{ result.EA_Type }}</td>
                 <td class="govuk-table__cell">{{ result.EA_Country }}</td>
-                <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td>
+                <!-- <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td> -->
                 <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
               </tr>
 
@@ -85,7 +85,7 @@ Geographical indications register
         {% endif %}
       </p>
 
-      {% include "../includes/warning.html" %}
+      <!-- {% include "./includes/warning.html" %} -->
 
     </div>
   </div>
