@@ -55,14 +55,14 @@
   <details class="govuk-details" data-module="govuk-details">
     <summary class="govuk-details__summary">
       <span class="govuk-details__summary-text">
-        Category
+        Class
       </span>
     </summary>
     <div class="govuk-details__text">
       {% from "../data/lists/categories.json" import categories %}
       {{ govukSelect({
         id: "category",
-        name: "category",
+        name: "",
         items: categories
       }) }}
     </div>
@@ -85,5 +85,7 @@
       }) }}
     </div>
   </details>
+
+  <p><a href="/{{folder}}/legal-registers">Legal registers</a></p>
 
 </div>

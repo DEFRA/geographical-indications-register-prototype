@@ -4,7 +4,7 @@
       <form class="form" action="{{formAction}}" method="get">
         <div class="govuk-form-group">
           <label class="govuk-label" for="search">
-            You can search by name, type or category
+            You can search by name, type or class
           </label>
           <input class="govuk-input govuk-input--width-20" id="search" name="name" type="text" value="{{ data.name }}">
           <button class="govuk-button" data-module="govuk-button">Search</button>
@@ -14,7 +14,7 @@
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-              Filter by type, category, country or status
+              Filter by type, class, country or status
             </span>
           </summary>
           <div class="govuk-details__text">
@@ -68,7 +68,7 @@
                           id: "category",
                           name: "category",
                           label: {
-                            html: '<span class="govuk-!-font-weight-bold">Category</span>'
+                            html: '<span class="govuk-!-font-weight-bold">Class</span>'
                           },
                           items: categories
                         }) }}
@@ -91,6 +91,7 @@
 
           </div>
         </details>
+
 
       </div><!-- END govuk-form-group -->
 
