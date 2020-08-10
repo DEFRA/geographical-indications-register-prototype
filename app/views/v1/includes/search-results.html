@@ -24,6 +24,7 @@
         <th scope="col" class="govuk-table__header">Register</th>
         <th scope="col" class="govuk-table__header">Type</th>
         <th scope="col" class="govuk-table__header">Date registered</th>
+        <th scope="col" class="govuk-table__header">Country</th>
         <th scope="col" class="govuk-table__header">Specification</th>
         <th scope="col" class="govuk-table__header">Details</th>
       </tr>
@@ -44,12 +45,12 @@
           <a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
         </dt>
         <dd class="govuk-body">
-          {{ result.EA_ProductType }} register.
+          {{ result.DEF_Register }} register.
           <!-- {% if result.EA_DateRegistration | length != 0 %}
             Registered {{ result.EA_DateRegistration | formatLongDate }}
           {% endif %} -->
-          Registered 1 January 2021
-          by {{ result.EA_Country }}.
+          Registered 1 January 2021.
+          Country: {{ result.EA_Country }}.
         </dd>
 
     {% elseif resultsType == "table" %}
@@ -59,6 +60,7 @@
           <td class="govuk-table__cell">{{ result.EA_Type | registerBadge | safe }}</td>
           <!-- <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td> -->
           <td class="govuk-table__cell">1 Jan 2021</td>
+          <td class="govuk-table__cell">{{ result.EA_Country }}</td>
           <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
           <td class="govuk-table__cell"><a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">Details <span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
         </tr>
