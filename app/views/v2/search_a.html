@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Search for a product</h1>
+
+  {% include "./includes/search_a.html" %}
+
+          <p><a href="/{{folder}}/legal-registers">Legal registers</a></p>
+{% endblock %}

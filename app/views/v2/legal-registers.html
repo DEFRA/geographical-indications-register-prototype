@@ -1,0 +1,41 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">British protected food name registers</span>
+        Protected food and drinks legal registers
+      </h1>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-warning-text__assistive">Warning</span>
+            These are the legal registers.<br/>
+            Any other data in this service is provided for information only.
+        </strong>
+      </div>
+
+      <p class="govuk-body">The full legal registers are:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="show-register/Food%20and%20Agri%20UK%20PDO">Food PDO and PDI register</a></li>
+        <li><a href="show-register/Food%20and%20Agri%20UK%20TSG">Food TSG register</a></li>
+        <li><a href="show-register/Wines">Wines register</a></li>
+        <li><a href="show-register/Aromatised%20Wine">Aromatised wines register</a></li>
+        <li><a href="show-register/Spirits">Spirits register</a></li>
+        <li><a href="show-register/Traditional%20Terms">Traditional Terms register</a></li>
+      </ul>
+
+      <p class="govuk-body"><a href="search_a_list">Search for a product</a></p>
+
+      <p class="govuk-body">You can also <a href="mailto:gi-team@defra.gov.uk">contact us</a> to make an appointment to view a printed copy of a register.</p>
+
+    </div>
+  </div>
+{% endblock %}

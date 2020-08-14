@@ -1,0 +1,81 @@
+<!-- Check if filters have been applied -->
+{% set filterLength = data.category | length + data.country | length + data.types | length + data.statuses | length %}
+
+<p class="govuk-body"><span class="govuk-!-font-weight-bold">
+  {{ results | length }}</span> products found {{ " for:" if filterLength>0 }}
+  <a style="display:inline-blaock; margin-left:20px;" target="_blank" href="/public/images/protected-names-spirits-uk-regisiter-20210123.csv">Download as a spreadsheet</a>
+
+</p>
+
+{{ '<ul class="govuk-list govuk-list--bullet">' | safe if filterLength>0 }}
+  {% if data.category | length != 0 %}<li><span class="govuk-!-font-weight-bold">Category:</span> {{ data.category }}</li>{% endif %}
+  {% if data.country | length != 0 %}<li><span class="govuk-!-font-weight-bold">Country:</span> {{ data.country }}</li>{% endif %}
+  {% if data.types | length != 0 %}<li><span class="govuk-!-font-weight-bold">Type:</span> {{ data.types | join(", ") }}</li>{% endif %}
+  {% if data.statuses | length != 0 %}<li><span class="govuk-!-font-weight-bold">Status:</span> {{ data.statuses | join(", ") }}</li>{% endif %}
+{{ "</ul>" | safe if filterLength>0 }}
+
+{{ "<dl>" | safe if resultType == "list-detail" }}
+
+{% if resultsType == "table" %}
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Name</th>
+        <th scope="col" class="govuk-table__header">Register</th>
+        <th scope="col" class="govuk-table__header">Type</th>
+        <th scope="col" class="govuk-table__header">Date registered</th>
+        <th scope="col" class="govuk-table__header">Country</th>
+        <th scope="col" class="govuk-table__header">Specification</th>
+        <th scope="col" class="govuk-table__header">Details</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+{% endif %}
+
+{% set print = true %}
+{% for result in results | sort(attribute="EA_Name") %}
+  {% if print %}
+    {% if resultsType == "list" %}
+        <p class="govuk-body govuk-!-font-weight-bold">
+          <a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
+        </p>
+
+    {% elseif resultsType == "list-detail" %}
+        <dt class="govuk-body">
+          <a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a>
+        </dt>
+        <dd class="govuk-body">
+          {{ result.DEF_Register }} register.
+          <!-- {% if result.EA_DateRegistration | length != 0 %}
+            Registered {{ result.EA_DateRegistration | formatLongDate }}
+          {% endif %} -->
+          Registered 1 January 2021.
+          Country: {{ result.EA_Country }}.
+        </dd>
+
+    {% elseif resultsType == "table" %}
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">{{ result.EA_Name }}</th>
+          <td class="govuk-table__cell">{{ result.DEF_Register }}</td>
+          <td class="govuk-table__cell">{{ result.EA_Type | registerBadge | safe }}</td>
+          <!-- <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td> -->
+          <td class="govuk-table__cell">1 Jan 2021</td>
+          <td class="govuk-table__cell">{{ result.EA_Country }}</td>
+          <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+          <td class="govuk-table__cell"><a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">Details <span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+        </tr>
+
+    {% endif %}
+
+    {{ "</dl>" | safe if resultsType == "list-detail" }}
+
+    {% if loop.index==numToDisplay %}
+      {% set print = false %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if resultsType == "table" %}
+      </tbody>
+    </table>
+{% endif %}

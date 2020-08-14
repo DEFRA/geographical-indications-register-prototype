@@ -1,0 +1,91 @@
+<!-- Product type -->
+<div class="gir_filterbox">
+
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Product type
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+        {% from "../data/lists/product-types.json" import producttypes %}
+        {{ govukCheckboxes({
+            idPrefix: "types",
+            name: "types",
+            classes: "govuk-checkboxes--small",
+            fieldset: {
+              legend: {
+                text: "",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: producttypes
+          }) }}
+    </div>
+  </details>
+
+  <!-- Status -->
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Status
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "../data/lists/statuses.json" import statuses %}
+      {{ govukCheckboxes({
+              idPrefix: "statuses",
+              name: "statuses",
+              classes: "govuk-checkboxes--small",
+              fieldset: {
+                legend: {
+                  text: "",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: statuses
+            }) }}
+    </div>
+  </details>
+
+
+  <!-- Categories -->
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Class
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "../data/lists/categories.json" import categories %}
+      {{ govukSelect({
+        id: "category",
+        name: "",
+        items: categories
+      }) }}
+    </div>
+  </details>
+
+
+  <!-- Countries -->
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Country
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "../data/lists/countries.json" import countries %}
+      {{ govukSelect({
+        id: "country",
+        name: "country",
+        items: countries
+      }) }}
+    </div>
+  </details>
+
+  <p><a href="/{{folder}}/legal-registers">Legal registers</a></p>
+
+</div>

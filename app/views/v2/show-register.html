@@ -1,0 +1,93 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  British protected food name registers
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <!-- RESULTS? ###################################### -->
+      {% set numToDisplay = 20 %}
+      {% set numResults = results | length %}
+      {% if numResults < numToDisplay %}
+        {% set numToDisplay = numResults %}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl">
+        <span class="govuk-caption-xl">British protected food name registers</span>
+        {{ registerName }} register
+      </h1>
+
+      <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-one-half">
+          <p class="govuk-body"><span class="govuk-!-font-weight-bold">
+            {{ results | length }}</span> products {{ " for:" if filterLength>0 }}
+          </p>
+        </div>
+
+        <div class="govuk-grid-column-one-half">
+          <p class="govuk-body">
+            <a target="_blank" href="/public/images/protected-names-spirits-uk-regisiter-20210123.csv">Download as a spreadsheet</a>
+          </p>
+        </div>
+
+      </div>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Registered name</th>
+            <th scope="col" class="govuk-table__header">Class</th>
+            <th scope="col" class="govuk-table__header">Date of decision</th>
+            <th scope="col" class="govuk-table__header">Protection type</th>
+            <th scope="col" class="govuk-table__header">Country of origin</th>
+            <!-- <th scope="col" class="govuk-table__header">Date of original registration</th> -->
+            <th scope="col" class="govuk-table__header">Product specification</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+
+      {% set print = true %}
+      {% for result in results | sort(attribute="EA_Name") %}
+        {% if print %}
+
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">{{ result.EA_Name }}</th>
+                <td class="govuk-table__cell">{{ result.EA_ProductCategory }}</td>
+                <td class="govuk-table__cell">1 Jan 2021</td>
+                <td class="govuk-table__cell">{{ result.EA_Type }}</td>
+                <td class="govuk-table__cell">{{ result.EA_Country }}</td>
+                <!-- <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td> -->
+                <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+              </tr>
+
+          {% if loop.index==numToDisplay %}
+            {% set print = false %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+        </tbody>
+      </table>
+
+
+      <p>
+        <span class="govuk-!-font-weight-bold">1</span> to
+        <span class="govuk-!-font-weight-bold">{{ numToDisplay }}</span> of
+        <span class="govuk-!-font-weight-bold">{{ numResults }}</span> products
+        {% if numResults > numToDisplay %}
+          <a href="#">Next page</a>
+        {% endif %}
+      </p>
+
+      <!-- {% include "./includes/warning.html" %} -->
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <!-- RESULTS? ###################################### -->
+      {% set numToDisplay = 20 %}
+      {% set numResults = results | length %}
+      {% if numResults < numToDisplay %}
+        {% set numToDisplay = numResults %}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl">Search results</h1>
+
+      {% include "./includes/search_a.html" %}
+
+      {% include "./includes/search-results.html" %}
+
+      {% include "../includes/pagination_counter.html" %}
+
+
+    </div>
+  </div>
+
+  <p style="margin-top:100px;font-size:80%">
+    <a href="/{{folder}}/search-results_a/list?{{ url | splitQuery }}">List</a> |
+    <a href="/{{folder}}/search-results_a/list-detail?{{ url | splitQuery }}">Detail</a> |
+    <a href="/{{folder}}/search-results_a/table?{{ url | splitQuery }}">Table</a>
+  </p>
+
+{% endblock %}

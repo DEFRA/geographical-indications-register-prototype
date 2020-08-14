@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% set productname = EA_Name %}
+
+{% block pageTitle %}
+  {{ productname }} protected product details and specification
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ productname }}</h1>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Specification"
+            },
+            value: {
+              html: '<a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">' + productname + " specification (pdf)</a>"
+            }
+          },
+          {
+            key: {
+              text: "Type"
+            },
+            value: {
+              text: EA_ProductType
+            }
+          },
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              text: EA_Status
+            }
+          },
+          {
+            key: {
+              text: "Country"
+            },
+            value: {
+              text: EA_Country
+            }
+          },
+          {
+            key: {
+              text: "Registration date"
+            },
+            value: {
+              text: "1 January 2021"
+            }
+          },
+          {
+            key: {
+              text: "GB register"
+            },
+            value: {
+              text: DEF_Register
+            }
+          },
+          {
+            key: {
+              text: "Product class"
+            },
+            value: {
+              text: EA_ProductCategory
+            }
+          },
+          {
+            key: {
+              text: "Product type"
+            },
+            value: {
+              text: EA_ProductType
+            }
+          },
+          {
+            key: {
+              text: "File number"
+            },
+            value: {
+              text: EA_FileNumber
+            }
+          }
+        ]
+      }) }}
+
+      <!-- {% include "./includes/warning.html" %} -->
+      <!--           {
+                  key: {
+                    text: "Original EU registration date"
+                  },
+                  value: {
+                    text: EA_DateRegistration | formatLongDate
+                  }
+                }, -->
+
+    </div>
+  </div>
+
+{% endblock %}

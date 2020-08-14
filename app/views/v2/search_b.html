@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Search for a product</h1>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <form class="form" action="{{formAction}}" method="get">
+
+          {% include "./includes/search_b_input.html" %}
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              {% include "./includes/search_b_filters.html" %}
+            </div>
+            <div class="govuk-grid-column-two-thirds">
+
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% set statuses =
+  [
+  {
+    value: "Applied",
+    text: "Applied"
+  },
+  {
+    value: "Published",
+    text: "Published"
+  },
+  {
+    value: "Registered",
+    text: "Registered"
+  },
+  {
+    value: "Rejected",
+    text: "Rejected"
+  }
+ ]
+%}
