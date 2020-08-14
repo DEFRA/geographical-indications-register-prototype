@@ -45,7 +45,10 @@
     "require-dir": "^1.0.0",
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.4.16",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "metaphone": "^1.0.0",
+    "stemmer": "^1.0.0",
+    "soundex-code": "^1.0.0"
   },
   "greenkeeper": {
     "ignore": [

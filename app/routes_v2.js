@@ -3,7 +3,11 @@ const { get } = require('browser-sync')
 const router = express.Router()
 const fs = require('fs')
 
-var folder = "v1"
+var metaphone = require('metaphone')
+var stemmer = require('stemmer')
+
+
+var folder = "v2"
 router.use(function (req, res, next) {
   // set a folder and store in locals this can then be used in pages as {{folder}}
   res.locals.folder=folder
@@ -12,7 +16,13 @@ router.use(function (req, res, next) {
 
 var searchColumn = 'DEF_SearchTextAll'
 
-var registerData =
+var registerDataMeta = getRegisterData('register')
+
+// add element to array to hold metaphone of words - eg "vino naranja" => "FN NRNJ"
+for(let i = 0; i < registerDataMeta.length; i++){
+    registerDataMeta[i].metadata = registerDataMeta[i].DEF_SearchName.split(" ").map(element => metaphone(stemmer((element))) ).join(" ")
+    // console.log(registerDataMeta[i])
+}
 
 // Routes
 
@@ -74,6 +84,7 @@ function filterRegister(name, types, statuses, country, category) {
     name = name.toLowerCase()
 
     let registerData = getRegisterData('register')
+
     if (name) {
         registerData = registerData.filter(element => element[searchColumn].includes(name))
     }
@@ -94,6 +105,14 @@ function filterRegister(name, types, statuses, country, category) {
         registerData = registerData.filter(element => element.EA_ProductCategory === category)
     }
 
+    // NO RESULTS FOR SEARCH TERM
+    if ( registerData.length == 0 ) {
+      let fuzzyNameRegEx = new RegExp( '\\b' + metaphone(stemmer(name)) + '\\b' )
+      console.log(fuzzyNameRegEx)
+      // registerData = registerDataMeta.filter(element => element['metadata'].includes( metaphone(stemmer(name)) ) )
+      registerData = registerDataMeta.filter(element => element['metadata'].match( fuzzyNameRegEx ) )
+    }
+
     return registerData
 }
 
@@ -109,7 +128,7 @@ function showRegister(registerName) {
 }
 
 function getRegisterData(registerName) {
-    return require('./views/v1/data/registers/register.json')
+    return require('./views/' + folder + '/data/registers/register.json')
 }
 
 module.exports = router
