@@ -5,7 +5,7 @@ const fs = require('fs')
 
 var metaphone = require('metaphone')
 var stemmer = require('stemmer')
-
+var soundex = require('soundex-code')
 
 var folder = "v2"
 router.use(function (req, res, next) {
@@ -20,9 +20,11 @@ var registerDataMeta = getRegisterData('register')
 
 // add element to array to hold metaphone of words - eg "vino naranja" => "FN NRNJ"
 for(let i = 0; i < registerDataMeta.length; i++){
-    registerDataMeta[i].metadata = registerDataMeta[i].DEF_SearchName.split(" ").map(element => metaphone(stemmer((element))) ).join(" ")
+    // registerDataMeta[i].metadata = registerDataMeta[i].DEF_SearchName.split(" ").map(element => metaphone(stemmer((element))) ).join(" ")
+    registerDataMeta[i].metadata = registerDataMeta[i].DEF_SearchName.split(" ").map(element => soundex(stemmer((element))) ).join(" ")
     // console.log(registerDataMeta[i])
 }
+
 
 // Routes
 
@@ -107,7 +109,8 @@ function filterRegister(name, types, statuses, country, category) {
 
     // NO RESULTS FOR SEARCH TERM
     if ( registerData.length == 0 ) {
-      let fuzzyNameRegEx = new RegExp( '\\b' + metaphone(stemmer(name)) + '\\b' )
+      // let fuzzyNameRegEx = new RegExp( '\\b' + metaphone(stemmer(name)) + '\\b' )
+      let fuzzyNameRegEx = new RegExp( '\\b' + soundex(stemmer(name)) + '\\b' )
       console.log(fuzzyNameRegEx)
       // registerData = registerDataMeta.filter(element => element['metadata'].includes( metaphone(stemmer(name)) ) )
       registerData = registerDataMeta.filter(element => element['metadata'].match( fuzzyNameRegEx ) )

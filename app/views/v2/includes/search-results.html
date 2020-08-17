@@ -37,7 +37,7 @@
   {% if print %}
     {% if resultsType == "list" %}
         <p class="govuk-body govuk-!-font-weight-bold">
-          <a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a> {{ result.metadata }}
+          <a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a> {{ result.metadata }} {{ "YES" if useFuzzy=="yes" }}
         </p>
 
     {% elseif resultsType == "list-detail" %}
