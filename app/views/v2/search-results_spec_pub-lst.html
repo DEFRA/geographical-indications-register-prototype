@@ -5,6 +5,16 @@
 Geographical indications register
 {% endblock %}
 
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: " ",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -58,7 +68,7 @@ Geographical indications register
                 {% if print %}
                     <h3 style="border-top:1px solid #cccccc;padding-top:8px;"><a  style="text-decoration:none;" href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a></h3>
                         <p class="gir_small">Status: {{ result.EA_Status }} &nbsp;&nbsp;
-                          Protection type: {{ result.EA_Type }}</p>
+                          Award designation: {{ result.EA_Type }}</p>
 
                       <p class="gir_small">Date of registration: 1 Jan 2021 &nbsp;&nbsp;
                       Date of original registration with the EU: {{ result.EA_DateRegistration | formatShortDate }}</p>
@@ -86,9 +96,5 @@ Geographical indications register
   </div>
 
 
-  <p style="margin-top:100px;font-size:80%">
-    <a href="/{{folder}}/search-results_b/list-detail?{{ url | splitQuery }}">Detail</a> |
-    <a href="/{{folder}}/search-results_b/table?{{ url | splitQuery }}">Table</a>
-  </p>
 
 {% endblock %}

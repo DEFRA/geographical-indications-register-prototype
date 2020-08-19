@@ -141,7 +141,7 @@
 
             {{ govukButton({
               text: "Search all registers",
-              href: "search_nodejs"
+              href: "/" + folder + "/" + linkAction + "?registers=_unchecked&statuses=_unchecked&name=&country="
             }) }}
 
 
@@ -149,18 +149,18 @@
             <h3 class="govuk-heading-m">GI scheme registers</h3>
 
             <p class="govuk-body">Each GI scheme has its own register.</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li><a href="/{{folder}}/search-results_nodejs?registers=_unchecked&statuses=_unchecked&name=&registers=Food+and+Agri+UK+PDO&statuses=Registered">
+            <ul class="govuk-list">
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Food+and+Agri+UK+PDO&statuses=Registered">
                 Protected food names scheme register: protected designation of origin (PDO) and protected geographical indication (PGI)</a></li>
-              <li><a href="/{{folder}}/search-results_nodejs?registers=_unchecked&statuses=_unchecked&name=&registers=Food+and+Agri+UK+TSG&statuses=Registered">
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Food+and+Agri+UK+TSG&statuses=Registered">
                 Protected food names scheme register: traditional speciality guaranteed (TSG)</a></li>
-              <li><a href="/{{folder}}/search-results_nodejs?registers=_unchecked&statuses=_unchecked&name=&registers=Spirits&statuses=Registered">
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Spirits&statuses=Registered">
                 Protected spirit drink names scheme register</a></li>
-              <li><a href="/{{folder}}/search-results_nodejs?registers=_unchecked&statuses=_unchecked&name=&registers=Wines&statuses=Registered">
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Wines&statuses=Registered">
                 Protected wine names scheme register</a></li>
-              <li><a href="/{{folder}}/search-results_nodejs?registers=_unchecked&statuses=_unchecked&name=&registers=Aromatised+Wine&statuses=Registered">
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Aromatised+Wine&statuses=Registered">
                 Protected aromatised wines scheme register</a></li>
-              <li><a href="/{{folder}}/search-results_nodejs?registers=_unchecked&statuses=_unchecked&name=&registers=Traditional+Terms&statuses=Registered">
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Traditional+Terms&statuses=Registered">
                 Traditional terms for wine products register</a></li>
             </ul>
             <p class="govuk-body">Each register lists protected product names and their registered specification (where applicable).</p>

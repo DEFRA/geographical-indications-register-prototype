@@ -7,6 +7,8 @@ var metaphone = require('metaphone')
 var stemmer = require('stemmer')
 var soundex = require('soundex-code')
 
+var allowFuzzy = false
+
 var folder = "v2"
 var versionServiceName = "Check protected food and drink names"
 router.use(function (req, res, next) {
@@ -27,6 +29,19 @@ for(let i = 0; i < registerDataMeta.length; i++){
     registerDataMeta[i].metadata = registerDataMeta[i].DEF_SearchName.split(" ").map(element => soundex(stemmer((element))) ).join(" ")
     // console.log(registerDataMeta[i])
 }
+
+router.get('/landing-guide-page/:type', function(req, res) {
+  if (req.params.type == "nodejs"){
+    res.render(folder + '/landing-guide-page', { linkAction: "search-results_nodejs" })
+    } else if (req.params.type == "tbl"){
+      res.render(folder + '/landing-guide-page', { linkAction: "search-results_spec_pub-tbl" })
+    } else if (req.params.type == "lst"){
+        res.render(folder + '/landing-guide-page', { linkAction: "search-results_spec_pub-lst" })
+    } else {
+    res.render(folder + '/landing-guide-page', { linkAction: "search-results_spec_pub-lst" })
+  }
+})
+
 
 
 // Routes
@@ -93,7 +108,7 @@ function filterRegister(name, registers, statuses, country, category) {
     }
 
     // NO RESULTS FOR SEARCH TERM
-    if ( registerData.length == 0 ) {
+    if ( allowFuzzy && registerData.length == 0 ) {
       // let fuzzyNameRegEx = new RegExp( '\\b' + metaphone(stemmer(name)) + '\\b' )
       let fuzzyNameRegEx = new RegExp( '\\b' + soundex(stemmer(name)) + '\\b' )
       console.log(fuzzyNameRegEx)
