@@ -8,11 +8,14 @@ var stemmer = require('stemmer')
 var soundex = require('soundex-code')
 
 var folder = "v2"
+var versionServiceName = "Check protected food and drink names"
 router.use(function (req, res, next) {
-  // set a folder and store in locals this can then be used in pages as {{folder}}
+  // store in locals this can then be used in pages as {{folder}} etc
   res.locals.folder=folder
+  res.locals.versionServiceName=versionServiceName
   next()
-});
+})
+
 
 var searchColumn = 'DEF_SearchTextAll'
 
@@ -29,37 +32,26 @@ for(let i = 0; i < registerDataMeta.length; i++){
 // Routes
 
 // Search
-// Variant A
-router.get('/search_a_list', function(req, res) {
-    res.render(folder + '/search_a', { formAction: "search-results_a/list" })
-})
-
-router.get('/search_a_list_detail', function(req, res) {
-    res.render(folder + '/search_a', { formAction: "search-results_a/list-detail"  })
-})
-
-router.get('/search_a_table', function(req, res) {
-    res.render(folder + '/search_a', { formAction: "search-results_a/table"  })
-})
-
-// Variant B
-router.get('/search_b_list_detail', function(req, res) {
-    res.render(folder + '/search_b', { formAction: "search-results_b/list-detail" })
-})
-
-router.get('/search_b_table', function(req, res) {
-    res.render(folder + '/search_b', { formAction: "search-results_b/table" })
+// Variant nodejs
+router.get('/search_nodejs', function(req, res) {
+    res.render(folder + '/search_nodejs', { formAction: "search-results_nodejs" })
 })
 
 // Results
-// Variant A
-router.get('/search-results_a/:resultsType', function(req, res) {
-    res.render(folder + '/search-results_a', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType, url: req.url })
+// Variant nodejs
+router.get('/search-results_nodejs', function(req, res) {
+    res.render(folder + '/search-results_nodejs', { results: filterRegister(req.query.name, req.query.registers, req.query.statuses, req.query.country, req.query.category), url: req.url })
 })
 
-// Variant B
-router.get('/search-results_b/:resultsType', function(req, res) {
-    res.render(folder + '/search-results_b', { results: filterRegister(req.query.name, req.query.types, req.query.statuses, req.query.country, req.query.category), resultsType: req.params.resultsType, url: req.url  })
+
+
+// Variant Specialist publisher
+router.get('/search-results_spec_pub-tbl', function(req, res) {
+    res.render(folder + '/search-results_spec_pub-tbl', { results: filterRegister(req.query.name, req.query.registers, req.query.statuses, req.query.country, req.query.category), url: req.url  })
+})
+
+router.get('/search-results_spec_pub-lst', function(req, res) {
+    res.render(folder + '/search-results_spec_pub-lst', { results: filterRegister(req.query.name, req.query.registers, req.query.statuses, req.query.country, req.query.category), url: req.url  })
 })
 
 
@@ -68,13 +60,6 @@ router.get('/product-details/:giNumber', function(req, res) {
     res.render(folder + '/product-details', findGi(req.params.giNumber))
 })
 
-router.get('/legal-registers', function(req, res) {
-    res.render(folder + '/legal-registers')
-})
-
-router.get('/show-register/:registerName', function(req, res) {
-    res.render(folder + '/show-register', { results: showRegister(req.params.registerName), registerName: req.params.registerName })
-})
 
 
 // Functions
@@ -82,7 +67,7 @@ function findGi(giNumber) {
     return getRegisterData('register').find(element => element.EA_FileNumber === giNumber)
 }
 
-function filterRegister(name, types, statuses, country, category) {
+function filterRegister(name, registers, statuses, country, category) {
     name = name.toLowerCase()
 
     let registerData = getRegisterData('register')
@@ -91,8 +76,8 @@ function filterRegister(name, types, statuses, country, category) {
         registerData = registerData.filter(element => element[searchColumn].includes(name))
     }
 
-    if (types != '_unchecked') {
-        registerData = registerData.filter(element => types.includes(element.EA_ProductType))
+    if (registers != '_unchecked') {
+        registerData = registerData.filter(element => registers.includes(element.DEF_Register))
     }
 
     if (statuses != '_unchecked') {
@@ -115,17 +100,6 @@ function filterRegister(name, types, statuses, country, category) {
       // registerData = registerDataMeta.filter(element => element['metadata'].includes( metaphone(stemmer(name)) ) )
       registerData = registerDataMeta.filter(element => element['metadata'].match( fuzzyNameRegEx ) )
     }
-
-    return registerData
-}
-
-function showRegister(registerName) {
-    let registerData = getRegisterData('register')
-    if (registerName) {
-        registerData = registerData.filter(element => element.DEF_Register === registerName)
-    }
-    // Only show status = registered
-    registerData = registerData.filter(element => element.EA_Status === "Registered")
 
     return registerData
 }

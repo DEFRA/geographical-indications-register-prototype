@@ -1,27 +1,37 @@
+<div>
+  <label class="govuk-label" for="search">
+    Search
+  </label>
+  <input class="govuk-input" style="width:250px;" id="search" name="name" type="text" value="{{ data.name }}">
+  <button class="govuk-button gem-c-search__submit gem-c-search--on-white" data-module="govuk-button">O</button>
+</div><!-- END govuk-form-group -->
+
 <!-- Product type -->
 <div class="gir_filterbox">
 
   <details class="govuk-details" data-module="govuk-details">
     <summary class="govuk-details__summary">
       <span class="govuk-details__summary-text">
-        Product type
+        Register
       </span>
     </summary>
     <div class="govuk-details__text">
-        {% from "../data/lists/product-types.json" import producttypes %}
-        {{ govukCheckboxes({
-            idPrefix: "types",
-            name: "types",
-            classes: "govuk-checkboxes--small",
-            fieldset: {
-              legend: {
-                text: "",
-                isPageHeading: false,
-                classes: "govuk-fieldset__legend--s"
-              }
-            },
-            items: producttypes
-          }) }}
+      <!-- Registers -->
+      {% from "../data/lists/registers.json" import registers %}
+
+      {{ govukCheckboxes({
+                idPrefix: "registers",
+                name: "registers",
+                classes: "govuk-checkboxes--small",
+                fieldset: {
+                  legend: {
+                    text: "",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: registers
+              }) }}
     </div>
   </details>
 
@@ -86,6 +96,5 @@
     </div>
   </details>
 
-  <p><a href="/{{folder}}/legal-registers">Legal registers</a></p>
 
 </div>

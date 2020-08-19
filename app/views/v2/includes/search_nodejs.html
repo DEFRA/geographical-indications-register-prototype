@@ -14,7 +14,7 @@
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-              Filter by type, class, country or status
+              Filter by register, class, country or status
             </span>
           </summary>
           <div class="govuk-details__text">
@@ -23,21 +23,21 @@
             <div class="govuk-grid-row">
               <!-- Column 1 of 3 -->
               <div class="govuk-grid-column-one-third">
-                <!-- Product type -->
-                {% from "../data/lists/product-types.json" import producttypes %}
+                <!-- Registers -->
+                {% from "../data/lists/registers.json" import registers %}
 
                 {{ govukCheckboxes({
-                          idPrefix: "types",
-                          name: "types",
+                          idPrefix: "registers",
+                          name: "registers",
                           classes: "govuk-checkboxes--small",
                           fieldset: {
                             legend: {
-                              text: "Product type",
+                              text: "Register",
                               isPageHeading: false,
                               classes: "govuk-fieldset__legend--s"
                             }
                           },
-                          items: producttypes
+                          items: registers
                         }) }}
               </div><!-- END column -->
 
