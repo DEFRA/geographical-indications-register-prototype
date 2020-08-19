@@ -1,0 +1,45 @@
+<%= render layout: "shared/form_group", locals: { f: f, field: :protected_food_name_product_type } do %>
+  <%= f.select :protected_food_name_product_type,
+      f.object.facet_options(:protected_food_name_product_type),
+      {},
+      {
+        class: 'select2 form-control',
+        multiple: true,
+        data:
+        {
+          placeholder: 'Select product type'
+        }
+      }
+  %>
+<% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :protected_food_name_status } do %>
+  <%= f.select :protected_food_name_status,
+      f.object.facet_options(:protected_food_name_status),
+      {},
+      {
+        class: 'select2 form-control',
+        multiple: true,
+        data:
+        {
+          placeholder: 'Select status'
+        }
+      }
+  %>
+<% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :protected_food_name_product_category } do %>
+  <%= f.select :protected_food_name_product_category,
+      f.object.facet_options(:protected_food_name_product_category),
+      { label: "Category", include_blank: 'Select category' },
+      { class: 'form-control' }
+  %>
+<% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :protected_food_name_country } do %>
+  <%= f.select :protected_food_name_country,
+      f.object.facet_options(:protected_food_name_country),
+      { label: "Country", include_blank: 'Select country' },
+      { class: 'form-control' }
+  %>
+<% end %>

@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% set productname = EA_Name %}
+
+{% block pageTitle %}
+  {{ productname }} protected product details and specification
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ productname }}</h1>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Product specification"
+            },
+            value: {
+              html: '<a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">' + productname + " specification (pdf)</a>"
+            }
+          },
+          {
+            key: {
+              text: "Status"
+            },
+            value: {
+              text: EA_Status
+            }
+          },
+          {
+            key: {
+              text: "Country of origin"
+            },
+            value: {
+              text: EA_Country
+            }
+          },
+          {
+            key: {
+              text: "Date of registration"
+            },
+            value: {
+              text: "1 January 2021"
+            }
+          },
+          {
+            key: {
+              text: "Date of original registration with the EU"
+            },
+            value: {
+              text: EA_DateRegistration | formatLongDate
+            }
+          },
+          {
+            key: {
+              text: "UK GI register name"
+            },
+            value: {
+              text: DEF_Register
+            }
+          },
+          {
+            key: {
+              text: "Class"
+            },
+            value: {
+              text: EA_ProductCategory
+            }
+          },
+          {
+            key: {
+              text: "Unique ID"
+            },
+            value: {
+              text:
+
+              DEF_Register | truncate(1, true, "") | upper + "00" +  [1,2,3,4,5,6,7,8,9] | random + [1,2,3,4,5,6,7,8,9] | random
+            }
+          },
+          {
+            key: {
+              text: "Notes"
+            },
+            value: {
+              text: ""
+            }
+          }
+        ]
+      }) }}
+
+      {% include "./includes/warning.html" %}
+
+    </div>
+  </div>
+
+{% endblock %}

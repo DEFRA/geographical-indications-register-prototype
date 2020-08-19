@@ -1,0 +1,118 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <!-- RESULTS? ###################################### -->
+      {% set numToDisplay = 20 %}
+      {% set numResults = results | length %}
+      {% if numResults < numToDisplay %}
+        {% set numToDisplay = numResults %}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl" style="width:12em;">Protected geographical food and drink names</h1>
+
+      <form class="form" action="{{formAction}}" method="get">
+
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              {% include "./includes/search_spec_pub_filters.html" %}
+            </div>
+            <div class="govuk-grid-column-two-thirds">
+
+              <!-- Check if filters have been applied -->
+              {% set filterLength = data.category | length + data.country | length + data.registers | length + data.statuses | length %}
+
+              <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                  <p class="govuk-body">
+                    {{ results | length }} products
+                  </p>
+                </div>
+                <div class="govuk-grid-column-one-third" style="display: flex;flex-flow: column nowrap;">
+                    <p class="govuk-body" style="align-self: flex-end;margin-top:auto;">
+                      <a href="/public/images/protected-names-spirits-uk-regisiter-20210123.csv">Download spreadsheet</a>
+                    </p>
+                </div>
+              </div>
+
+
+              <div style="background-color:#f3f2f1;padding:10px 8px;">
+                  {% if data.category | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Category:</span> {{ data.category }}</span>{% endif %}
+                  {% if data.country | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Country:</span> {{ data.country }}</span>{% endif %}
+                  {% if data.registers | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Register:</span> {{ data.registers | join(", ") }}</span>{% endif %}
+                  {% if data.statuses | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Status:</span> {{ data.statuses | join(", ") }}</span>{% endif %}
+              </div>
+
+
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Registered name</th>
+                    <th scope="col" class="govuk-table__header">Protection type</th>
+                    <th scope="col" class="govuk-table__header">Date of registration</th>
+                    <th scope="col" class="govuk-table__header">Date of original registration with the EU</th>
+                    <th scope="col" class="govuk-table__header">Country of origin</th>
+                    <th scope="col" class="govuk-table__header">Product specification</th>
+                    <th scope="col" class="govuk-table__header">Details</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+
+
+            {% set print = true %}
+            {% for result in results | sort(attribute="EA_Name") %}
+              {% if print %}
+
+                    <tr class="govuk-table__row">
+                      <th scope="row" class="govuk-table__header">{{ result.EA_Name }}</th>
+                      <td class="govuk-table__cell">{{ result.EA_Type | registerBadge | safe }}</td>
+                      <td class="govuk-table__cell">1 Jan 2021</td>
+                      <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td>
+                      <td class="govuk-table__cell">{{ result.EA_Country }}</td>
+                      <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+                      <td class="govuk-table__cell"><a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">Details <span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
+                    </tr>
+
+                {% endif %}
+
+
+                {% if loop.index==numToDisplay %}
+                  {% set print = false %}
+                {% endif %}
+
+            {% endfor %}
+
+                  </tbody>
+                </table>
+
+
+
+
+
+
+      {% include "../includes/pagination_counter.html" %}
+
+    </div><!-- end col 2/3rds for results -->
+  </div><!-- end grid row -->
+
+</form>
+
+    </div>
+  </div>
+
+
+  <p style="margin-top:100px;font-size:80%">
+    <a href="/{{folder}}/search-results_b/list-detail?{{ url | splitQuery }}">Detail</a> |
+    <a href="/{{folder}}/search-results_b/table?{{ url | splitQuery }}">Table</a>
+  </p>
+
+{% endblock %}

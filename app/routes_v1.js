@@ -12,7 +12,7 @@ router.use(function (req, res, next) {
 
 var searchColumn = 'DEF_SearchTextAll'
 
-var registerData =
+var registerData = []
 
 // Routes
 
