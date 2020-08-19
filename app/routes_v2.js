@@ -35,6 +35,8 @@ router.get('/landing-guide-page/:type', function(req, res) {
     res.render(folder + '/landing-guide-page', { linkAction: "search-results_nodejs" })
     } else if (req.params.type == "tbl"){
       res.render(folder + '/landing-guide-page', { linkAction: "search-results_spec_pub-tbl" })
+    } else if (req.params.type == "tbl-simple"){
+      res.render(folder + '/landing-guide-page', { linkAction: "search-results_spec_pub-tbl-simple" })
     } else if (req.params.type == "lst"){
         res.render(folder + '/landing-guide-page', { linkAction: "search-results_spec_pub-lst" })
     } else {
@@ -63,6 +65,10 @@ router.get('/search-results_nodejs', function(req, res) {
 // Variant Specialist publisher
 router.get('/search-results_spec_pub-tbl', function(req, res) {
     res.render(folder + '/search-results_spec_pub-tbl', { results: filterRegister(req.query.name, req.query.registers, req.query.statuses, req.query.country, req.query.category), url: req.url  })
+})
+
+router.get('/search-results_spec_pub-tbl-simple', function(req, res) {
+    res.render(folder + '/search-results_spec_pub-tbl-simple', { results: filterRegister(req.query.name, req.query.registers, req.query.statuses, req.query.country, req.query.category), url: req.url  })
 })
 
 router.get('/search-results_spec_pub-lst', function(req, res) {
