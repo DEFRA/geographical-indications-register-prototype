@@ -38,30 +38,10 @@ Geographical indications register
             </div>
             <div class="govuk-grid-column-two-thirds">
 
-              <!-- Check if filters have been applied -->
-              {% set filterLength = data.category | length + data.country | length + data.registers | length + data.statuses | length %}
+            <!-- Check if filters have been applied -->
+            {% set filterLength = data.category | length + data.country | length + data.registers | length + data.statuses | length %}
 
-              <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                  <p class="govuk-body">
-                    {{ results | length }} products
-                  </p>
-                </div>
-                <div class="govuk-grid-column-one-third" style="display: flex;flex-flow: column nowrap;">
-                    <p class="govuk-body" style="align-self: flex-end;margin-top:auto;">
-                      <a href="/public/images/protected-names-spirits-uk-regisiter-20210123.csv">Download spreadsheet</a>
-                    </p>
-                </div>
-              </div>
-
-{% if filterLength != 0 %}
-              <div style="background-color:#f3f2f1;padding:13px 8px;">
-                  {% if data.category | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Category</span> <span class="gir-filtername">{{ data.category }}</span></span>{% endif %}
-                  {% if data.country | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Country</span> <span class="gir-filtername">{{ data.country }}</span></span>{% endif %}
-                  {% if data.registers | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Register</span> <span class="gir-filtername">{{ data.registers | join(', ' ) }}</span></span>{% endif %}
-                  {% if data.statuses | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Status</span> <span class="gir-filtername">{{ data.statuses | join(", ") }}</span></span>{% endif %}
-              </div>
-{% endif %}
+            {% include "./includes/filter-panel.html" %}
 
             {% set print = true %}
             {% for result in results | sort(attribute="EA_Name") %}

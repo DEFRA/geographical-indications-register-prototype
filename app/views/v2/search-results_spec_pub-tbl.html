@@ -41,26 +41,7 @@ Geographical indications register
               <!-- Check if filters have been applied -->
               {% set filterLength = data.category | length + data.country | length + data.registers | length + data.statuses | length %}
 
-              <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                  <p class="govuk-body">
-                    {{ results | length }} products
-                  </p>
-                </div>
-                <div class="govuk-grid-column-one-third" style="display: flex;flex-flow: column nowrap;">
-                    <p class="govuk-body" style="align-self: flex-end;margin-top:auto;">
-                      <a href="/public/images/protected-names-spirits-uk-regisiter-20210123.csv">Download spreadsheet</a>
-                    </p>
-                </div>
-              </div>
-
-
-              <div style="background-color:#f3f2f1;padding:10px 8px;">
-                  {% if data.category | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Category:</span> {{ data.category }}</span>{% endif %}
-                  {% if data.country | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Country:</span> {{ data.country }}</span>{% endif %}
-                  {% if data.registers | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Register:</span> {{ data.registers | join(", ") }}</span>{% endif %}
-                  {% if data.statuses | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Status:</span> {{ data.statuses | join(", ") }}</span>{% endif %}
-              </div>
+            {% include "./includes/filter-panel.html" %}
 
 
               <table class="govuk-table">
