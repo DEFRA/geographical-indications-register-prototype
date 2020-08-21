@@ -54,13 +54,14 @@ Geographical indications register
                 </div>
               </div>
 
-
-              <div style="background-color:#f3f2f1;padding:10px 8px;">
-                  {% if data.category | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Category:</span> {{ data.category }}</span>{% endif %}
-                  {% if data.country | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Country:</span> {{ data.country }}</span>{% endif %}
-                  {% if data.registers | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Register:</span> {{ data.registers | join(", ") }}</span>{% endif %}
-                  {% if data.statuses | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Status:</span> {{ data.statuses | join(", ") }}</span>{% endif %}
+{% if filterLength != 0 %}
+              <div style="background-color:#f3f2f1;padding:13px 8px;">
+                  {% if data.category | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Category</span> <span class="gir-filtername">{{ data.category }}</span></span>{% endif %}
+                  {% if data.country | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Country</span> <span class="gir-filtername">{{ data.country }}</span></span>{% endif %}
+                  {% if data.registers | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Register</span> <span class="gir-filtername">{{ data.registers | join(', ' ) }}</span></span>{% endif %}
+                  {% if data.statuses | length != 0 %}<span class="govuk-body"><span class="govuk-!-font-weight-bold">Status</span> <span class="gir-filtername">{{ data.statuses | join(", ") }}</span></span>{% endif %}
               </div>
+{% endif %}
 
             {% set print = true %}
             {% for result in results | sort(attribute="EA_Name") %}

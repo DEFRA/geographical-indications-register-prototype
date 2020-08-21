@@ -115,3 +115,16 @@ dd.govuk-body {
 .gir_spaceAbove {
   margin-top:15px;
 }
+
+.gir-filtername {
+  border: 1px solid #505a5f;
+  border-radius: 5px;
+  padding: 8px 7px 7px 7px;
+  font-size:16px;
+}
+
+.gir-filtername:before {
+  content: "\00D7\00A0";
+  font-size:20px;
+  font-weight:700;
+}
