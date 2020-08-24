@@ -86,7 +86,7 @@
         <div class="govuk-grid-column-two-thirds metadata-column">
             <div class="app-c-publisher-metadata" lang="en">
         <div class="app-c-published-dates " lang="en">
-        Published 1 January 2021
+        Published 31 December 2020
     </div>
 
           <div class="app-c-publisher-metadata__other">
@@ -139,9 +139,15 @@
               <li>get the full register entry and specification for a protected product</li>
             </ul>
 
+            {% if linkAction == "search-results_nodejs" %}
+              {% set linkHref = "/" + folder + "/search_nodejs" %}
+            {% else %}
+              {% set linkHref = "/" + folder + "/" + linkAction + "?registers=_unchecked&statuses=_unchecked&name=&country=" %}
+            {% endif %}
+
             {{ govukButton({
               text: "Search all registers",
-              href: "/" + folder + "/" + linkAction + "?registers=_unchecked&statuses=_unchecked&name=&country="
+              href: linkHref
             }) }}
 
 

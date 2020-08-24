@@ -63,7 +63,7 @@ Geographical indications register
               <th scope="col" class="govuk-table__header">Registered product name</th>
               <th scope="col" class="govuk-table__header">Award designation</th>
               <th scope="col" class="govuk-table__header">Date of registration</th>
-              <th scope="col" class="govuk-table__header">Date of original registration with the EU</th>
+              <!-- <th scope="col" class="govuk-table__header">Date of original registration with the EU</th> -->
               <th scope="col" class="govuk-table__header">Country of origin</th>
               <th scope="col" class="govuk-table__header">Product specification</th>
               <th scope="col" class="govuk-table__header">Details</th>
@@ -80,7 +80,7 @@ Geographical indications register
                 <th scope="row" class="govuk-table__header">{{ result.EA_Name }}</th>
                 <td class="govuk-table__cell">{{ result.EA_Type | registerBadge | safe }}</td>
                 <td class="govuk-table__cell">1 Jan 2021</td>
-                <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td>
+                <!-- <td class="govuk-table__cell">{{ result.EA_DateRegistration | formatShortDate }}</td> -->
                 <td class="govuk-table__cell">{{ result.EA_Country }}</td>
                 <td class="govuk-table__cell"><a href="/public/images/pfn-stilton-cheese.pdf" target="_blank">Specification<span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
                 <td class="govuk-table__cell"><a href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">Details <span class="govuk-visually-hidden"> for {{ result.EA_Name }}</span></a></td>
