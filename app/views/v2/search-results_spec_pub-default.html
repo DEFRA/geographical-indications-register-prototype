@@ -41,21 +41,27 @@ Geographical indications register
             <!-- Check if filters have been applied -->
             {% set filterLength = data.category | length + data.country | length + data.registers | length + data.statuses | length %}
 
-            {% include "./includes/filter-panel.html" %}
+            {% include "./includes/filter-panel-default.html" %}
 
             {% set print = true %}
             {% for result in results | sort(attribute="EA_Name") %}
 
                 {% if print %}
-                    <h3 style="border-top:1px solid #cccccc;padding-top:8px;"><a  style="text-decoration:none;" href="/{{folder}}/product-details/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a></h3>
-                        <p class="gir_small">Status: {{ result.EA_Status }} &nbsp;&nbsp;
-                          Award designation: {{ result.EA_Type }}</p>
+                    <h3 class="gir_results_head"><a  style="text-decoration:none;" href="/{{folder}}/product-details-default/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a></h3>
+                      <p class="gir_small">
+                        {{ "Protected food name" if result.DEF_Register == "Food and Agri UK PDO" }}
+                        {{ "Traditional speciality guaranteed" if result.DEF_Register == "Food and Agri UK TSG" }}
+                        {{ "Protected spirit drink name" if result.DEF_Register == "Spirits" }}
+                        {{ "Protected wine name" if result.DEF_Register == "Wines" }}
+                        {{ "Protected aromatised wine name" if result.DEF_Register == "Aromatised wines" }}
+                        {{ "Traditional Term" if result.DEF_Register == "Traditional Terms" }}
+                      </p>
+                      <p class="gir_very_small">Status: {{ result.EA_Status }} &nbsp;&nbsp;
+                        Award designation: {{ result.EA_Type }}</p>
 
-                      <p class="gir_small">Date of registration: 31 Dec 2020 &nbsp;&nbsp;
-                      Date of original registration with the EU: {{ result.EA_DateRegistration | formatShortDate }}</p>
+                      <p class="gir_very_small">Date of registration: 31 Dec 2020</p>
 
-                      <p class="gir_small">UK GI register name: {{ result.DEF_Register }} &nbsp;&nbsp;
-                      Country: {{ result.EA_Country }}</p>
+                      <p class="gir_very_small">Country of origin: {{ result.EA_Country }}</p>
                 {% endif %}
 
                 {% if loop.index==numToDisplay %}

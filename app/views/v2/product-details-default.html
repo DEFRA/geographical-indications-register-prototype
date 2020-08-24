@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% set productname = EA_Name %}
+
+{% block pageTitle %}
+  {{ productname }} protected product details and specification
+{% endblock %}
+
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: " ",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ productname }}</h1>
+
+      <p class="gir_intro">
+        {{ "Protected food name" if DEF_Register == "Food and Agri UK PDO" }}
+        {{ "Traditional speciality guaranteed" if DEF_Register == "Food and Agri UK TSG" }}
+        {{ "Protected spirit drink name" if DEF_Register == "Spirits" }}
+        {{ "Protected wine name" if DEF_Register == "Wines" }}
+        {{ "Protected aromatised wine name" if DEF_Register == "Aromatised wines" }}
+        {{ "Traditional Term" if DEF_Register == "Traditional Terms" }}
+      </p>
+
+      <p class="gir_small">
+        Published 31 December 2020<br>
+        From: <a href="#">Department for Environment, Food &amp; Rural Affairs</a>
+      </p>
+
+      <div class="gir_meta">
+        <p>Status: <b><em>{{EA_Status}}</em></b></p>
+        <p>Award designation: <b>{{EA_Type}}</b></p>
+        <p>Country of origin: <b><em>{{EA_Country}}</em></b></p>
+        <p>Date of registration: <b>31 December 2020</b></p>
+        <p>UK GI register name: <b><em>{{DEF_Register}}</em></b></p>
+        <p>Class: <b><em>{{EA_ProductCategory}}</em></b></p>
+      </div>
+
+      <p>
+        {{ "Protected designation of origin (PDO) and protected geographical indication (PGI) register" if DEF_Register == "Food and Agri UK PDO" }}
+        {{ "Traditional speciality guaranteed (TSG) register" if DEF_Register == "Food and Agri UK TSG" }}
+        {{ "Protected spirit drink names scheme register" if DEF_Register == "Spirits" }}
+        {{ "Protected wine names scheme register" if DEF_Register == "Wines" }}
+        {{ "Protected aromatised wines scheme register" if DEF_Register == "Aromatised wines" }}
+        {{ "Traditional terms for wine products register" if DEF_Register == "Traditional Terms" }}
+      </p>
+
+      <h3 class="govuk-heading-m">Specification</h3>
+      <p>
+        <a href="/public/images/pfn-stilton-cheese.pdf">{{productname}} product specification (pdf)</a>
+      </p>
+
+      <h3 class="govuk-heading-m">Date of original registration with the EU</h3>
+      <p>
+        <span class="govuk-!-font-weight-bold">{{EA_DateRegistration | formatLongDate}}</span><br>
+        This date was taken from the EU eAmbrosia Register. It is given for information and is not part of the official register.
+      </p>
+
+      <h3 class="govuk-heading-m">Notes</h3>
+      <p>No notes</.p>
+
+      <p class="gir_small">
+        Published 31 December 2020
+      </p>
+
+
+    </div>
+  </div>
+
+{% endblock %}

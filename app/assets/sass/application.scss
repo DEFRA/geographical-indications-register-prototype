@@ -94,14 +94,26 @@ dd.govuk-body {
     overflow: hidden;
 }
 
+.gir_results_head {
+  margin: 1em 0 6px 0;
+  border-top:1px solid #cccccc;
+  padding-top:12px;
+}
+
+.gir_intro{
+  font-size:24px;
+  border-bottom:1px solid #cccccc;
+  padding-bottom: 40px;
+}
+
 .gir_small{
   font-size:16px;
-  margin-bottom:6px;
+  margin-bottom:2px;
 }
 
 .gir_very_small{
   font-size:14px;
-  margin-bottom:6px;
+  margin-bottom:2px;
 }
 
 .gir_isNormalFont{
@@ -138,4 +150,24 @@ dd.govuk-body {
   content: "\00D7\00A0";
   font-size:20px;
   font-weight:700;
+}
+
+.gir_meta {
+  padding: 20px 30px;
+  margin: 40px 0 50px 0;
+  background-color: #1d70b8;
+  color:#fff;
+  a, p {
+    color:#fff;
+    margin:0;
+    font-size: 16px;
+    line-height:1.4em;
+  }
+  b {
+    font-weight:bold;
+  }
+  em {
+    text-decoration:underline;
+    font-style: normal;
+  }
 }
