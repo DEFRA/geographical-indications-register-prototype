@@ -27,7 +27,38 @@ $(".gridsq").click(function () {
 $(".gridsq").on('keydown',function(e) {
     if (e.key === ' ' || e.key === 'Spacebar')  {
         e.preventDefault()
-        console.log('Space pressed')
         $(this).click()
     }
+    if (e.keyCode == '38') {
+        // up arrow
+        e.preventDefault()
+        var thisSqId = $(this).attr('id')
+        $("#sq"+moveSq(thisSqId,-16)).focus()
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+        e.preventDefault()
+        var thisSqId = $(this).attr('id')
+        $("#sq"+moveSq(thisSqId,16)).focus()
+    }
+    else if (e.keyCode == '37') {
+       // left arrow
+       e.preventDefault()
+       var thisSqId = $(this).attr('id')
+       $("#sq"+moveSq(thisSqId,-1)).focus()
+    }
+    else if (e.keyCode == '39') {
+       // right arrow
+       e.preventDefault()
+       var thisSqId = $(this).attr('id')
+       $("#sq"+moveSq(thisSqId,1)).focus()
+    }
+
 })
+
+function moveSq(thisSqId,dist){
+  var thisSqNum = parseInt(thisSqId.replace("sq", "", 10))
+  var nextSqNum = thisSqNum + dist
+  var nextSqNumStr = nextSqNum.toString()
+  return nextSqNumStr
+}
