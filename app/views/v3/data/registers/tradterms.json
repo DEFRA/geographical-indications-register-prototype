@@ -1,0 +1,41 @@
+[
+ {
+   "DEF_Register": "Traditional terms for wine",
+   "EA_ProductType": "Traditional terms",
+   "EA_Name": "Ausbruch / Ausbruchwein",
+   "DEF_SearchTextAll": "Ausbruch / Ausbruchwein",
+   "EA_ProductCategory": "Wine",
+   "EA_Country": "Austria",
+   "EA_Status": "Registered",
+   "Language": "German",
+   "Tradititional term": "In place of PDO/PGI.",
+   "Summary of definition": "From overripe and botrytis infected grapes with a minimum natural sugar content of 27° Klosterneuburger Mostwaage (KMW); for\na better extraction fresh must or wine can be added. No enrichment and no sweetening is allowed. The min. actual alc. content\nis 5% vol., max. yield is 9.000 kg of grapes per ha or 6.750 l wine per ha. The wine can only be sold with a quality wine check\nnumber.",
+   "Quality specification": "Wine with a protected designation of origin (PDO)"
+ },
+ {
+   "DEF_Register": "Traditional terms for wine",
+   "EA_ProductType": "Traditional terms",
+   "EA_Name": "Clairet",
+   "DEF_SearchTextAll": "Clairet",
+   "EA_ProductCategory": "Wine, Liqueur wine, Sparkling wine, Quality\nsparkling wine, Quality aromatic sparkling wine, Aerated sparkling wine, Semi-sparkling wine, Aerated semi-sparkling wine, Wine\nfrom raisined grapes, Wine of overripe grapes",
+   "EA_Country": "France",
+   "EA_Status": "Registered",
+   "Language": "French",
+   "Tradititional term": "Description of product characteristic.",
+   "Summary of definition": "Historical expression related to a type of area and to a type of wine and reserved to wines coming from an estate which really\nexists or which is called exactly by this word.",
+   "Quality specification": "Wine with a protected designation of origin (PDO)"
+ },
+ {
+   "DEF_Register": "Traditional terms for wine",
+   "EA_ProductType": "Traditional terms",
+   "EA_Name": "Affentaler",
+   "DEF_SearchTextAll": "Affentaler",
+   "EA_ProductCategory": "Wine",
+   "EA_Country": "Germany",
+   "EA_Status": "Registered",
+   "Language": "",
+   "Tradititional term": "Description of product characteristic.",
+   "Summary of definition": "Term of origin for red quality wine and Prädikatswein of the Blauer Spätburgunder wine grape variety from the Altschweier, Bühl,\nEisental and Neusatz territories of the town of Bühl, Bühlertal, as well as the Neuweier territory of the town of Baden-Baden.",
+   "Quality specification": "Wine with a protected designation of origin (PDO)"
+ }
+]

@@ -1,0 +1,304 @@
+
+{% set tocPage = true %}
+
+{% extends "layout.html" %}
+
+
+{% block head %}
+<link href="/public/stylesheets/guide-fonts.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/public/stylesheets/govuk-template.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/public/stylesheets/core-layout.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/public/stylesheets/publisher.css" media="screen" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block pageTitle %}
+{{ serviceName }}
+{% endblock %}
+
+
+
+{% block header %}
+{% include "../includes/header-publisher.html" %}
+{% endblock %}
+
+
+{% block beforeContent %}
+
+<div id="global-header-bar"></div>
+
+
+<div class="gem-c-contextual-breadcrumbs">
+
+  <div class="gem-c-breadcrumbs govuk-breadcrumbs " data-module="track-click">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="https://www.gov.uk/environment">Environment</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="https://www.gov.uk/environment/food-and-farming">Food and farming</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="https://www.gov.uk/environment/producing-distributing-food">Producing and distributing food</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="https://www.gov.uk/environment/producing-distributing-food-food-labelling">Food labelling and safety</a>
+      </li>
+    </ol>
+  </div>
+
+
+</div>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="gem-c-title govuk-x!-margin-top-8 govuk-!-margin-bottom-8">
+          <p class="gem-c-title__context">
+            Guidance
+          </p>
+        <h1 class="gem-c-title__text gem-c-title__text--long">
+          Protected geographical food and drink names: UK GI schemes
+        </h1>
+      </div>
+
+      <p class="gem-c-lead-paragraph ">
+        Find out about the UK geographical indication (GI) schemes that protect the geographical names of food, drink and agricultural products, and the UK GI registers.
+      </p>
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="metadata-logo-wrapper">
+        <div class="govuk-grid-column-two-thirds metadata-column">
+            <div class="app-c-publisher-metadata" lang="en">
+        <div class="app-c-published-dates " lang="en">
+        Published 31 December 2020
+    </div>
+
+          <div class="app-c-publisher-metadata__other">
+            <dl data-module="track-click">
+                <dt class="app-c-publisher-metadata__term">
+                  From:
+                </dt>
+                <dd class="app-c-publisher-metadata__definition" data-module="gem-toggle">
+                    <span class="app-c-publisher-metadata__definition-sentence"><a href="/government/organisations/department-for-environment-food-rural-affairs">Department for Environment, Food &amp; Rural Affairs</a>
+                    </span>
+                </dd>
+            </dl>
+          </div>
+      </div>
+
+        </div>
+        <div class="govuk-grid-column-one-third">
+        </div>
+      </div>
+    </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div id="toc" class="toc"></div>
+
+        <p class="govuk-body">Food, drink and agricultural products with a geographical connection may be registered and protected as intellectual property. This protection is called a geographical indication (GI).</p>
+
+        <p class="govuk-body">Geographical indication protection can cover geographical areas that cross country borders, such as on the island of Ireland. UK and non-UK applicants can apply to the UK schemes to protect their GI in the UK.
+        GI protection guarantees a product’s qualities or reputation, authenticity and origin. It protects the product name from misuse or imitation.</p>
+
+        <p class="govuk-body">Producers can mark registered GI products with a <a href="#">UK GI logo</a>.</p>
+
+        <p class="govuk-body">An individual or business does not own a GI. Any producer can make and sell a product under a registered product name if they:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>follow the product’s specification</li>
+          <li>are verified to do so</li>
+        </ul>
+        <p class="govuk-body">A GI is different to a trade mark. A trade mark belongs to the business that registered a product brand for protection.</p>
+
+        <h2 id="registers" class="govuk-heading-l">Product names on the UK GI registers</h2>
+
+
+            <h3 class="govuk-heading-m">Search for a product</h3>
+
+            <p class="govuk-body">Use this service to:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              <li>find out if a product is on the GI scheme registers</li>
+              <li>get the full register entry and specification for a protected product</li>
+            </ul>
+
+            {% if linkAction == "search-results_nodejs" %}
+              {% set linkHref = "/" + folder + "/search_nodejs" %}
+            {% else %}
+              {% set linkHref = "/" + folder + "/" + linkAction + "?registers=_unchecked&statuses=_unchecked&name=&country=" %}
+            {% endif %}
+
+            {{ govukButton({
+              text: "Search all registers",
+              href: linkHref
+            }) }}
+
+
+
+            <h3 class="govuk-heading-m">GI scheme registers</h3>
+
+            <p class="govuk-body">Each GI scheme has its own register.</p>
+            <ul class="govuk-list">
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Food+and+Agri+UK+PDO&statuses=Registered">
+                Protected food names scheme register: protected designation of origin (PDO) and protected geographical indication (PGI)</a></li>
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Food+and+Agri+UK+TSG&statuses=Registered">
+                Protected food names scheme register: traditional speciality guaranteed (TSG)</a></li>
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Spirits&statuses=Registered">
+                Protected spirit drink names scheme register</a></li>
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Wines&statuses=Registered">
+                Protected wine names scheme register</a></li>
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Aromatised+Wine&statuses=Registered">
+                Protected aromatised wines scheme register</a></li>
+              <li><a href="/{{folder}}/{{linkAction}}?registers=_unchecked&statuses=_unchecked&name=&registers=Traditional+Terms&statuses=Registered">
+                Traditional terms for wine products register</a></li>
+            </ul>
+            <p class="govuk-body">Each register lists protected product names and their registered specification (where applicable).</p>
+            <p class="govuk-body">See the <a href="#">UK GI scheme consultations</a> page for product applications.</p>
+
+
+            <h3 class="govuk-heading-m">Other ways to get information from the registers</h3>
+
+            <p class="govuk-body">
+              You can <a href="#">email us</a> to ask for information from the registers or to make an appointment to view a printed copy of the register.
+            </p>
+
+            <p class="govuk-body">
+              The online service is also available in <a href="#">Welsh (Cymraeg)</a>.
+            </p>
+
+
+
+            <h2 id="apply" class="govuk-heading-l">Apply for UK GI protection of a new product name</h2>
+
+            <p class="govuk-body">You can apply to add a new product name to the UK GI registers. There are 4 GI schemes to choose from. Use the following guidance for your product type:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a href="#">food, agricultural products, beer, cider and perry</a></li>
+              <li><a href="#">wine</a></li>
+              <li><a href="#">aromatised wine</a></li>
+              <li><a href="#">spirit drinks</a></li>
+            </ul>
+
+            <p class="govuk-body">You can also apply to protect a <a href="#">traditional term</a> for a wine product.</p>
+            <p class="govuk-body">The Department for Environment, Food and Rural Affairs (Defra) is the competent authority for the GI schemes. It manages the schemes with support from government departments in Scotland, Wales and Northern Ireland.</p>
+
+
+
+        <h2 id="use" class="govuk-heading-l">Use a UK registered product name</h2>
+
+        <p class="govuk-body">To use a product name that’s on the UK GI registers, you must:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>follow the published product specification</li>
+          <li>be verified to make and sell the registered product</li>
+          <li>use the registered GI product name correctly</li>
+        </ul>
+        <p class="govuk-body">You could be in breach of the regulations if you do not follow the <a href="#">UK GI scheme rules</a>.
+
+
+        <h2 id="change" class="govuk-heading-l">Change a product specification on the UK registers</h2>
+
+        <p class="govuk-body">Anyone with a legitimate interest can ask to <a href="#">change the specification</a> of a GI product already on the UK register.</p>
+
+
+        <h2 id="cancel" class="govuk-heading-l">Cancel or remove a product name from the UK registers</h2>
+
+        <p class="govuk-body">You can ask to <a href="#">cancel a registered product name</a> if you’re a producer or a producer group, or anyone with a legitimate interest.</p>
+        <p class="govuk-body">The competent authority can remove a GI from the UK registers if:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the product is not complying with its specification</li>
+          <li>it has not been produced for 7 years or more</li>
+        </ul>
+
+
+
+        <h2 id="consultations" class="govuk-heading-l">GI consultations, decisions and appeals</h2>
+
+        <p class="govuk-body">See the <a href="#">current consultations</a> on GI applications and requests for changes to existing GIs.</p>
+        <p class="govuk-body">You can comment on or appeal against decisions about:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>applications for GI protection</li>
+          <li>substantial changes to registered products</li>
+          <li>requests to remove a registered product from the UK GI registers</li>
+        </ul>
+
+
+        <h2 id="logos" class="govuk-heading-l">UK GI logos and product labelling</h2>
+
+        <p class="govuk-body">New UK GI logos will represent 3 designations of GI product:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>protected designation of origin (PDO)</li>
+          <li>protected geographical indication (PGI)</li>
+          <li>traditional speciality guaranteed (TSG)</li>
+        </ul>
+        <p class="govuk-body">Producers must [follow the rules for adding a GI logo] to UK registered products or packaging before they can sell it.</p>
+        <p class="govuk-body">The use of a UK GI logo is optional for wines and spirit drinks. If you choose to use a logo, you must follow the rules.</p>
+
+
+    </div>
+
+
+
+    <div class="govuk-grid-column-one-third">
+
+
+
+      <div class="gem-c-contextual-sidebar">
+
+
+        <div class="gem-c-related-navigation">
+
+            <h2 class="gem-c-related-navigation__main-heading" data-track-count="sidebarRelatedItemSection">
+              Related content
+            </h2>
+
+
+
+
+            <nav role="navigation" class="gem-c-related-navigation__nav-section" aria-labelledby="related-nav-related_items-1e7b0f2c" data-module="gem-toggle">
+
+
+        <ul class="gem-c-related-navigation__link-list">
+
+              <li class="gem-c-related-navigation__link"><a class="gem-c-related-navigation__section-link gem-c-related-navigation__section-link--sidebar  gem-c-related-navigation__section-link--other"  href="#">UK GI scheme rules</a></li>
+
+              <li class="gem-c-related-navigation__link"><a class="gem-c-related-navigation__section-link gem-c-related-navigation__section-link--sidebar  gem-c-related-navigation__section-link--other"  href="#">Apply for UK GI protection of a new product name</a></li>
+
+              <li class="gem-c-related-navigation__link"><a class="gem-c-related-navigation__section-link gem-c-related-navigation__section-link--sidebar  gem-c-related-navigation__section-link--other"  href="#">Change the specification of a GI product</a></li>
+
+        </ul>
+      </nav>
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+{% endblock %}

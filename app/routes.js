@@ -7,5 +7,6 @@ const fs = require('fs')
 router.use('/v0', require('./routes_v0'))
 router.use('/v1', require('./routes_v1'))
 router.use('/v2', require('./routes_v2'))
+router.use('/v3', require('./routes_v3'))
 
 module.exports = router

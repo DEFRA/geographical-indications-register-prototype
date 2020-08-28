@@ -1,0 +1,22 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">
+      {{ results | length }} products
+    </p>
+  </div>
+  <div class="govuk-grid-column-one-third" style="display: flex;flex-flow: column nowrap;">
+      <p class="govuk-body gir_small" style="align-self: flex-end;margin-top:auto;">
+        <a href="#">Subscribe to feed</a>
+      </p>
+  </div>
+</div>
+
+{% if filterLength != 0 %}
+<div class="gir-filter-panel">
+  {% if data.statuses | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Status</span> <span class="gir-filtername">{{ data.statuses | join(", ") }}</span></span>{% endif %}
+    {% if data.category | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Class or category</span> <span class="gir-filtername">{{ data.category }}</span></span>{% endif %}
+    {% if data.country | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Country</span> <span class="gir-filtername">{{ data.country }}</span></span>{% endif %}
+    {% if data.registers | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Register</span> <span class="gir-filtername">{{ data.registers | join(', ' ) }}</span></span>{% endif %}
+
+</div>
+{% endif %}
