@@ -14,3 +14,36 @@ $govuk-font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", san
 $govuk-canvas-background-colour: $govuk-body-background-colour;
 
 @import "application";
+
+
+
+// gridtest
+#map {
+  width: 800px;
+  height: 500px;
+  background-image:url("/public/images/map.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  font-size:0;
+  line-height: 0;
+}
+
+.gridsq {
+  width: 98px;
+  height: 98px;
+  display:inline-block;
+  border-color: #cccccc;
+  border-style: solid;
+  border-collapse:collapse;
+  padding:0;
+  margin:0;
+}
+
+.gridsq:hover{
+  background-color: rgba(0, 255, 0, 0.7);
+}
+
+.on{
+  background-color: rgba(0, 255, 0, 0.3);
+  border-color: #f00;
+}
