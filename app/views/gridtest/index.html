@@ -13,13 +13,23 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">Grid test</h1>
+<h1 class="govuk-heading-l">Select the area you are interested in</h1>
 
-<div id="map"><div class="gridsq" id="sq0" tabindex="1"></div></div><!-- // #map -->
+<p>Click, tab or use the arrow keys to move. Click or spacebar to select or unselect a square.</p>
+
+<div id="map"></div><!-- // #map -->
 
 <form>
+  <label for="size">Grid size:</label>
 
-<button type="submit">
+  <select name="gridSize" id="size">
+    <option value="20">20px</option>
+    <option value="40">40px</option>
+    <option value="50" selected>50px</option>
+    <option value="100">100px</option>
+    <option value="150">150px</option>
+    <option value="200">200px</option>
+  </select>
 </form>
 
 
