@@ -16,6 +16,25 @@
   }) }}
 {% endblock %}
 
+{% block beforeContent %}
+<!-- no phase banner or back link -->
+<div class="gem-c-contextual-breadcrumbs">
+
+  <div class="gem-c-breadcrumbs govuk-breadcrumbs " data-module="track-click">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="https://www.gov.uk">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="/{{folder}}/search-results_spec_pub-default?registers=_unchecked&statuses=_unchecked&name=&country=">Protected geographical food and drink names</a>
+      </li>
+    </ol>
+  </div>
+
+
+</div>
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
