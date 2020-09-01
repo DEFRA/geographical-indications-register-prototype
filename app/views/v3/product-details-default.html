@@ -39,11 +39,17 @@
 
       <div class="gir_meta">
         <p>Status: <b><em>{{EA_Status}}</em></b></p>
-        <p>Award designation: <b>{{EA_Type}}</b></p>
+        <p>Protection type: <b>{{EA_Type}}</b></p>
         <p>Country of origin: <b><em>{{EA_Country}}</em></b></p>
+
+        {% if DEF_Register == "Spirits" %}
+         <p>Date of application: <b> {{ EA_DateRegistration | formatLongDate }} </b></p>
+        {% endif %}
+
         <p>Date of registration: <b>31 December 2020</b></p>
+        <p>Date of original registration with the EU: <b>{{EA_DateRegistration | formatLongDate}}</b></p>
         <p>UK GI register name: <b><em>{{DEF_Register}}</em></b></p>
-        <p>Class: <b><em>{{EA_ProductCategory}}</em></b></p>
+        <p>Class or category of product: <b><em>{{EA_ProductCategory}}</em></b></p>
       </div>
 
       <p>
@@ -55,19 +61,29 @@
         {{ "Traditional terms for wine products register" if DEF_Register == "Traditional Terms" }}
       </p>
 
-      <h3 class="govuk-heading-m">Specification</h3>
+      <h2 class="govuk-heading-m">Specification</h2>
       <p>
         <a href="/public/images/pfn-stilton-cheese.pdf">{{productname}} product specification (pdf)</a>
       </p>
 
-      <h3 class="govuk-heading-m">Date of original registration with the EU</h3>
-      <p>
-        <span class="govuk-!-font-weight-bold">{{EA_DateRegistration | formatLongDate}}</span><br>
-        This date was taken from the EU eAmbrosia Register. It is given for information and is not part of the official register.
-      </p>
+      {% if DEF_Register == "Spirits" %}
+      <h2 class="govuk-heading-m">Decision notice and protection instrument</h2>
+       <p>
+         Geographical indications of spirit drinks registered in Annex III to Regulation (EC) No 110/2008 and thus protected under that Regulation shall automatically be protected as geographical indications under this Regulation.
+       </p>
+       <p>
+         <a href="#">Decision notice for {{ productname }}</a>. Date of publication of the instrument: {{EA_DateRegistration | formatLongDate}}.
+       </p>
+      {% endif %}
 
-      <h3 class="govuk-heading-m">Notes</h3>
+      <h2 class="govuk-heading-m">Notes</h2>
       <p>No notes</.p>
+
+      <div class="gir-call-to-action">
+        <p>
+          The date of original registration with the EU was taken from the EU eAmbrosia Register. It is given for information and is not part of the official UK register.
+        </p>
+      </div>
 
       <p class="gir_small">
         Published 31 December 2020

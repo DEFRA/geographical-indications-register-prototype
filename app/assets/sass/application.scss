@@ -161,7 +161,7 @@ dd.govuk-body {
     color:#fff;
     margin:0;
     font-size: 16px;
-    line-height:1.4em;
+    line-height:1.5;
   }
   b {
     font-weight:bold;
@@ -170,4 +170,21 @@ dd.govuk-body {
     text-decoration:underline;
     font-style: normal;
   }
+}
+
+.gir-call-to-action {
+    margin: 2em 0;
+    background-color: #f3f2f1;
+    padding: 2em;
+}
+
+.gir-call-to-action h2:first-child,
+.gir-call-to-action h3:first-child,
+.gir-call-to-action h4:first-child,
+.gir-call-to-action p:first-child {
+    margin-top: 0;
+}
+
+.gir-call-to-action p:last-child {
+    margin-bottom: 0;
 }
