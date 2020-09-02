@@ -9,31 +9,6 @@
 <!-- Product type -->
 <div class="gir_filterbox">
 
-  <details class="govuk-details" data-module="govuk-details">
-    <summary class="govuk-details__summary">
-      <span class="govuk-details__summary-text">
-        Protection type
-      </span>
-    </summary>
-    <div class="govuk-details__text">
-      <!-- Registers -->
-      {% from "../data/lists/protection-types.json" import protectiontypes %}
-
-      {{ govukCheckboxes({
-                idPrefix: "protectiontypes",
-                name: "protectiontypes",
-                classes: "govuk-checkboxes--small",
-                fieldset: {
-                  legend: {
-                    text: "",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
-                  }
-                },
-                items: protectiontypes
-              }) }}
-    </div>
-  </details>
 
 
 
@@ -123,6 +98,34 @@
       }) }}
     </div>
   </details>
+
+
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Protection type
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <!-- Registers -->
+      {% from "../data/lists/protection-types.json" import protectiontypes %}
+
+      {{ govukCheckboxes({
+                idPrefix: "protectiontypes",
+                name: "protectiontypes",
+                classes: "govuk-checkboxes--small",
+                fieldset: {
+                  legend: {
+                    text: "",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: protectiontypes
+              }) }}
+    </div>
+  </details>
+
 
 
 </div>
