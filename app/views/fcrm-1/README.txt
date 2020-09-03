@@ -11,6 +11,8 @@ Filter lists are in /fcrm-1/data/lists.
 The code for this is constructed from the FCRM spreadsheet on Google docs:
 https://docs.google.com/spreadsheets/d/1k_LeEV8n2Lz2-hhT7Y7yV9Q3vsSzLW0kDPE6EBnYyJY/edit#gid=0
 
+IMPORTANT: If you re-make the filters, remove the comma after the last item in each filter list
+
 The page contents are stored in the spreadsheet CONTENT-DATA tab:
 https://docs.google.com/spreadsheets/d/1k_LeEV8n2Lz2-hhT7Y7yV9Q3vsSzLW0kDPE6EBnYyJY/edit#gid=1250238902
 This is converted to JSON using:
