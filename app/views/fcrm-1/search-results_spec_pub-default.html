@@ -72,10 +72,10 @@ Flood and coastal erosion risk management
 
                 {% if print %}
                     <h3 class="gir_results_head"><a  style="text-decoration:none;" href="/{{folder}}/product-details-default/{{ result.id }}">{{ result.title }}</a></h3>
-                      <p>
-                        {{ summary }}
-                      </p>
                       <p class="gir_small">
+                        {{ result.summary }}
+                      </p>
+                      <p class="gir_very_small">
                         Building and maintaining FCERM assets: {{ result.assets }}
                       </p>
                       <p class="gir_very_small">
