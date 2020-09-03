@@ -1,0 +1,18 @@
+{% set assets = [
+{"value": "Alternative construction materials","text": "Alternative construction materials"},
+{"value": "Asset maintenance","text": "Asset maintenance"},
+{"value": "Asset monitoring","text": "Asset monitoring"},
+{"value": "Asset performance","text": "Asset performance"},
+{"value": "Asset system optimisation","text": "Asset system optimisation"},
+{"value": "Channel management","text": "Channel management"},
+{"value": "Design and build","text": "Design and build"},
+{"value": "Deterioration","text": "Deterioration"},
+{"value": "Offsite methods and remote techniques","text": "Offsite methods and remote techniques"},
+{"value": "Whole life costs","text": "Whole life costs"},
+{"value": "Reservoirs","text": "Reservoirs"},
+{"value": "Natural flood management","text": "Natural flood management"},
+{"value": "Health, safety and wellbeing","text": "Health, safety and wellbeing"},
+{"value": "Resilient infrastructure","text": "Resilient infrastructure"},
+{"value": "Appraisal guidance","text": "Appraisal guidance"},
+{"value": "Carbon reduction","text": "Carbon reduction"}
+] %}

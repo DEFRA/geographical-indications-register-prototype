@@ -1,0 +1,17 @@
+{% set flooding = [
+{"value": "Behavioural change","text": "Behavioural change"},
+{"value": "Citizen science","text": "Citizen science"},
+{"value": "Communicating risk","text": "Communicating risk"},
+{"value": "Community participation","text": "Community participation"},
+{"value": "Community response and resilience","text": "Community response and resilience"},
+{"value": "Emergency planning","text": "Emergency planning"},
+{"value": "Flood forecasting","text": "Flood forecasting"},
+{"value": "Flood warning","text": "Flood warning"},
+{"value": "Incident management","text": "Incident management"},
+{"value": "Insurance","text": "Insurance"},
+{"value": "Recovery","text": "Recovery"},
+{"value": "Flood risk assessment","text": "Flood risk assessment"},
+{"value": "Health, safety and wellbeing","text": "Health, safety and wellbeing"},
+{"value": "Flood costs","text": "Flood costs"},
+{"value": "Monitoring and detection","text": "Monitoring and detection"}
+] %}

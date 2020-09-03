@@ -1,0 +1,11 @@
+{% set sources = [
+{"value": "Climate change","text": "Climate change"},
+{"value": "Coast","text": "Coast"},
+{"value": "Coastal erosion","text": "Coastal erosion"},
+{"value": "Ground water","text": "Ground water"},
+{"value": "Hydrology","text": "Hydrology"},
+{"value": "Meteorology","text": "Meteorology"},
+{"value": "Sea level rise","text": "Sea level rise"},
+{"value": "Surface water","text": "Surface water"},
+{"value": "Understanding physical processes","text": "Understanding physical processes"}
+] %}

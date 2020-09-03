@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% set tocPage = true %}
+
+{% block pageTitle %}
+  {{ productname }} report
+{% endblock %}
+
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: " ",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+<!-- no phase banner or back link -->
+<div class="gem-c-contextual-breadcrumbs">
+
+  <div class="gem-c-breadcrumbs govuk-breadcrumbs " data-module="track-click">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="/">Home</a>
+      </li>
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="/{{folder}}/search-results_spec_pub-default?assets=_unchecked&name=">Flood and coastal erosion risk management reports</a>
+      </li>
+    </ol>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">{{ title }}</h1>
+
+      <p class="gir_intro">
+        {{ summary }}
+      </p>
+
+      <p class="gir_small">
+        Published {{ date }}<br>
+        From: <a href="#">Department for Environment, Food &amp; Rural Affairs</a>
+      </p>
+
+      <div class="gir_meta">
+        <p>Building and maintaining FCERM assets: <b><em>{{ assets }}</em></b></p>
+        <p>Published: <b><em>{{ date }}</em></b></p>
+      </div>
+
+
+<div id="toc" class="toc"></div>
+
+      <h2 class="govuk-heading-m" id="docs">Documents</h2>
+
+      {% if doc1 != "" %}
+          <p>
+            <a href="{{ doc1url }}">{{ doc1 }}</a>
+          </p>
+      {% endif %}
+
+      {% if doc2 != "" %}
+          <p>
+            <a href="{{ doc2url }}">{{ doc2 }}</a>
+          </p>
+      {% endif %}
+
+      <h2 class="govuk-heading-m" id="details">Details</h2>
+
+      {{ details | safe }}
+
+      <p class="gir_small">
+        Published {{ date }}
+      </p>
+
+
+    </div>
+  </div>
+
+{% endblock %}

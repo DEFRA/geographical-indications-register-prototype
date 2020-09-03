@@ -1,0 +1,30 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">
+      {{ results | length }} reports
+    </p>
+  </div>
+  <div class="govuk-grid-column-one-third" style="display: flex;flex-flow: column nowrap;">
+      <p class="govuk-body gir_small" style="align-self: flex-end;margin-top:auto;">
+        <a href="#">Subscribe to feed</a>
+      </p>
+  </div>
+</div>
+
+{% if filterLength != 0 %}
+<div class="gir-filter-panel">
+
+    {% if data.assets | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Building and maintaining FCERM assets</span> <span class="gir-filtername">{{ data.assets | join(", ") }}</span></span>{% endif %}
+
+    {% if data.datatype | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Data collection and analysis</span> <span class="gir-filtername">{{ data.datatype }}</span></span>{% endif %}
+
+    {% if data.environmental | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Environmental management and sustainability</span> <span class="gir-filtername">{{ data.environmental }}</span></span>{% endif %}
+
+    {% if data.flooding | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Preparing, responding and recovering from flooding</span> <span class="gir-filtername">{{ data.flooding | join(', ' ) }}</span></span>{% endif %}
+
+    {% if data.policy | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Policy, strategy and governance</span> <span class="gir-filtername">{{ data.policy | join(', ' ) }}</span></span>{% endif %}
+
+    {% if data.sources | length != 0 %}<span class="govuk-body gir-filter"><span class="govuk-!-font-weight-bold">Physical processes and sources of flooding</span> <span class="gir-filtername">{{ data.sources | join(', ' ) }}</span></span>{% endif %}
+
+</div>
+{% endif %}

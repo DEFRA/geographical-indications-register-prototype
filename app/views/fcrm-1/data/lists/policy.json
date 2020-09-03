@@ -1,0 +1,17 @@
+{% set policy = [
+{"value": "Adaptation","text": "Adaptation"},
+{"value": "Appraisal strategy","text": "Appraisal strategy"},
+{"value": "Decision making with uncertainty","text": "Decision making with uncertainty"},
+{"value": "Flood costs","text": "Flood costs"},
+{"value": "Flood risk governance","text": "Flood risk governance"},
+{"value": "Health, safety and wellbeing","text": "Health, safety and wellbeing"},
+{"value": "Investment","text": "Investment"},
+{"value": "Natural flood management","text": "Natural flood management"},
+{"value": "Partnership working","text": "Partnership working"},
+{"value": "Resilience planning","text": "Resilience planning"},
+{"value": "Resilient infrastructure","text": "Resilient infrastructure"},
+{"value": "Spatial planning","text": "Spatial planning"},
+{"value": "Strategy and planning","text": "Strategy and planning"},
+{"value": "Sustainable drainage systems","text": "Sustainable drainage systems"},
+{"value": "Flood risk assessment","text": "Flood risk assessment"}
+] %}

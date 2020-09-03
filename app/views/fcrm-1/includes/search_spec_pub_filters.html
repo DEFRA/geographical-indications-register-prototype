@@ -1,0 +1,181 @@
+<div>
+  <label class="govuk-label" for="search">
+    Search
+  </label>
+  <input class="govuk-input" style="width:250px;" id="search" name="name" type="text" value="{{ data.name }}">
+  <button class="govuk-button gem-c-search__submit gem-c-search--on-white" data-module="govuk-button">O</button>
+</div><!-- END govuk-form-group -->
+
+<!-- Product type -->
+<div class="gir_filterbox">
+
+
+
+<!-- assets -->
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Building and maintaining FCERM assets
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+
+      {% from "../data/lists/assets.json" import assets %}
+
+      {{ govukCheckboxes({
+                idPrefix: "assets",
+                name: "assets",
+                classes: "govuk-checkboxes--small",
+                fieldset: {
+                  legend: {
+                    text: "",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: assets
+              }) }}
+    </div>
+  </details>
+
+  <!-- datatype -->
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Data collection and analysis
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <!-- Registers -->
+        {% from "../data/lists/datatype.json" import datatype %}
+
+        {{ govukCheckboxes({
+                  idPrefix: "datatype",
+                  name: "datatype",
+                  classes: "govuk-checkboxes--small",
+                  fieldset: {
+                    legend: {
+                      text: "",
+                      isPageHeading: false,
+                      classes: "govuk-fieldset__legend--s"
+                    }
+                  },
+                  items: datatype
+                }) }}
+      </div>
+    </details>
+
+
+    <!-- environmental -->
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Environmental management and sustainability
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <!-- Registers -->
+          {% from "../data/lists/environmental.json" import environmental %}
+
+          {{ govukCheckboxes({
+                    idPrefix: "environmental",
+                    name: "environmental",
+                    classes: "govuk-checkboxes--small",
+                    fieldset: {
+                      legend: {
+                        text: "",
+                        isPageHeading: false,
+                        classes: "govuk-fieldset__legend--s"
+                      }
+                    },
+                    items: environmental
+                  }) }}
+        </div>
+      </details>
+
+      <!-- flooding -->
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Preparing, responding and recovering from flooding
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <!-- Registers -->
+            {% from "../data/lists/flooding.json" import flooding %}
+
+            {{ govukCheckboxes({
+                      idPrefix: "flooding",
+                      name: "flooding",
+                      classes: "govuk-checkboxes--small",
+                      fieldset: {
+                        legend: {
+                          text: "",
+                          isPageHeading: false,
+                          classes: "govuk-fieldset__legend--s"
+                        }
+                      },
+                      items: flooding
+                    }) }}
+          </div>
+        </details>
+
+
+        <!-- policy -->
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Policy, strategy and governance
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <!-- Registers -->
+              {% from "../data/lists/policy.json" import policy %}
+
+              {{ govukCheckboxes({
+                        idPrefix: "policy",
+                        name: "policy",
+                        classes: "govuk-checkboxes--small",
+                        fieldset: {
+                          legend: {
+                            text: "",
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--s"
+                          }
+                        },
+                        items: policy
+                      }) }}
+            </div>
+          </details>
+
+
+
+          <!-- sources -->
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Physical processes and sources of flooding
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <!-- Registers -->
+                {% from "../data/lists/sources.json" import sources %}
+
+                {{ govukCheckboxes({
+                          idPrefix: "sources",
+                          name: "sources",
+                          classes: "govuk-checkboxes--small",
+                          fieldset: {
+                            legend: {
+                              text: "",
+                              isPageHeading: false,
+                              classes: "govuk-fieldset__legend--s"
+                            }
+                          },
+                          items: sources
+                        }) }}
+              </div>
+            </details>
+
+
+</div>
