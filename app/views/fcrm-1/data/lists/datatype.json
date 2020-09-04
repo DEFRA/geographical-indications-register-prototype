@@ -1,8 +1,8 @@
 {% set datatype = [
 {"value": "Artificial intelligence","text": "Artificial intelligence"},
 {"value": "Machine learning","text": "Machine learning"},
-{"value": "big data","text": "big data"},
-{"value": "non-stationarity","text": "non-stationarity"},
+{"value": "Big data","text": "Big data"},
+{"value": "Non-stationarity","text": "Non-stationarity"},
 {"value": "Monitoring and detection","text": "Monitoring and detection"},
 {"value": "Flood forecasting","text": "Flood forecasting"},
 {"value": "Asset performance","text": "Asset performance"},

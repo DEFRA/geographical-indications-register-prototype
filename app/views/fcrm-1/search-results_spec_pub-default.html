@@ -75,9 +75,14 @@ Flood and coastal erosion risk management
                       <p class="gir_small">
                         {{ result.summary }}
                       </p>
-                      <p class="gir_very_small">
-                        Building and maintaining FCERM assets: {{ result.assets }}
-                      </p>
+
+                      {% if result.assets!="" %}<p class="gir_very_small">Building and maintaining FCERM assets: {{ result.assets }}</p>{% endif %}
+                      {% if result.datatype!="" %}<p class="gir_very_small">Data collection and analysis: {{ result.datatype }}</p>{% endif %}
+                      {% if result.environmental!="" %}<p class="gir_very_small">Environmental management and sustainability:  {{ result.environmental }}</p>{% endif %}
+                      {% if result.flooding!="" %}<p class="gir_very_small">Preparing, responding and recovering from flooding:  {{ result.flooding }}</p>{% endif %}
+                      {% if result.policy!="" %}<p class="gir_very_small">Policy, strategy and governance: {{ result.policy }}</p>{% endif %}
+                      {% if result.sources!="" %}<p class="gir_very_small">Physical processes and sources of flooding: {{ result.sources }}</p>{% endif %}
+
                       <p class="gir_very_small">
                         Date: {{ result.date }}
                       </p>

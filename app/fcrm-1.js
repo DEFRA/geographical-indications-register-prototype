@@ -20,7 +20,7 @@ var searchColumn = 'title'
 // Search
 // Variant Specialist publisher
 router.get('/search-results_spec_pub-default', function(req, res) {
-    res.render(folder + '/search-results_spec_pub-default', { results: filterReports(req.query.name, req.query.assets), url: req.url  })
+    res.render(folder + '/search-results_spec_pub-default', { results: filterReports(req.query.name, req.query.assets,req.query.datatype,req.query.environmental,req.query.flooding,req.query.policy,req.query.sources), url: req.url  })
 })
 
 
@@ -35,7 +35,7 @@ function findReport(reportNumber) {
     return getReportData('reports').find(element => element.id === reportNumber)
 }
 
-function filterReports(searchText,assets) {
+function filterReports(searchText,assets,datatype,environmental,flooding,policy,sources) {
     searchText = searchText.toLowerCase()
 
     let reportData = getReportData('reports')
@@ -46,6 +46,26 @@ function filterReports(searchText,assets) {
 
     if (assets != '_unchecked') {
         reportData = reportData.filter(element => assets.includes(element.assets))
+    }
+
+    if (datatype != '_unchecked') {
+        reportData = reportData.filter(element => assets.includes(element.datatype))
+    }
+
+    if (environmental != '_unchecked') {
+        reportData = reportData.filter(element => assets.includes(element.environmental))
+    }
+
+    if (flooding != '_unchecked') {
+        reportData = reportData.filter(element => assets.includes(element.flooding))
+    }
+
+    if (policy != '_unchecked') {
+        reportData = reportData.filter(element => assets.includes(element.policy))
+    }
+
+    if (sources != '_unchecked') {
+        reportData = reportData.filter(element => sources.includes(element.sources))
     }
 
     return reportData
