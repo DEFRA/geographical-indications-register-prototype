@@ -13,11 +13,6 @@ router.use(function (req, res, next) {
 })
 
 var searchColumn = 'title'
-var registerDataMeta = getReportData('reports')
-
-router.get('/landing-guide-page', function(req, res) {
-      res.render(folder + '/landing-guide-page', { linkAction: "search-results_spec_pub-default" })
-})
 
 
 // Routes
@@ -40,13 +35,13 @@ function findReport(reportNumber) {
     return getReportData('reports').find(element => element.id === reportNumber)
 }
 
-function filterReports(searchtext,assets) {
-    searchtext = searchtext.toLowerCase()
+function filterReports(searchText,assets) {
+    searchText = searchText.toLowerCase()
 
     let reportData = getReportData('reports')
 
-    if (searchtext) {
-        reportData = reportData.filter(element => element[searchColumn].includes(searchtext))
+    if (searchText) {
+        reportData = reportData.filter(element => element[searchColumn].includes(searchText,-1))
     }
 
     if (assets != '_unchecked') {
