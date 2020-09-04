@@ -41,7 +41,7 @@ function filterReports(searchText,assets) {
     let reportData = getReportData('reports')
 
     if (searchText) {
-        reportData = reportData.filter(element => element[searchColumn].includes(searchText,-1))
+        reportData = reportData.filter(element => element[searchColumn].toLowerCase().includes(searchText,-1))
     }
 
     if (assets != '_unchecked') {
