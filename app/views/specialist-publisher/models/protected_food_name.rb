@@ -1,24 +1,22 @@
 class ProtectedFoodName < Document
-  validates :protected_food_name_register_type, presence: true, date: true
-  validates :protected_food_name_product_type, presence: true, date: true
-  validates :protected_food_name_name, presence: true, date: true
-  validates :protected_food_name_product_category, presence: true, date: true
-  validates :protected_food_name_file_number, presence: true, date: true
-  validates :protected_food_name_protection_type, presence: true, date: true
-  validates :protected_food_name_country, presence: true, date: true
-  validates :protected_food_name_status, presence: true, date: true
-  validates :protected_food_name_date_registration, presence: true, date: true
+  validates :register_type, presence: true, date: true
+  validates :product_type, presence: true, date: true
+  validates :product_category, presence: true, date: true
+  validates :file_number, presence: true, date: true
+  validates :protection_type, presence: true, date: true
+  validates :country, presence: true, date: true
+  validates :status, presence: true, date: true
+  validates :date_of_registration, presence: true, date: true
 
   FORMAT_SPECIFIC_FIELDS = %i(
-    protected_food_name_register_type
-    protected_food_name_product_type
-    protected_food_name_name
-    protected_food_name_product_category
-    protected_food_name_file_number
-    protected_food_name_protection_type
-    protected_food_name_country
-    protected_food_name_status
-    protected_food_name_date_registration
+    register_type
+    product_type
+    product_category
+    file_number
+    protection_type
+    country
+    status
+    date_of_registration
   ).freeze
 
   attr_accessor(*FORMAT_SPECIFIC_FIELDS)
@@ -28,10 +26,10 @@ class ProtectedFoodName < Document
   end
 
   def self.title
-    "Protected food name"
+    "Protected Food Name"
   end
 
   def primary_publishing_organisation
-    "3290f63c-e08d-11ea-87d0-0242ac130003"
+    "de4e9dc6-cca4-43af-a594-682023b84d6c"
   end
 end

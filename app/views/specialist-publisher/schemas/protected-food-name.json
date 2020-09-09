@@ -1,63 +1,83 @@
 {
-  "content_id": "8d5adb04-e08e-11ea-87d0-0242ac130003",
+  "content_id": "9018138a-0ca5-4a35-8b7c-3a7f39dc56f8",
   "base_path": "/protected-food-names",
   "format_name": "Protected food name",
   "name": "Registers of proteced food names",
-  "description": "Find protected food names in the official registeres published by Defra",
+  "description": "Find protected food names in the official registers published by Defra",
   "filter": {
-    "document_type": "protected_foods_name"
+    "format": "protected_food_name"
   },
-  "signup_content_id": "94290f46-e08e-11ea-87d0-0242ac130003",
-  "signup_copy": "You'll get an email each time a notice is updated or a new notice is published.",
-  "organisations": ["3290f63c-e08d-11ea-87d0-0242ac130003"],
+  "signup_content_id": "cff7449e-4181-480f-93e4-91fecfb4c774",
+  "signup_copy": "You'll get an email each time a food or drink name is updated or a new name is published.",
+  "organisations": [
+    "de4e9dc6-cca4-43af-a594-682023b84d6c"
+  ],
   "subscription_list_title_prefix": "Protected food names",
-  "summary": "<p>Find protected food names in the official registeres published by Defra</p>",
-  "document_noun": "notice",
+  "summary": "<p>Find protected food names in the official registers published by Defra</p>",
+  "document_noun": "name",
   "facets": [
-
     {
-      "key": "protected_food_name_register_type",
+      "key": "register_type",
       "name": "Register type",
       "type": "text",
       "preposition": "of register type",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
-        {"label": "Food PDO and PDI", "value": "food-pdo-and-pdi"},
-        {"label": "Food TSG", "value": "food-tsg"},
-        {"label": "Wines", "value": "wines"},
-        {"label": "Aromatised wines", "value": "aromatised-wines"},
-        {"label": "Spirits", "value": "spirits"},
-        {"label": "Traditional Terms", "value": "traditional-terms"}
+        {
+          "label": "Food PDO and PDI",
+          "value": "food-pdo-and-pdi"
+        },
+        {
+          "label": "Food TSG",
+          "value": "food-tsg"
+        },
+        {
+          "label": "Wines",
+          "value": "wines"
+        },
+        {
+          "label": "Aromatised wines",
+          "value": "aromatised-wines"
+        },
+        {
+          "label": "Spirits",
+          "value": "spirits"
+        },
+        {
+          "label": "Traditional Terms",
+          "value": "traditional-terms"
+        }
       ]
     },
-
     {
-      "key": "protected_food_name_product_type",
+      "key": "product_type",
       "name": "Product type",
       "type": "text",
       "preposition": "of type",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
-        {"label": "Food", "value": "food"},
-        {"label": "Wines", "value": "wines"},
-        {"label": "Aromatised wines", "value": "aromatised-wines"},
-        {"label": "Spirits", "value": "spirits"}
+        {
+          "label": "Food",
+          "value": "food"
+        },
+        {
+          "label": "Wines",
+          "value": "wines"
+        },
+        {
+          "label": "Aromatised wines",
+          "value": "aromatised-wines"
+        },
+        {
+          "label": "Spirits",
+          "value": "spirits"
+        }
       ]
     },
-
     {
-      "key": "protected_food_name_name",
-      "name": "Name",
-      "type": "text",
-      "preposition": "of name",
-      "display_as_result_metadata": true,
-      "filterable": false
-    },
-
-    {
-      "key": "protected_food_name_product_category",
+      "key": "product_category",
       "name": "Product category",
       "type": "text",
       "preposition": "of category",
@@ -286,33 +306,42 @@
         }
       ]
     },
-
     {
-      "key": "protected_food_name_file_number",
+      "key": "file_number",
       "name": "File number",
       "type": "text",
       "preposition": "of file number",
       "display_as_result_metadata": false,
       "filterable": false
     },
-
     {
-      "key": "protected_food_name_protection_type",
+      "key": "protection_type",
       "name": "Protection type",
       "type": "text",
       "preposition": "of protection type",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
-        {"label": "Geographical indication (GI)", "value": "geographical-indication"},
-        {"label": "Protected Geographical Indication (PGI)", "value": "protected-geographical-indication"},
-        {"label": "Protected Designation of Origin (PDO)", "value": "protected-designation-of-origin"},
-        {"label": "Traditional Specialities Guaranteed (TSG)", "value": "traditional-specialities-guaranteed"}
+        {
+          "label": "Geographical indication (GI)",
+          "value": "geographical-indication"
+        },
+        {
+          "label": "Protected Geographical Indication (PGI)",
+          "value": "protected-geographical-indication"
+        },
+        {
+          "label": "Protected Designation of Origin (PDO)",
+          "value": "protected-designation-of-origin"
+        },
+        {
+          "label": "Traditional Specialities Guaranteed (TSG)",
+          "value": "traditional-specialities-guaranteed"
+        }
       ]
     },
-
     {
-      "key": "protected_food_name_country",
+      "key": "country",
       "name": "Country",
       "type": "text",
       "preposition": "of country",
@@ -545,9 +574,8 @@
         }
       ]
     },
-
     {
-      "key": "protected_food_name_status",
+      "key": "status",
       "name": "Status",
       "type": "text",
       "preposition": "of status",
@@ -572,15 +600,13 @@
         }
       ]
     },
-
     {
-      "key": "protected_food_name_date_registration",
+      "key": "date_registration",
       "name": "Date of registration",
       "type": "text",
       "preposition": "of registration",
       "display_as_result_metadata": true,
       "filterable": false
     }
-
   ]
 }
