@@ -149,10 +149,10 @@
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
-        {"label": "Geographical Indication (GI)","value": "geographical-indication-gi"},
         {"label": "Protected Geographical Indication (PGI)","value": "protected-geographical-indication-pgi"},
         {"label": "Protected Designation of Origin (PDO)","value": "protected-designation-of-origin-pdo"},
-        {"label": "Traditional Speciality Guaranteed (TSG)","value": "traditional-speciality-guaranteed-tsg"}
+        {"label": "Traditional Speciality Guaranteed (TSG)","value": "traditional-speciality-guaranteed-tsg"},
+        {"label": "Traditional Term","value": "traditional-term"}
       ]
     },
     {
