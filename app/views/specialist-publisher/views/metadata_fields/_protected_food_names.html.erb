@@ -14,11 +14,18 @@
   %>
 <% end %>
 
+<%# You can select multiple class or categories so this has multi-select option %>
 <%= render layout: "shared/form_group", locals: { f: f, field: :class_category } do %>
   <%= f.select :class_category,
       f.object.facet_options(:class_category),
       { label: "Class or category of product", include_blank: 'Select class or category' },
-      { class: 'form-control' }
+      {
+        class: 'select2 form-control',
+        multiple: true,
+        data: {
+          placeholder: 'Select class or category'
+        }
+      }
   %>
 <% end %>
 
@@ -30,11 +37,18 @@
   %>
 <% end %>
 
+<%# You can select multiple countries so this has multi-select option %>
 <%= render layout: "shared/form_group", locals: { f: f, field: :country } do %>
   <%= f.select :country,
       f.object.facet_options(:country),
       { label: "Country", include_blank: 'Select country' },
-      { class: 'form-control' }
+      {
+        class: 'select2 form-control',
+        multiple: true,
+        data: {
+          placeholder: 'Select country'
+        }
+      }
   %>
 <% end %>
 

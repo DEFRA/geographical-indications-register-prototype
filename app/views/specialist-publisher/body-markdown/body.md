@@ -2,7 +2,7 @@
 
 ## Product specification
 
-The product specification is not yet available on this site. For EU products you can search for the specification on the [eAmbrosia geographical indications register](https://ec.europa.eu/info/food-farming-fisheries/food-safety-and-quality/certification/quality-labels/geographical-indications-register/). If you need to know what is the definitive legal version of the specification, email the Food Team in the Department for Environment, Food and Rural Affairs (Defra) <protectedfoodnames@defra.gov.uk>.
+The product specification is not available on this site. Find out how to [get a product specification for a protected food name](https://www.gov.uk/link-to-follow) on GOV.UK.
 
 ## Decision notice and protection instrument
 
