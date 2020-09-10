@@ -3,7 +3,7 @@
   "base_path": "/protected-food-drink-names",
   "format_name": "Protected geographical food and drink names",
   "name": "Protected geographical food and drink names",
-  "description": "Find protected food names in the official registers published by Defra",
+  "description": "Find protected food and drink names in the official UK registers published by Defra",
   "filter": {
     "format": "protected-food-drink-names"
   },
@@ -13,7 +13,7 @@
     "de4e9dc6-cca4-43af-a594-682023b84d6c"
   ],
   "subscription_list_title_prefix": "Protected geographical food and drink names",
-  "summary": "<p>Find protected food names in the official registers published by Defra</p>",
+  "summary": "<p>Find protected food and drink names in the official UK registers published by Defra</p>",
   "document_noun": "name",
   "facets": [
     {
@@ -149,10 +149,10 @@
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
-        {"label": "Geographical indication (GI)","value": "geographical-indication-gi"},
+        {"label": "Geographical Indication (GI)","value": "geographical-indication-gi"},
         {"label": "Protected Geographical Indication (PGI)","value": "protected-geographical-indication-pgi"},
         {"label": "Protected Designation of Origin (PDO)","value": "protected-designation-of-origin-pdo"},
-        {"label": "Traditional Specialities Guaranteed (TSG)","value": "traditional-specialities-guaranteed-tsg"}
+        {"label": "Traditional Speciality Guaranteed (TSG)","value": "traditional-speciality-guaranteed-tsg"}
       ]
     },
     {
