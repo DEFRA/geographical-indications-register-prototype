@@ -312,9 +312,9 @@
     },
     {
       "key": "date_registration",
-      "name": "Date of registration",
+      "name": "Date of UK registration",
       "type": "text",
-      "preposition": "of registration date",
+      "preposition": "of UK registration date",
       "display_as_result_metadata": true,
       "filterable": false
     },
