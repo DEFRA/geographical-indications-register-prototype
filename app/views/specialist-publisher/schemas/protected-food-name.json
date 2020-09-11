@@ -20,7 +20,7 @@
       "key": "register",
       "name": "Register",
       "type": "text",
-      "preposition": "of register type",
+      "preposition": "register type",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
@@ -36,7 +36,7 @@
       "key": "status",
       "name": "Status",
       "type": "text",
-      "preposition": "of status",
+      "preposition": "status",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
@@ -49,8 +49,9 @@
     {
       "key": "class_category",
       "name": "Class or category of product",
+      "short_name": "Class or category",
       "type": "text",
-      "preposition": "of class or category",
+      "preposition": "class or category",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
@@ -145,7 +146,7 @@
       "key": "protection_type",
       "name": "Protection type",
       "type": "text",
-      "preposition": "of protection type",
+      "preposition": "protection type",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
@@ -160,7 +161,7 @@
       "key": "country",
       "name": "Country",
       "type": "text",
-      "preposition": "of country",
+      "preposition": "country",
       "display_as_result_metadata": true,
       "filterable": true,
       "allowed_values": [
@@ -234,8 +235,8 @@
     {
       "key": "traditional_term_grapevine_product_category",
       "name": "Traditional term grapevine product category",
+      "short_name": "Grapevine product category",
       "type": "text",
-      "preposition": "of grapevine product category",
       "display_as_result_metadata": true,
       "filterable": false,
       "allowed_values": [
@@ -262,7 +263,6 @@
       "key": "traditional_term_type",
       "name": "Traditional term type",
       "type": "text",
-      "preposition": "of traditional term type",
       "display_as_result_metadata": true,
       "filterable": false,
       "allowed_values": [
@@ -274,7 +274,6 @@
       "key": "traditional_term_language",
       "name": "Traditional term language",
       "type": "text",
-      "preposition": "of traditional term language",
       "display_as_result_metadata": true,
       "filterable": false,
       "allowed_values": [
@@ -308,7 +307,6 @@
       "key": "date_application",
       "name": "Date of application",
       "type": "text",
-      "preposition": "of application date",
       "display_as_result_metadata": true,
       "filterable": false
     },
@@ -316,7 +314,6 @@
       "key": "date_registration",
       "name": "Date of UK registration",
       "type": "text",
-      "preposition": "of UK registration date",
       "display_as_result_metadata": true,
       "filterable": false
     },
@@ -324,7 +321,6 @@
       "key": "date_registration_eu",
       "name": "Date of original registration with the EU",
       "type": "text",
-      "preposition": "of registration date with EU",
       "display_as_result_metadata": true,
       "filterable": false
     },
