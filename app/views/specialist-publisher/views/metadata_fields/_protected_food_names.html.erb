@@ -1,43 +1,7 @@
-<%= render layout: "shared/form_group", locals: { f: f, field: :register_type } do %>
-  <%= f.select :register_type,
-      f.object.facet_options(:register_type),
-      { label: "Register type", include_blank: 'Select register type' },
-      { class: 'form-control' }
-  %>
-<% end %>
-
-<%= render layout: "shared/form_group", locals: { f: f, field: :product_type } do %>
-  <%= f.select :product_type,
-      f.object.facet_options(:product_type),
-      { label: "Product type", include_blank: 'Select product type' },
-      { class: 'form-control' }
-  %>
-<% end %>
-
-<%= render layout: "shared/form_group", locals: { f: f, field: :product_category } do %>
-  <%= f.select :product_category,
-      f.object.facet_options(:product_category),
-      { label: "Product category", include_blank: 'Select product category' },
-      { class: 'form-control' }
-  %>
-<% end %>
-
-<%= render layout: "shared/form_group", locals: { f: f, field: :file_number } do %>
-  <%= f.text_field :file_number, class: 'form-control' %>
-<% end %>
-
-<%= render layout: "shared/form_group", locals: { f: f, field: :protection_type } do %>
-  <%= f.select :protection_type,
-      f.object.facet_options(:protection_type),
-      { label: "Protection type", include_blank: 'Select protection type' },
-      { class: 'form-control' }
-  %>
-<% end %>
-
-<%= render layout: "shared/form_group", locals: { f: f, field: :country } do %>
-  <%= f.select :country,
-      f.object.facet_options(:country),
-      { label: "Country", include_blank: 'Select country' },
+<%= render layout: "shared/form_group", locals: { f: f, field: :register } do %>
+  <%= f.select :register,
+      f.object.facet_options(:register),
+      { label: "Register", include_blank: 'Select register' },
       { class: 'form-control' }
   %>
 <% end %>
@@ -50,5 +14,73 @@
   %>
 <% end %>
 
-<%= render layout: "shared/date_fields", locals: { f: f, field: :date_of_registration, format: :protected_food_name } do %>
+<%# You can select multiple class or categories so this has multi-select option %>
+<%= render layout: "shared/form_group", locals: { f: f, field: :class_category } do %>
+  <%= f.select :class_category,
+      f.object.facet_options(:class_category),
+      { label: "Class or category of product", include_blank: 'Select class or category' },
+      {
+        class: 'select2 form-control',
+        multiple: true,
+        data: {
+          placeholder: 'Select class or category'
+        }
+      }
+  %>
+<% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :protection_type } do %>
+  <%= f.select :protection_type,
+      f.object.facet_options(:protection_type),
+      { label: "Protection type", include_blank: 'Select protection type' },
+      { class: 'form-control' }
+  %>
+<% end %>
+
+<%# You can select multiple countries so this has multi-select option %>
+<%= render layout: "shared/form_group", locals: { f: f, field: :country } do %>
+  <%= f.select :country,
+      f.object.facet_options(:country),
+      { label: "Country", include_blank: 'Select country' },
+      {
+        class: 'select2 form-control',
+        multiple: true,
+        data: {
+          placeholder: 'Select country'
+        }
+      }
+  %>
+<% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :traditional_term_grapevine_product_category } do %>
+  <%= f.select :traditional_term_grapevine_product_category,
+      f.object.facet_options(:traditional_term_grapevine_product_category),
+      { label: "Traditional term grapevine product category", include_blank: 'Select grapevine category' },
+      { class: 'form-control' }
+  %>
+<% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :traditional_term_type } do %>
+  <%= f.select :traditional_term_type,
+      f.object.facet_options(:traditional_term_type),
+      { label: "Traditional term type", include_blank: 'Select term type' },
+      { class: 'form-control' }
+  %>
+<% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :traditional_term_language } do %>
+  <%= f.select :traditional_term_language,
+      f.object.facet_options(:traditional_term_language),
+      { label: "Traditional term language", include_blank: 'Select language' },
+      { class: 'form-control' }
+  %>
+<% end %>
+
+<%= render layout: "shared/date_fields", locals: { f: f, field: :date_application, format: :protected-food-drink-names } do %>
+<% end %>
+
+<%= render layout: "shared/date_fields", locals: { f: f, field: :date_registration, format: :protected-food-drink-names } do %>
+<% end %>
+
+<%= render layout: "shared/date_fields", locals: { f: f, field: :date_registration_eu, format: :protected-food-drink-names } do %>
 <% end %>
