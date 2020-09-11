@@ -84,3 +84,7 @@
 
 <%= render layout: "shared/date_fields", locals: { f: f, field: :date_registration_eu, format: :protected-food-drink-names } do %>
 <% end %>
+
+<%= render layout: "shared/form_group", locals: { f: f, field: :internal_notes_SHOULD_BE_HIDDEN } do %>
+  <%= f.text_field :internal_notes_SHOULD_BE_HIDDEN, class: 'form-control' %>
+<% end %>

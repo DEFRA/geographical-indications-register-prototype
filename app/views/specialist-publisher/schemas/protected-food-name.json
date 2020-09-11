@@ -182,8 +182,8 @@
         {"label": "Czechia","value": "czechia"},
         {"label": "Denmark","value": "denmark"},
         {"label": "Dominican Republic","value": "dominican-republic"},
-        {"label": "El Savador","value": "el-savador"},
-        {"label": "Equador","value": "equador"},
+        {"label": "El Salvador","value": "el-salvador"},
+        {"label": "Ecuador","value": "ecuador"},
         {"label": "Estonia","value": "estonia"},
         {"label": "Finland","value": "finland"},
         {"label": "France","value": "france"},
@@ -198,6 +198,7 @@
         {"label": "Indonesia","value": "indonesia"},
         {"label": "Ireland","value": "ireland"},
         {"label": "Italy","value": "italy"},
+        {"label": "Japan","value": "japan"},
         {"label": "Latvia","value": "latvia"},
         {"label": "Liechtenstein","value": "liechtenstein"},
         {"label": "Lithuania","value": "lithuania"},
@@ -213,7 +214,7 @@
         {"label": "Poland","value": "poland"},
         {"label": "Portugal","value": "portugal"},
         {"label": "Romania","value": "romania"},
-        {"label": "Russian Federation","value": "russian-federation"},
+        {"label": "Russia","value": "russia"},
         {"label": "Serbia","value": "serbia"},
         {"label": "Slovakia","value": "slovakia"},
         {"label": "Slovenia","value": "slovenia"},
@@ -325,6 +326,13 @@
       "type": "text",
       "preposition": "of registration date with EU",
       "display_as_result_metadata": true,
+      "filterable": false
+    },
+    {
+      "key": "internal_notes_SHOULD_BE_HIDDEN",
+      "name": "Internal notes SHOULD_BE_HIDDEN",
+      "type": "text",
+      "display_as_result_metadata": false,
       "filterable": false
     }
   ]

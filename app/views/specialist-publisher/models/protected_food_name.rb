@@ -23,6 +23,7 @@ class ProtectedFoodDrinkName < Document
     date_application
     date_registration
     date_registration_eu
+    internal_notes_SHOULD_BE_HIDDEN
   ).freeze
 
   attr_accessor(*FORMAT_SPECIFIC_FIELDS)

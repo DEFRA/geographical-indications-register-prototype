@@ -8,12 +8,16 @@ The product specification is not available on this site. Find out how to [get a 
 
 {PROTECTION_NOTICE_TEXT}
 
-[Decision notice for Scotch Whisky](LINK_TO_DECISION_NOTICE). Date of publication of the instrument: {DATE_NOTICE_PUBLISHED}.
+[Decision notice for Scotch Whisky]({LINK_TO_PROTECTION_INSTRUMENT}). Date of publication of the instrument: {DATE_NOTICE_PUBLISHED}.
 
 ## Notes
 
 {NOTES}
 
-$CTA
-The date of original registration with the EU was taken from the EU eAmbrosia Register. It is given for information and is not part of the official UK register.
-$CTA
+## Legislation
+
+{TRADITIONAL_TERMS_LEGISLATION}
+
+## Summary
+
+{TRADITIONAL_TERMS_SUMMARY_CONDITIONS}
