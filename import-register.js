@@ -33,32 +33,7 @@ function importEAmbrosiaEntry(entry) {
     importedEntry.date_application = entry["Date of application"] // TODO: Do we need to do anything to make dates work correctly?
     importedEntry.date_registration = entry["Date of UK registration"]
     importedEntry.date_registration_eu = entry["Date of original registration with the EU"]
-    importedEntry.body = `
-    ## Product specification
-
-    The product specification is not available on this site. Find out how to [get a product specification for a protected food name](https://www.gov.uk/link-to-follow) on GOV.UK.
-
-    ## Decision notice and protection instrument
-
-    {PROTECTION_NOTICE_TEXT}
-
-    [Decision notice for Scotch Whisky](LINK_TO_DECISION_NOTICE). Date of publication of the instrument: {DATE_NOTICE_PUBLISHED}.
-
-    ## Notes
-
-    {NOTES}
-
-    ## Legislation
-
-    {TRADITIONAL_TERMS_LEGISLATION}
-
-    ## Summary
-
-    {TRADITIONAL_TERMS_SUMMARY_CONDITIONS}
-
-    $CTA
-    The date of original registration with the EU was taken from the EU eAmbrosia Register. It is given for information and is not part of the official UK register.
-    $CTA` // TODO: Fill this in with traditional terms details and missing variables
+    importedEntry.body = generateBody(entry)
     importedEntry.summary = "" // TODO: Fill this in correctly
 
     return importedEntry
@@ -95,6 +70,84 @@ function getProtectionType(entry) {
         case "Traditional Term": return "traditional-term";
         default: throw "Unknown protection type " + entry.EA_Type
     }
+}
+
+function generateBody(entry) {
+    let result = ''
+    
+    // Product specification
+    if (entry["Product type"] !== "Traditional terms") {
+        result +=      
+`## Product specification
+
+The product specification is not available on this site. Find out how to [get a product specification for a protected food name](https://www.gov.uk/link-to-follow) on GOV.UK.
+`
+    }
+    
+    // Decision notice and protection instrument title
+    if (entry["Decision notice"] && entry["Protection instrument"]) { 
+        result +=      
+`
+## Decision notice and protection instrument
+`
+    } else if (entry["Decision notice"]) {
+        result +=      
+`
+## Decision notice
+`
+    } else if (entry["Protection instrument"]) {
+        result +=      
+`
+## Protection instrument
+`      
+    }
+
+    // Decision notice
+    if (entry["Decision notice"]) {
+        result += 
+`
+${entry["Decision notice"]}
+`
+    }
+
+    // Protection instrument
+    if (entry["Protection instrument"]) {
+        result += 
+`
+[Protection instrument for Scotch Whisky](${entry["Protection instrument"]})`
+
+        if (entry["Protection instrument"]) {
+            result += 
+`. Date of publication of the instrument: {DATE_NOTICE_PUBLISHED}.
+`
+        } else {
+            result +=
+`
+`
+        }
+    }
+
+    // Legislation
+    if (entry["Legislation"]) {
+        result += 
+`
+## Legislation
+
+${entry["Legislation"]}
+`
+    }
+
+    // Summary
+    if (entry["Summary"]) {
+        result += 
+`
+## Summary
+
+${entry["Decision notice"]}
+`
+    }
+
+    return result
 }
 
 let importedEAmbrosiaData = await CSVToJSON().fromFile(process.argv[2])
