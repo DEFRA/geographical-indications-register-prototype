@@ -21,20 +21,20 @@ async function importData() {
 // Converstion functions for eAmbrosia and E-Bacchus entries
 function importEAmbrosiaEntry(entry) {
     let importedEntry = {}
-    importedEntry.title = entry.EA_Name
+    importedEntry.title = entry["Registered product name"]
     importedEntry.register = getRegister(entry)
     importedEntry.status = getStatus(entry)
-    importedEntry.class_category = null //TODO: Fix this!!!
+    importedEntry.class_category = getClassOrCategory(entry)
     importedEntry.protection_type = getProtectionType(entry)
-    importedEntry.country = entry["Country of origin"].split(", ") // Correct country names
-    importedEntry.traditional_term_grapevine_product_category = (entry["Traditional term grapevine product category"] ?? "").replace(" ", "-").toLower() // TODO: Check I've got this right
-    importedEntry.traditional_term_type = (entry["Traditional term type"] ?? "").replace("/", "-").replace(" ", "-").toLower()
-    importedEntry.traditional_term_language = (entry["Traditional term type"] ?? "").toLower()
-    importedEntry.date_application = entry["Date of application"] // TODO: Do we need to do anything to make dates work correctly?
+    importedEntry.country = entry["Country of origin"].replace("Italia", "Italy").replace("Viet nam", "Vietnam").replace("El Savador", "El Salvador").replace("Equador", "Ecuador").replace("Russian Federation", "Russia").replace(/ /g, "-").toLowerCase().split(",-")
+    importedEntry.traditional_term_grapevine_product_category = (entry["Traditional term grapevine product category"] || "").replace(/ /g, "-").toLowerCase().split(",-")
+    importedEntry.traditional_term_type = (entry["Traditional term type"] || "").replace(/\//g, "-").replace(/ /g, "-").toLowerCase()
+    importedEntry.traditional_term_language = (entry["Traditional term type"] || "").toLowerCase()
+    importedEntry.date_application = entry["Date of application"]
     importedEntry.date_registration = entry["Date of UK registration"]
     importedEntry.date_registration_eu = entry["Date of original registration with the EU"]
     importedEntry.body = generateBody(entry)
-    importedEntry.summary = "" // TODO: Fill this in correctly
+    importedEntry.summary = getSummary(entry)
 
     return importedEntry
 }
@@ -42,33 +42,52 @@ function importEAmbrosiaEntry(entry) {
 // Helper functions
 function getRegister(entry) {
     switch(entry["Product type"]) {
-        case "Aromatised Wine": return "aromatised-wines";
-        case "Spirit Drink": return "spirit-drinks";
-        case "Wine": return "wines";
-        case "Traditional terms": return "traditional-terms-for-wine";
-        case "Food": return entry.EA_Type === "Traditional Specialities Guaranteed (TSG)" ? "foods-traditional-speciality" : "foods-designated-origin-and-geographic-origin"
-        default: throw "Unknown product type " + entry.EA_ProductType
+        case "Aromatised wine": return "aromatised-wines"
+        case "Spirit drink": return "spirit-drinks"
+        case "Wine": return "wines"
+        case "Traditional term": return "traditional-terms-for-wine"
+        case "Food": return entry["Protection type"] === "Traditional Specialities Guaranteed (TSG)" ? "foods-traditional-speciality" : "foods-designated-origin-and-geographic-origin"
+        default: throw "Unknown product type " + entry["Product type"]
     }
 }
 
 function getStatus(entry) {
     switch(entry["Status"]) {
-        case "Registered": return "registered";
-        case "Applied": return "applied-for";
-        case "Published": return "in-consultation";
-        case "Rejected": return "rejected";
-        default: throw "Unknown status type " + entry.EA_Status
+        case "Registered": return "registered"
+        case "Applied": return "applied-for"
+        case "Published": return "in-consultation"
+        case "Rejected": return "rejected"
+        default: throw "Unknown status type " + entry["Status"]
+    }
+}
+
+function getClassOrCategory(entry) {
+    if(entry["Class or category of product"] === "215. Vodka, 31. Flavoured vodka") {
+        return ["15-vodka", "31-flavoured-vodka"]
+    } else {
+        return [entry["Class or category of product"].replace("Class ", "").replace(/\,/g, "").replace(/\./g, "-").replace(/\(/g, "").replace(/\)/g, "").replace(/ /g, "-").replace(/--/g, "-").toLowerCase()]
     }
 }
 
 function getProtectionType(entry) {
     switch(entry["Protection type"]) {
-        case "Geographical Indication (GI)": return "geographical-indication-gi";
-        case "Protected Geographical Indication (PGI)": return "protected-geographical-indication-pgi";
-        case "Protected Designation of Origin (PDO)": return "protected-designation-of-origin-pdo";
-        case "Traditional Speciality Guaranteed (TSG)": return "traditional-speciality-guaranteed-tsg";
-        case "Traditional Term": return "traditional-term";
-        default: throw "Unknown protection type " + entry.EA_Type
+        case "Geographical indication (GI)": return "geographical-indication-gi"
+        case "Protected Geographical Indication (PGI)": return "protected-geographical-indication-pgi"
+        case "Protected Designation of Origin (PDO)": return "protected-designation-of-origin-pdo"
+        case "Traditional Specialities Guaranteed (TSG)": return "traditional-speciality-guaranteed-tsg"
+        case "Traditional Term": return "traditional-term"
+        default: throw "Unknown protection type " + entry["Protection type"]
+    }
+}
+
+function getSummary(entry) {
+    switch(entry["Protection type"]) {
+        case "Geographical indication (GI)": return entry["Product type"] === "Spirit drink" ? "Protected spirit drink name" : "Protected aromatised wine name"
+        case "Protected Geographical Indication (PGI)": return entry["Product type"] === "Food" ? "Protected food name with Protected Geographical Indication (PGI)" : "Protected wine name with Protected Geographical Indication (PGI)"
+        case "Protected Designation of Origin (PDO)": return entry["Product type"] === "Food" ? "Protected food name with Protected Designation of Origin (PDO)" : "Protected wine name with Protected Designation of Origin (PDO)"
+        case "Traditional Specialities Guaranteed (TSG)": return "Protected food name with Traditional Speciality Guaranteed (TSG)"
+        case "Traditional Term": return "Traditional term for wine"
+        default: throw "Unknown protection type " + entry["Protection type"]
     }
 }
 
@@ -150,7 +169,7 @@ ${entry["Decision notice"]}
     return result
 }
 
-let importedEAmbrosiaData = await CSVToJSON().fromFile(process.argv[2])
+CSVToJSON().fromFile(process.argv[2])
         .then(eAmbrosiaData => {
             console.log(eAmbrosiaData.map(entry => importEAmbrosiaEntry(entry)))
         })
