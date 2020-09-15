@@ -62,7 +62,7 @@ function getStatus(entry) {
 }
 
 function getClassOrCategory(entry) {
-    if(entry["Class or category of product"] === "215. Vodka, 31. Flavoured vodka") {
+    if(entry["Class or category of product"] === "15. Vodka, 31. Flavoured vodka") {
         return ["15-vodka", "31-flavoured-vodka"]
     } else {
         return [entry["Class or category of product"].replace("Class ", "").replace(/\,/g, "").replace(/\./g, "-").replace(/\(/g, "").replace(/\)/g, "").replace(/ /g, "-").replace(/--/g, "-").toLowerCase()]
@@ -162,7 +162,7 @@ ${entry["Legislation"]}
 `
 ## Summary
 
-${entry["Decision notice"]}
+${entry["Summary"]}
 `
     }
 
