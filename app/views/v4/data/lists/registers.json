@@ -1,0 +1,28 @@
+{% set registers =
+  [
+    {
+      value: "Food and Agri UK PDO",
+      text: "Food PDO and PGI"
+    },
+    {
+      value: "Food and Agri UK TSG",
+      text: "Food TSG"
+    },
+    {
+      value: "Spirits",
+      text: "Spirits"
+    },
+    {
+      value: "Wines",
+      text: "Wines"
+    },
+    {
+      value: "Aromatised Wine",
+      text: "Aromatised wines"
+    },
+    {
+      value: "Traditional Terms",
+      text: "Traditional Terms"
+    }
+  ]
+%}

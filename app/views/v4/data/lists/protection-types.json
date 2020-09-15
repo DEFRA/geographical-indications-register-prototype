@@ -1,0 +1,20 @@
+{% set protectiontypes =
+  [
+    {
+      value: "Geographical indication (GI)",
+      text: "Geographical indication (GI)"
+    },
+    {
+      value: "Protected Geographical Indication (PGI)",
+      text: "Protected Geographical Indication (PGI)"
+    },
+    {
+      value: "Protected Designation of Origin (PDO)",
+      text: "Protected Designation of Origin (PDO)"
+    },
+    {
+      value: "Traditional Specialities Guaranteed (TSG)",
+      text: "Traditional Specialities Guaranteed (TSG)"
+    }
+  ]
+%}
