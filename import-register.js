@@ -95,7 +95,7 @@ function generateBody(entry) {
     let result = ''
     
     // Product specification
-    if (entry["Product type"] !== "Traditional terms") {
+    if (entry["Product type"] !== "Traditional term") {
         result +=      
 `## Product specification
 
@@ -133,11 +133,11 @@ ${entry["Decision notice"]}
     if (entry["Protection instrument"]) {
         result += 
 `
-[Protection instrument for Scotch Whisky](${entry["Protection instrument"]})`
+[Protection instrument for ${entry["Registered product name"]}](${entry["Protection instrument"]})`
 
-        if (entry["Protection instrument"]) {
+        if (entry["Date of publication of the instrument"]) {
             result += 
-`. Date of publication of the instrument: {DATE_NOTICE_PUBLISHED}.
+`. Date of publication of the instrument: ${entry["Date of publication of the instrument"]}.
 `
         } else {
             result +=
