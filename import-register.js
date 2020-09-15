@@ -27,9 +27,9 @@ function importEAmbrosiaEntry(entry) {
     importedEntry.status = getStatus(entry)
     importedEntry.class_category = getClassOrCategory(entry)
     importedEntry.protection_type = getProtectionType(entry)
-    importedEntry.country = entry["Country of origin"].replace("Italia", "Italy").replace("Viet nam", "Vietnam").replace("El Savador", "El Salvador").replace("Equador", "Ecuador").replace("Russian Federation", "Russia").replace(/ /g, "-").toLowerCase().split(",-")
-    importedEntry.traditional_term_grapevine_product_category = (entry["Traditional term grapevine product category"] || "").replace(/ /g, "-").toLowerCase().split(",-")
-    importedEntry.traditional_term_type = (entry["Traditional term type"] || "").replace(/\//g, "-").replace(/ /g, "-").toLowerCase()
+    importedEntry.country = entry["Country of origin"].replace("Italia", "Italy").replace("Viet nam", "Vietnam").replace("El Savador", "El Salvador").replace("Equador", "Ecuador").replace("Russian Federation", "Russia").trim().replace(/\s+/g, "-").toLowerCase().split(",-")
+    importedEntry.traditional_term_grapevine_product_category = (entry["Traditional term grapevine product category"] || "").trim().replace(/\s+/g, "-").toLowerCase().split(",-")
+    importedEntry.traditional_term_type = (entry["Traditional term type"] || "").trim().replace(/(\/|\s)+/g, "-").replace(/\./g, "").toLowerCase()
     importedEntry.traditional_term_language = (entry["Traditional term language"] || "").toLowerCase()
     importedEntry.date_application = entry["Date of application"]
     importedEntry.date_registration = entry["Date of UK registration"]
@@ -66,7 +66,7 @@ function getClassOrCategory(entry) {
     if(entry["Class or category of product"] === "15. Vodka, 31. Flavoured vodka") {
         return ["15-vodka", "31-flavoured-vodka"]
     } else {
-        return [entry["Class or category of product"].replace("Class ", "").replace(/\,/g, "").replace(/\./g, "-").replace(/\(/g, "").replace(/\)/g, "").replace(/ /g, "-").replace(/--/g, "-").toLowerCase()]
+        return [entry["Class or category of product"].replace("Class ", "").replace(/(\,|\(|\))/g, "").trim().replace(/(\.|\s)+/g, "-").toLowerCase()]
     }
 }
 
@@ -172,6 +172,11 @@ ${entry["Summary"]}
 
 CSVToJSON().fromFile(process.argv[2])
         .then(eAmbrosiaData => {
-            return parseAsync(eAmbrosiaData.map(entry => importEAmbrosiaEntry(entry)))
+            return eAmbrosiaData
+                .filter(entry => entry["Status"] === "Registered") // We will want to exclude this line from the final import routine. This was just useful while doing development
+                .map(entry => importEAmbrosiaEntry(entry))
+        })
+        .then(importedData => {
+            return parseAsync(importedData)
         })
         .then(csv => fs.writeFile(process.argv[3], csv, 'utf8', function() {}))
