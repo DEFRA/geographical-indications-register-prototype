@@ -1,0 +1,101 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Geographical indications register
+{% endblock %}
+
+{% block header %}
+  {% include "includes/cookie-banner.html" %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: " ",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+<!-- no phase banner or back link -->
+<div class="gem-c-contextual-breadcrumbs">
+
+  <div class="gem-c-breadcrumbs govuk-breadcrumbs " data-module="track-click">
+    <ol class="govuk-breadcrumbs__list">
+      <li class="govuk-breadcrumbs__list-item" aria-current="false">
+        <a class="govuk-breadcrumbs__link" aria-current="false" href="/">Home</a>
+      </li>
+    </ol>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <!-- RESULTS? ###################################### -->
+      {% set numToDisplay = 20 %}
+      {% set numResults = results | length %}
+      {% if numResults < numToDisplay %}
+        {% set numToDisplay = numResults %}
+      {% endif %}
+
+      <h1 class="govuk-heading-xl" style="width:12em;">Protected geographical food and drink names</h1>
+
+      <form class="form" action="{{formAction}}" method="get">
+
+
+          <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-third">
+              {% include "./includes/search_spec_pub_filters.html" %}
+            </div>
+            <div class="govuk-grid-column-two-thirds">
+
+            <!-- Check if filters have been applied -->
+            {% set filterLength = data.category | length + data.country | length + data.registers | length + data.statuses | length %}
+
+            {% include "./includes/filter-panel-default.html" %}
+
+            {% set print = true %}
+            {% for result in results | sort(attribute="EA_Name") %}
+
+                {% if print %}
+                    <h3 class="gir_results_head"><a  style="text-decoration:none;" href="/{{folder}}/product-details-default/{{ result.EA_FileNumber }}">{{ result.EA_Name }}</a></h3>
+                      <p class="gir_small">
+                        {{ "Protected food name" if result.DEF_Register == "Food and Agri UK PDO" }}
+                        {{ "Traditional speciality guaranteed" if result.DEF_Register == "Food and Agri UK TSG" }}
+                        {{ "Protected spirit drink name" if result.DEF_Register == "Spirits" }}
+                        {{ "Protected wine name" if result.DEF_Register == "Wines" }}
+                        {{ "Protected aromatised wine name" if result.DEF_Register == "Aromatised wines" }}
+                        {{ "Traditional Term" if result.DEF_Register == "Traditional Terms" }}
+                      </p>
+                      <p class="gir_very_small">Status: {{ result.EA_Status }} &nbsp;&nbsp;
+                        Protection type: {{ result.EA_Type }}</p>
+
+                      <p class="gir_very_small">Date of registration: 31 Dec 2020  &nbsp;&nbsp;
+                        Country of origin: {{ result.EA_Country }}</p>
+                {% endif %}
+
+                {% if loop.index==numToDisplay %}
+                  {% set print = false %}
+                {% endif %}
+
+            {% endfor %}
+
+
+
+      {% include "../includes/pagination_counter.html" %}
+
+    </div><!-- end col 2/3rds for results -->
+  </div><!-- end grid row -->
+
+</form>
+
+    </div>
+  </div>
+
+
+
+{% endblock %}

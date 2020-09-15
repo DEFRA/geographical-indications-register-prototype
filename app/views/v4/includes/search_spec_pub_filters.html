@@ -1,0 +1,131 @@
+<div>
+  <label class="govuk-label" for="search">
+    Search
+  </label>
+  <input class="govuk-input" style="width:250px;" id="search" name="name" type="text" value="{{ data.name }}">
+  <button class="govuk-button gem-c-search__submit gem-c-search--on-white" data-module="govuk-button">O</button>
+</div><!-- END govuk-form-group -->
+
+<!-- Product type -->
+<div class="gir_filterbox">
+
+
+
+
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Register
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <!-- Registers -->
+      {% from "../data/lists/registers.json" import registers %}
+
+      {{ govukCheckboxes({
+                idPrefix: "registers",
+                name: "registers",
+                classes: "govuk-checkboxes--small",
+                fieldset: {
+                  legend: {
+                    text: "",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: registers
+              }) }}
+    </div>
+  </details>
+
+  <!-- Status -->
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Status
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "../data/lists/statuses.json" import statuses %}
+      {{ govukCheckboxes({
+              idPrefix: "statuses",
+              name: "statuses",
+              classes: "govuk-checkboxes--small",
+              fieldset: {
+                legend: {
+                  text: "",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: statuses
+            }) }}
+    </div>
+  </details>
+
+
+  <!-- Categories -->
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Class or category
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "../data/lists/categories.json" import categories %}
+      {{ govukSelect({
+        id: "category",
+        name: "category",
+        items: categories
+      }) }}
+    </div>
+  </details>
+
+
+  <!-- Countries -->
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Country of origin
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      {% from "../data/lists/countries.json" import countries %}
+      {{ govukSelect({
+        id: "country",
+        name: "country",
+        items: countries
+      }) }}
+    </div>
+  </details>
+
+
+  <details class="govuk-details" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Protection type
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <!-- Registers -->
+      {% from "../data/lists/protection-types.json" import protectiontypes %}
+
+      {{ govukCheckboxes({
+                idPrefix: "protectiontypes",
+                name: "protectiontypes",
+                classes: "govuk-checkboxes--small",
+                fieldset: {
+                  legend: {
+                    text: "",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: protectiontypes
+              }) }}
+    </div>
+  </details>
+
+
+
+</div>
