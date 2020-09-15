@@ -1,7 +1,8 @@
-// A utility for converting a CSV register file into JSON data
+// A dummy import script for geograhpical indication data
 // Will import data provided in a CSV into a rough format expected by specialist publisher. It will then output a single csv containing the data that would be imported into specialist publisher
-// Usage: node import-register.js <input.csv>
+// Usage: node import-register.js <input.csv> <output.csv>
 const CSVToJSON = require('csvtojson');
+const { parseAsync } = require('json2csv')
 const fs = require('fs')
     
 // Main import function
@@ -29,7 +30,7 @@ function importEAmbrosiaEntry(entry) {
     importedEntry.country = entry["Country of origin"].replace("Italia", "Italy").replace("Viet nam", "Vietnam").replace("El Savador", "El Salvador").replace("Equador", "Ecuador").replace("Russian Federation", "Russia").replace(/ /g, "-").toLowerCase().split(",-")
     importedEntry.traditional_term_grapevine_product_category = (entry["Traditional term grapevine product category"] || "").replace(/ /g, "-").toLowerCase().split(",-")
     importedEntry.traditional_term_type = (entry["Traditional term type"] || "").replace(/\//g, "-").replace(/ /g, "-").toLowerCase()
-    importedEntry.traditional_term_language = (entry["Traditional term type"] || "").toLowerCase()
+    importedEntry.traditional_term_language = (entry["Traditional term language"] || "").toLowerCase()
     importedEntry.date_application = entry["Date of application"]
     importedEntry.date_registration = entry["Date of UK registration"]
     importedEntry.date_registration_eu = entry["Date of original registration with the EU"]
@@ -171,5 +172,6 @@ ${entry["Summary"]}
 
 CSVToJSON().fromFile(process.argv[2])
         .then(eAmbrosiaData => {
-            console.log(eAmbrosiaData.map(entry => importEAmbrosiaEntry(entry)))
+            return parseAsync(eAmbrosiaData.map(entry => importEAmbrosiaEntry(entry)))
         })
+        .then(csv => fs.writeFile(process.argv[3], csv, 'utf8', function() {}))
