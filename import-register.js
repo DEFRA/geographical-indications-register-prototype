@@ -3,20 +3,23 @@
 // Usage: node import-register.js <input.csv> <output.csv>
 const CSVToJSON = require('csvtojson');
 const { parseAsync } = require('json2csv')
-const fs = require('fs')
+const fs = require('fs');
+const { Console } = require('console');
+
+let errors = []
 
 // Converstion functions for eAmbrosia and E-Bacchus entries
 function importEAmbrosiaEntry(entry) {
     let importedEntry = {}
-    importedEntry.title = entry["Registered product name"]
+    importedEntry.title = getTitle(entry)
     importedEntry.register = getRegister(entry)
     importedEntry.status = getStatus(entry)
     importedEntry.class_category = getClassOrCategory(entry)
     importedEntry.protection_type = getProtectionType(entry)
-    importedEntry.country = entry["Country of origin"].split(", ").map(country => countryMap[country])
-    importedEntry.traditional_term_grapevine_product_category = entry["Traditional term grapevine product category"] ? entry["Traditional term grapevine product category"].split(", ").map(category => grapevineCategoryMap[category]) : []
-    importedEntry.traditional_term_type = termTypeMap[entry["Traditional term type"]]
-    importedEntry.traditional_term_language = languageMap[entry["Traditional term language"]]
+    importedEntry.country = getCountry(entry)
+    importedEntry.traditional_term_grapevine_product_category = getGrapevinePrductCategory(entry)
+    importedEntry.traditional_term_type = getTermType(entry)
+    importedEntry.traditional_term_language = getLanguage(entry)
     importedEntry.date_application = entry["Date of application"]
     importedEntry.date_registration = entry["Date of UK registration"]
     importedEntry.date_registration_eu = entry["Date of original registration with the EU"]
@@ -27,6 +30,14 @@ function importEAmbrosiaEntry(entry) {
 }
 
 // Helper functions
+function getTitle(entry) {
+    if(!entry["Registered product name"]) {
+        errors.push("Geographical indication found without product name")
+    }
+
+    return entry["Registered product name"]
+}
+
 function getRegister(entry) {
     switch(entry["Product type"]) {
         case "Aromatised wine": return "aromatised-wines"
@@ -34,11 +45,17 @@ function getRegister(entry) {
         case "Wine": return "wines"
         case "Traditional term": return "traditional-terms-for-wine"
         case "Food": return entry["Protection type"] === "Traditional Specialities Guaranteed (TSG)" ? "foods-traditional-speciality" : "foods-designated-origin-and-geographic-origin"
-        default: throw "Unknown product type " + entry["Product type"]
+        default: {
+            errors.push(productNameForError(entry) + " has unknown product type " + (entry["Product type"] || "<blank>"))
+            return ""
+        }
     }
 }
 
 function getStatus(entry) {
+    if(!statusMap[entry["Status"]]) {
+        errors.push(productNameForError(entry) + " has unknown status " + (entry["Status"] || "<blank>"))
+    }
     return statusMap[entry["Status"]]
 }
 
@@ -46,22 +63,99 @@ function getClassOrCategory(entry) {
     if(entry["Class or category of product"] === "15. Vodka, 31. Flavoured vodka") {
         return ["15-vodka", "31-flavoured-vodka"]
     } else {
+        if (!classCategoryMap[entry["Class or category of product"]]) {
+            errors.push(productNameForError(entry) + " has unknown class " + (entry["Class or category of product"] || "<blank>"))
+        }
         return [classCategoryMap[entry["Class or category of product"]]]
     }
 }
 
 function getProtectionType(entry) {
+    if(!protectionTypeMap[entry["Protection type"]]) {
+        errors.push(productNameForError(entry) + " has unknown protection type " + (entry["Protection type"] || "<blank>"))
+    }
     return protectionTypeMap[entry["Protection type"]]
+}
+
+function getCountry(entry) {
+    entry["Country of origin"].split(", ").map(country => {
+        if (!countryMap[country]) {
+            errors.push(productNameForError(entry) + " has unknown country " + (country || "<blank>"))
+        }
+        return countryMap[country]
+    })
+}
+
+function getGrapevinePrductCategory(entry) {
+    if (entry["Traditional term grapevine product category"]) {
+        return entry["Traditional term grapevine product category"].split(", ").map(category => {
+            if (!grapevineCategoryMap[category]) {
+                errors.push(productNameForError(entry) + " has unknown grapevine product category " + (category || "<blank>"))
+            }
+            return grapevineCategoryMap[category]
+        })
+    } else {
+        return []
+    }
+}
+
+function getTermType(entry) {
+    if (entry["Traditional term type"]) {
+        if(!termTypeMap[entry["Traditional term type"]]) {
+            errors.push(productNameForError(entry) + " has unknown traditional term type " + (entry["Traditional term type"] || "<blank>"))
+        }
+        return termTypeMap[entry["Traditional term type"]]
+    } else {
+        return ""
+    }
+}
+
+function getLanguage(entry) {
+    if (entry["Traditional term language"]) {
+        if(!languageMap[entry["Traditional term language"]]) {
+            errors.push(productNameForError(entry) + " has unknown language " + (entry["Traditional term language"] || "<blank>"))
+        }
+        return languageMap[entry["Traditional term language"]]
+    } else {
+        return ""
+    }
 }
 
 function getSummary(entry) {
     switch(entry["Protection type"]) {
-        case "Geographical indication (GI)": return entry["Product type"] === "Spirit drink" ? "Protected spirit drink name" : "Protected aromatised wine name"
-        case "Protected Geographical Indication (PGI)": return entry["Product type"] === "Food" ? "Protected food name with Protected Geographical Indication (PGI)" : "Protected wine name with Protected Geographical Indication (PGI)"
-        case "Protected Designation of Origin (PDO)": return entry["Product type"] === "Food" ? "Protected food name with Protected Designation of Origin (PDO)" : "Protected wine name with Protected Designation of Origin (PDO)"
+        case "Geographical indication (GI)": {
+            if (entry["Product type"] === "Spirit drink") {
+                return "Protected spirit drink name"
+            } else if (entry["Product type"] === "Aromatised wine") {
+                return "Protected aromatised wine name"
+            } else {
+                errors.push(productNameForError(entry) + " has protection type GI but has product type " + (entry["Protection type"] || "<blank>"))
+                return ""
+            }
+        }
+        case "Protected Geographical Indication (PGI)": {
+            if (entry["Product type"] === "Food") {
+                return "Protected food name with Protected Geographical Indication (PGI)"
+            } else if (entry["Product type"] === "Wine") {
+                return "Protected wine name with Protected Geographical Indication (PGI)"
+            } else {
+                errors.push(productNameForError(entry) + " has protection type PGI but has product type " + (entry["Protection type"] || "<blank>"))
+                return ""
+            }
+        }
+        case "Protected Designation of Origin (PDO)": {
+            if (entry["Product type"] === "Food") {
+                return "Protected food name with Protected Designation of Origin (PDO)"
+            } else if (entry["Product type"] === "Wine") {
+                return "Protected wine name with Protected Designation of Origin (PDO)"
+            } else {
+                errors.push(productNameForError(entry) + " has protection type PDO but has product type " + (entry["Protection type"] || "<blank>"))
+                return ""
+            }
+        }
         case "Traditional Specialities Guaranteed (TSG)": return "Protected food name with Traditional Speciality Guaranteed (TSG)"
         case "Traditional Term": return "Traditional term for wine"
-        default: throw "Unknown protection type " + entry["Protection type"]
+        default: return ""
     }
 }
 
@@ -143,6 +237,10 @@ ${entry["Summary"]}
     return result
 }
 
+function productNameForError(entry) {
+    return entry["Registered product name"] || "Product"
+}
+
 CSVToJSON().fromFile(process.argv[2])
         .then(eAmbrosiaData => {
             return eAmbrosiaData
@@ -153,6 +251,7 @@ CSVToJSON().fromFile(process.argv[2])
             return parseAsync(importedData)
         })
         .then(csv => fs.writeFile(process.argv[3], csv, 'utf8', function() {}))
+        .then(() => errors.forEach(error => console.log(error)))
 
 let statusMap = {
     "Registered": "registered",
@@ -172,7 +271,7 @@ let classCategoryMap = {
     "Class 1.8. Other products of Annex I of the Treaty (spices etc.)": "1-8-other-products-of-annex-i-of-the-treaty-spices-etc",
     "Class 2.1. Beers": "2-1-beers",
     "Class 2.2. Chocolate and derived products": "2-2-chocolate-and-derived-products",
-    "Class 2.3. Bread, pastry, cakes, confectionery, biscuits and other baker's wares": "2-3-bread-pastry-cakes-confectionery-biscuits-and-other-baker's-wares",
+    "Class 2.3. Bread, pastry, cakes, confectionery, biscuits and other baker's wares": "2-3-bread-pastry-cakes-confectionery-biscuits-and-other-bakers-wares",
     "Class 2.4. Beverages made from plant extracts": "2-4-beverages-made-from-plant-extracts",
     "Class 2.5. Pasta": "2-5-pasta",
     "Class 2.6. Salt": "2-6-salt",
@@ -257,7 +356,7 @@ let protectionTypeMap = {
     "Protected Designation of Origin (PDO)": "protected-designation-of-origin-pdo",
     "Traditional Specialities Guaranteed (TSG)": "traditional-speciality-guaranteed-tsg",
     "Traditional Term": "traditional-term",
-    "Geographical Indication (GI)": "geographical-indication-gi"
+    "Geographical indication (GI)": "geographical-indication-gi"
 }
 
 let countryMap = {
