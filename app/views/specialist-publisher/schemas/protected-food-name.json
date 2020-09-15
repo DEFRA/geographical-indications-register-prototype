@@ -139,7 +139,8 @@
         {"label": "45. Berenburg or Beerenburg","value": "45-berenburg-or-beerenburg"},
         {"label": "46. Honey or mead nectar","value": "46-honey-or-mead-nectar"},
         {"label": "47. Other spirit drinks","value": "47-other-spirit-drinks"},
-        {"label": "99. Other spirit drink","value": "99-other-spirit-drink"}
+        {"label": "99. Other spirit drink","value": "99-other-spirit-drink"},
+        {"label": "Traditional Term","value": "traditional-term"}
       ]
     },
     {
