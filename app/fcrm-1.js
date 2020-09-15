@@ -49,19 +49,19 @@ function filterReports(searchText,assets,datatype,environmental,flooding,policy,
     }
 
     if (datatype != '_unchecked') {
-        reportData = reportData.filter(element => assets.includes(element.datatype))
+        reportData = reportData.filter(element => datatype.includes(element.datatype))
     }
 
     if (environmental != '_unchecked') {
-        reportData = reportData.filter(element => assets.includes(element.environmental))
+        reportData = reportData.filter(element => environmental.includes(element.environmental))
     }
 
     if (flooding != '_unchecked') {
-        reportData = reportData.filter(element => assets.includes(element.flooding))
+        reportData = reportData.filter(element => flooding.includes(element.flooding))
     }
 
     if (policy != '_unchecked') {
-        reportData = reportData.filter(element => assets.includes(element.policy))
+        reportData = reportData.filter(element => policy.includes(element.policy))
     }
 
     if (sources != '_unchecked') {
