@@ -25,6 +25,7 @@ function importEAmbrosiaEntry(entry) {
     importedEntry.date_registration_eu = entry["Date of original registration with the EU"]
     importedEntry.body = generateBody(entry)
     importedEntry.summary = getSummary(entry)
+    importedEntry.internal_notes = entry["Internal notes"]
 
     return importedEntry
 }
@@ -214,16 +215,6 @@ ${entry["Decision notice"]}
         }
     }
 
-    // Legislation
-    if (entry["Legislation"]) {
-        result += 
-`
-## Legislation
-
-${entry["Legislation"]}
-`
-    }
-
     // Summary
     if (entry["Summary"]) {
         result += 
@@ -231,6 +222,16 @@ ${entry["Legislation"]}
 ## Summary
 
 ${entry["Summary"]}
+`
+    }
+
+    // Legislation
+    if (entry["Legislation"]) {
+        result += 
+`
+## Legislation
+
+${entry["Legislation"]}
 `
     }
 
@@ -448,8 +449,8 @@ let grapevineCategoryMap = {
 }
 
 let termTypeMap = {
-    "Description of product characteristic.": "description-of-product-characteristic",
-    "In place of PDO/PGI.": "in-place-of-pdo-pgi"
+    "Description of product characteristic": "description-of-product-characteristic",
+    "In place of PDO/PGI": "in-place-of-pdo-pgi"
 }
 
 let languageMap = {
@@ -467,14 +468,15 @@ let languageMap = {
     "Hungarian": "hungarian",
     "Irish": "irish",
     "Italian": "italian",
+    "Latin": "latin",
     "Latvian": "latvian",
     "Lithuanian": "lithuanian",
     "Maltese": "maltese",
     "Polish": "polish",
-    "Portugese": "portugese",
+    "Portuguese": "portuguese",
     "Romanian": "romanian",
     "Slovak": "slovak",
-    "Slovene": "slovene",
+    "Slovenian": "slovenian",
     "Spanish": "spanish",
     "Swedish": "swedish"
 }
