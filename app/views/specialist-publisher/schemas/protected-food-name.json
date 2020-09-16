@@ -294,14 +294,15 @@
         {"label": "Hungarian","value": "hungarian"},
         {"label": "Irish","value": "irish"},
         {"label": "Italian","value": "italian"},
+        {"label": "Latin","value": "latin"},
         {"label": "Latvian","value": "latvian"},
         {"label": "Lithuanian","value": "lithuanian"},
         {"label": "Maltese","value": "maltese"},
         {"label": "Polish","value": "polish"},
-        {"label": "Portugese","value": "portugese"},
+        {"label": "Portuguese","value": "portuguese"},
         {"label": "Romanian","value": "romanian"},
         {"label": "Slovak","value": "slovak"},
-        {"label": "Slovene","value": "slovene"},
+        {"label": "Slovenian","value": "slovenian"},
         {"label": "Spanish","value": "spanish"},
         {"label": "Swedish","value": "swedish"}
       ]

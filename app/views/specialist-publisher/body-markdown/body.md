@@ -10,10 +10,10 @@ The product specification is not available on this site. Find out how to [get a 
 
 [Decision notice for Scotch Whisky]({LINK_TO_PROTECTION_INSTRUMENT}). Date of publication of the instrument: {DATE_NOTICE_PUBLISHED}.
 
-## Legislation
-
-{TRADITIONAL_TERMS_LEGISLATION}
-
 ## Summary
 
 {TRADITIONAL_TERMS_SUMMARY_CONDITIONS}
+
+## Legislation
+
+{TRADITIONAL_TERMS_LEGISLATION}
