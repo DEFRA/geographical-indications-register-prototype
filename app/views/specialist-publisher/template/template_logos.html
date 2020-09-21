@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HTML snippets for template update to Specialist Publisher</title>
+
+  <style type="text/css" id="protected_food_names_css">
+    .pfdn-image {
+      float:right;
+      width:150px;
+      padding-left:2em;
+      padding-bottom:2em;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<!-- Existing template DIVs containing body content -->
+  <div id="contents" class="app-c-contents-list-with-body">
+    <div class="responsive-bottom-margin">
+      <div class="gem-c-govspeak govuk-govspeak direction-ltr" data-module="govspeak">
+        <!-- Existing template above -->
+
+        <!-- Class CSS styles above -->
+
+        <!-- IF protection_type == "protected-geographical-indication-pgi" -->
+          <img
+          src="/ADD_PATH_HERE/pfdn_logo_geographic_origin_150.png"
+          alt="The scheme logo is a black stamp with the words Geographic Origin UK Protected"
+          class="pfdn-image"
+          >
+        <!-- END IF -->
+
+        <!-- IF protection_type == "protected-designation-of-origin-pdo" -->
+          <img
+          src="/ADD_PATH_HERE/pfdn_logo_designated_origin_150.png"
+          alt="The scheme logo is a black stamp with the words Designated Origin UK Protected"
+          class="pfdn-image"
+          >
+        <!-- END IF -->
+
+        <!-- IF protection_type == "traditional-speciality-guaranteed-tsg" -->
+          <img
+          src="/ADD_PATH_HERE/pfdn_logo_traditional_speciality_150.png"
+          alt="The scheme logo is a black stamp with the words Traditional Speciality UK Protected"
+          class="pfdn-image"
+          >
+        <!-- END IF -->
+
+        <!-- IF protection_type == "traditional-term" OR "geographical-indication-gi" -->
+          <!-- NO LOGO -->
+        <!-- END IF -->
+
+
+        <!-- Body content inserted below here -->
+        <p>Body content here</p>
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
