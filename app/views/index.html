@@ -34,6 +34,16 @@
 
           <p>This is an update to version 3 to incorporate the decisions agreed with the business</p>
 
+          <h3 class="govuk-heading-s">Main hanges from v3 to v4</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                Moved 'Date of original registration with the EU' into the main data and moved the 'legal disclaimer' to the guidance
+              </li>
+              <li>
+                Added a protection type logo because quite a few users needed to see what the new logos looked like
+              </li>
+            </ul>
+
       </div></details>
 
 
@@ -88,6 +98,36 @@
       <details class="govuk-details" data-module="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">
       Version 2 design history
       </span></summary><div class="govuk-details__text">
+
+        <h3 class="govuk-heading-s">Overview</h3>
+          <p>
+            Before the start of this sprint, our intention was to iterate on version 1 and check if the changes worked for users. However, at the snd of the first Alpha sprint we found out about <a href="https://github.com/alphagov/specialist-publisher">GOV Specialist Publisher</a> and decided we should test its interface as it would appear for protected food names.
+          </p>
+          <p>
+            We produced an iteration of version 1 screens (<a href="/v2/landing-guide-page/nodejs">custom build version</a>) so we had something to test later if Specialst Publisher did not work for our users. We also produced a version using Specialist Publisher default view and also a set of screens with some changes to the default screens.
+          </p>
+
+          <h3 class="govuk-heading-s">Changes from v1 to v2 for the custom-build screens</h3>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>
+                Guidance page now uses the signed-off text from the October 2019 work gthat was almost released.
+              </li>
+              <li>
+                Search uses the horizontal layout with filters initially hidden
+              </li>
+              <li>
+                Search results are shown in a table
+              </li>
+              <li>
+                We removed the 'register' column as this was not useful to users
+              </li>
+              <li>
+                Added 'Date of original registration with the EU' because users really valued this
+              </li>
+              <li>
+                Changed the product detail display to use the fields that the business told us wouldbe part of the register
+              </li>
+            </ul>
 
           <h3 class="govuk-heading-s">Main research objectives</h3>
             <ul class="govuk-list govuk-list--bullet">
@@ -145,6 +185,9 @@
           <p>
             From research in discovery, we believed that most users wanted to find the details and specification for a single product. Given that these users knew the product name (even if they couldn't always spell it) we decided to offer keyword search as the main route to the content.
           </p>
+          <p>
+            We decided to start the sessions by showing people a minimum version of the search results interface (<a href="/v1/search_a_list">Search A with list</a>), so we could discover what they needed. They were also shown versions with more slightly more data displayed (<a href="/v1/search_a_list">Search A with list</a>).
+          </p>
 
           <h3 class="govuk-heading-s">Main research objectives</h3>
             <ul class="govuk-list govuk-list--bullet">
@@ -152,7 +195,7 @@
                 Can users find product information easily using the service?
               </li>
               <li>
-                Do users need search results with more detail than product name?
+                Do users need search results with more detail than just product name?
               </li>
               <li>
                 Which search layout will users find most useful?
