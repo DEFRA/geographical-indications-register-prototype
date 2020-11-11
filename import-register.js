@@ -1,4 +1,4 @@
-// A dummy import script for geograhpical indication data
+// A dummy import script for geographical indication data
 // Will import data provided in a CSV into a rough format expected by specialist publisher. It will then output a single csv containing the data that would be imported into specialist publisher
 // Usage: node import-register.js <input.csv> <output.csv>
 const CSVToJSON = require('csvtojson');
@@ -16,6 +16,7 @@ function importEAmbrosiaEntry(entry) {
     importedEntry.status = getStatus(entry)
     importedEntry.class_category = getClassOrCategory(entry)
     importedEntry.protection_type = getProtectionType(entry)
+    importedEntry.reason_for_protection = getReasonForProtection(entry)
     importedEntry.country = getCountry(entry)
     importedEntry.traditional_term_grapevine_product_category = getGrapevinePrductCategory(entry)
     importedEntry.traditional_term_type = getTermType(entry)
@@ -40,6 +41,10 @@ function getTitle(entry) {
 }
 
 function getRegister(entry) {
+    if(entry["Protection type"] === "Name protected by international treaty") {
+        return "names-protected-by-international-treaty"
+    }
+
     switch(entry["Product type"]) {
         case "Aromatised wine": return "aromatised-wines"
         case "Spirit drink": return "spirit-drinks"
@@ -76,6 +81,13 @@ function getProtectionType(entry) {
         errors.push(productNameForError(entry) + " has unknown protection type " + (entry["Protection type"] || "<blank>"))
     }
     return protectionTypeMap[entry["Protection type"]]
+}
+
+function getReasonForProtection(entry) {
+    if(!reasonForProtectionMap[entry["Reason for protection"]]) {
+        errors.push(productNameForError(entry) + " has unknown reason for protection type " + (entry["Reason for protection"] || "<blank>"))
+    }
+    return reasonForProtectionMap[entry["Reason for protection"]]
 }
 
 function getCountry(entry) {
@@ -156,6 +168,7 @@ function getSummary(entry) {
         }
         case "Traditional Specialities Guaranteed (TSG)": return "Protected food name with Traditional Speciality Guaranteed (TSG)"
         case "Traditional Term": return "Traditional term for wine"
+        case "Name protected by international treaty": return "Name protected by international treaty"
         default: return ""
     }
 }
@@ -232,6 +245,16 @@ ${entry["Summary"]}
 ## Legislation
 
 ${entry["Legislation"]}
+`
+    }
+
+    // Notes
+    if (entry["Notes"]) {
+        result += 
+`
+## Notes
+
+${entry["Notes"]}
 `
     }
 
@@ -357,7 +380,8 @@ let protectionTypeMap = {
     "Protected Designation of Origin (PDO)": "protected-designation-of-origin-pdo",
     "Traditional Specialities Guaranteed (TSG)": "traditional-speciality-guaranteed-tsg",
     "Traditional Term": "traditional-term",
-    "Geographical indication (GI)": "geographical-indication-gi"
+    "Geographical indication (GI)": "geographical-indication-gi",
+    "Name protected by international treaty": "name-protected-by-international-treaty"
 }
 
 let countryMap = {
@@ -479,4 +503,11 @@ let languageMap = {
     "Slovenian": "slovenian",
     "Spanish": "spanish",
     "Swedish": "swedish"
+}
+
+let reasonForProtectionMap = {
+    "UK geographical indication from before 2021": "uk-gi-before-2021",
+    "EU agreement": "eu-agreement",
+    "UK trade agreement": "uk-trade-agreement",
+    "Application to UK scheme from 2021": "uk-gi-after-2021"
 }
