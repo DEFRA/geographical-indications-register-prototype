@@ -41,8 +41,8 @@ function getTitle(entry) {
 }
 
 function getRegister(entry) {
-    if(entry["Protection type"] === "Name protected by international treaty") {
-        return "names-protected-by-international-treaty"
+    if(entry["Protection type"] === "American viticultural area" || entry["Protection type"] === "US spirit drink") {
+        return "american-viticultural-areas"
     }
 
     switch(entry["Product type"]) {
@@ -168,7 +168,8 @@ function getSummary(entry) {
         }
         case "Traditional Specialities Guaranteed (TSG)": return "Protected food name with Traditional Speciality Guaranteed (TSG)"
         case "Traditional Term": return "Traditional term for wine"
-        case "Name protected by international treaty": return "Name protected by international treaty"
+        case "American viticultural area": return "American viticultural area"
+        case "US spirit drink": return "Protected spirit drink name"
         default: return ""
     }
 }
@@ -177,11 +178,11 @@ function generateBody(entry) {
     let result = ''
     
     // Product specification
-    if (entry["Product type"] !== "Traditional term") {
+    if (entry["Product type"] !== "Traditional term" && entry["Reason for protection"] !== "UK trade agreement") {
         result +=      
 `## Product specification
 
-The product specification is not available on this site. Find out how to [get a product specification for a protected food name](https://www.gov.uk/link-to-follow) on GOV.UK.
+The product specification is not available on this site. [Email Defra](protectedfoodnames@defra.gov.uk) for the product specification.
 `
     }
     
@@ -268,7 +269,6 @@ function productNameForError(entry) {
 CSVToJSON().fromFile(process.argv[2])
         .then(eAmbrosiaData => {
             return eAmbrosiaData
-                .filter(entry => entry["Status"] === "Registered") // We will want to exclude this line from the final import routine. This was just useful while doing development
                 .map(entry => importEAmbrosiaEntry(entry))
         })
         .then(importedData => {
@@ -313,6 +313,7 @@ let classCategoryMap = {
     "Class 2.18. Leather": "2-18-leather",
     "Class 2.19. Fur": "2-19-fur",
     "Class 2.20. Feather": "2-20-feather",
+    "Class 2.20a. Rush": "2-20a-rush",
     "Class 2.21. Prepared meals": "2-21-prepared-meals",
     "Class 2.22. Beers": "2-22-beers",
     "Class 2.23. Chocolate and derived products": "2-23-chocolate-and-derived-products",
@@ -372,7 +373,9 @@ let classCategoryMap = {
     "99. Other spirit drink": "99-other-spirit-drink",
     "1. Aromatised wine": "1-aromatised-wine",
     "2. Aromatised wine-based drink": "2-aromatised-wine-based-drink",
-    "Traditional term":	"traditional-term"
+    "Spirit drink": "spirit-drink",
+    "Traditional term":	"traditional-term",
+    "No class or category": "no-class-category"
 }
 
 let protectionTypeMap = {
@@ -381,7 +384,9 @@ let protectionTypeMap = {
     "Traditional Specialities Guaranteed (TSG)": "traditional-speciality-guaranteed-tsg",
     "Traditional Term": "traditional-term",
     "Geographical indication (GI)": "geographical-indication-gi",
-    "Name protected by international treaty": "name-protected-by-international-treaty"
+    "Name protected by international treaty": "name-protected-by-international-treaty",
+    "American viticultural area": "american-viticultural-area",
+    "US spirit drink": "us-spirit-drink"
 }
 
 let countryMap = {
@@ -409,11 +414,13 @@ let countryMap = {
     "Finland": "finland",
     "France": "france",
     "Germany": "germany",
+    "Georgia": "georgia",
     "Greece": "greece",
     "Guatemala": "guatemala",
     "Guatemala": "guatemala",
     "Guinea": "guinea",
     "Guyana": "guyana",
+    "Honduras": "honduras",
     "Hungary": "hungary",
     "India": "india",
     "Indonesia": "indonesia",
@@ -426,6 +433,7 @@ let countryMap = {
     "Luxembourg": "luxembourg",
     "Malta": "malta",
     "Mexico": "mexico",
+    "Moldova": "moldova",
     "Mongolia": "mongolia",
     "Morocco": "morocco",
     "Netherlands": "netherlands",
@@ -448,6 +456,7 @@ let countryMap = {
     "Thailand": "thailand",
     "Trinidad and Tobago": "trinidad-and-tobago",
     "Turkey": "turkey",
+    "Ukraine": "ukraine",
     "United States": "united-states",
     "Vietnam": "vietnam"
 }
